@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ACA X · AI for Product Managers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#000;--surface:#0e0e10;--line:#242426;--green:#d0f539;--white:#fff;--muted:#8a8a90;
+  --h:'Barlow',system-ui,sans-serif;--b:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:var(--white);font-family:var(--b);line-height:1.5}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 6vw}
+.logo{font-family:var(--h);font-weight:800;font-size:26px;padding:26px 6vw 0}
+.logo sup{color:var(--green);font-size:.6em}
+header{padding:9vh 0 6vh}
+.kick{font-family:var(--h);font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-size:14px}
+h1{font-family:var(--h);font-weight:900;text-transform:uppercase;font-size:clamp(44px,8vw,104px);line-height:.94;letter-spacing:-.02em;margin:14px 0}
+h1 .g{color:var(--green)}
+.lead{color:var(--muted);font-size:clamp(17px,2vw,22px);max-width:640px}
+.bar{width:200px;height:14px;background:var(--green);border-radius:3px;margin-top:34px}
+.sec{font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:14px;color:var(--muted);margin:5vh 0 18px}
+/* featured webinar */
+.feature{display:block;border:1px solid var(--line);border-left:5px solid var(--green);border-radius:16px;
+  padding:34px;background:linear-gradient(120deg,rgba(208,245,57,.06),transparent);transition:.25s;margin-bottom:14px}
+.feature:hover{border-color:var(--green);transform:translateY(-2px)}
+.feature .t{font-family:var(--h);font-weight:800;text-transform:uppercase;font-size:clamp(24px,3.2vw,40px);line-height:1}
+.feature .m{color:var(--muted);margin-top:10px}
+.feature .go{color:var(--green);font-weight:700;margin-top:16px;display:inline-block}
+.badge{display:inline-block;font-family:var(--h);font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  font-size:12px;color:var(--ink);background:var(--green);padding:5px 10px;border-radius:5px;margin-bottom:14px}
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{display:block;border:1px solid var(--line);border-radius:16px;padding:26px;background:var(--surface);transition:.25s;position:relative;overflow:hidden}
+.card:hover{border-color:var(--green);transform:translateY(-2px)}
+.card .n{font-family:var(--h);font-weight:900;font-size:64px;line-height:.8;color:#1c1c1f;position:absolute;top:16px;right:20px}
+.card:hover .n{color:rgba(208,245,57,.25)}
+.card .dl{font-family:var(--h);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:var(--green)}
+.card .t{font-family:var(--h);font-weight:800;text-transform:uppercase;font-size:22px;line-height:1.05;margin:8px 0 10px;max-width:82%}
+.card .m{color:var(--muted);font-size:15px}
+.card .a{margin-top:14px;font-size:13px;color:var(--muted)}
+.card .a b{color:#cfcfd4;font-weight:600}
+footer{color:var(--line);font-size:13px;padding:8vh 0 6vh;border-top:1px solid var(--line);margin-top:6vh}
+footer b{color:var(--muted)}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="logo">ACA<sup>x</sup></div>
+<div class="wrap">
+  <header>
+    <div class="kick">Armenian Code Academy</div>
+    <h1>AI for<br><span class="g">Product Managers</span></h1>
+    <div class="lead">Become an AI-native PM across the whole product lifecycle. Eight hands-on sessions, one live product shipped by the end.</div>
+    <div class="bar"></div>
+  </header>
+
+  <div class="sec">Start here · free webinar</div>
+  <a class="feature" href="./webinar/">
+    <span class="badge">Webinar</span>
+    <div class="t">AI Fundamentals for Product Managers</div>
+    <div class="m">How the PM job is being rewritten, and how to be on the right side of it. One belief, one skill (R·C·T·C), and a map of AI across the job.</div>
+    <span class="go">Open deck →</span>
+  </a>
+
+  <div class="sec">The course · 8 sessions</div>
+  <div class="grid">
+    <a class="card" href="./sessions/session-1/"><div class="n">1</div><div class="dl">Session 1</div><div class="t">AI Foundations</div><div class="m">How AI really works, myths, and the limits that matter.</div><div class="a"><b>Ships:</b> your mental model + data red-lines</div></a>
+    <a class="card" href="./sessions/session-2/"><div class="n">2</div><div class="dl">Session 2</div><div class="t">Set Up Your AI Workspace</div><div class="m">Environment, prompting mastery (R·C·T·C), a personal assistant.</div><div class="a"><b>Ships:</b> working setup + assistant + first automation</div></a>
+    <a class="card" href="./sessions/session-3/"><div class="n">3</div><div class="dl">Session 3</div><div class="t">From Research to Spec</div><div class="m">Discovery, personas, PRDs and user stories, verified.</div><div class="a"><b>Ships:</b> a research set taken to a PRD</div></a>
+    <a class="card" href="./sessions/session-4/"><div class="n">4</div><div class="dl">Session 4</div><div class="t">Data & Decisions</div><div class="m">Answer and verify data questions in plain language, no SQL.</div><div class="a"><b>Ships:</b> a verified data decision</div></a>
+    <a class="card" href="./sessions/session-5/"><div class="n">5</div><div class="dl">Session 5</div><div class="t">Communicating & Design</div><div class="m">Stakeholder updates and on-brand visuals with AI.</div><div class="a"><b>Ships:</b> exec update + a designed one-pager</div></a>
+    <a class="card" href="./sessions/session-6/"><div class="n">6</div><div class="dl">Session 6</div><div class="t">Build the Judge</div><div class="m">Spec AI features, build evals and guardrails, a custom agent.</div><div class="a"><b>Ships:</b> a working eval + a simple agent</div></a>
+    <a class="card" href="./sessions/session-7/"><div class="n">7</div><div class="dl">Session 7</div><div class="t">Capstone I · Vibe-Code</div><div class="m">Scope small and build a working prototype with Claude Code.</div><div class="a"><b>Ships:</b> a working prototype or MVP</div></a>
+    <a class="card" href="./sessions/session-8/"><div class="n">8</div><div class="dl">Session 8</div><div class="t">Capstone II · Ship Live</div><div class="m">Deploy to a public URL, add analytics, demo to the cohort.</div><div class="a"><b>Ships:</b> a live product at a public URL</div></a>
+  </div>
+
+  <footer>ACA<sup style="color:var(--green)">x</sup> · AI for Product Managers · <b>Tigran Sargsyan</b><br>Built with AI, the way you will build yours.</footer>
+</div>
+</body>
+</html>

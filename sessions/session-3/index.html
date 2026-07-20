@@ -1,0 +1,232 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ACA X · Session 3 - Research to Spec</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/deck.css"></head><body>
+<a class="logo" href="../../index.html">ACA<sup>x</sup></a>
+<div class="progress" id="prog"></div><div class="deck" id="deck"></div>
+<div class="nav"><button id="prev">‹</button><button id="next">›</button></div>
+<div class="counter"><b id="cur">1</b> / <span id="tot">35</span></div>
+<div class="hint">← → navigate · F fullscreen</div>
+<div class="notes" id="notes"><div class="nk">Speaker note</div><div class="nt" id="noteText"></div><div class="vis" id="visText"></div></div>
+<script>
+/* brand shape: scattered neon fragments resolving into a clean grid */
+const GRID = `<svg viewBox="0 0 360 140" width="360" height="140" style="max-width:min(560px,80vw);height:auto" xmlns="http://www.w3.org/2000/svg">
+<g fill="#d0f539">
+<rect x="6" y="30" width="16" height="16" opacity=".35" transform="rotate(20 14 38)"/>
+<rect x="40" y="12" width="14" height="14" opacity=".55" transform="rotate(-14 47 19)"/>
+<rect x="30" y="72" width="18" height="18" opacity=".4" transform="rotate(32 39 81)"/>
+<rect x="72" y="48" width="13" height="13" opacity=".6" transform="rotate(10 78 54)"/>
+<rect x="66" y="98" width="15" height="15" opacity=".3" transform="rotate(-24 73 105)"/>
+<rect x="100" y="22" width="12" height="12" opacity=".5" transform="rotate(24 106 28)"/>
+<rect x="104" y="76" width="14" height="14" opacity=".45" transform="rotate(-8 111 83)"/>
+</g>
+<g fill="#d0f539">
+<path d="M150 62 l16 8 -16 8 z" opacity=".8"/>
+<path d="M174 62 l16 8 -16 8 z" opacity=".55"/>
+<path d="M198 62 l16 8 -16 8 z" opacity=".3"/>
+</g>
+<g fill="#d0f539">
+<rect x="244" y="24" width="24" height="24"/><rect x="276" y="24" width="24" height="24"/><rect x="308" y="24" width="24" height="24"/>
+<rect x="244" y="56" width="24" height="24"/><rect x="276" y="56" width="24" height="24"/><rect x="308" y="56" width="24" height="24"/>
+<rect x="244" y="88" width="24" height="24"/><rect x="276" y="88" width="24" height="24"/><rect x="308" y="88" width="24" height="24"/>
+</g>
+</svg>`;
+
+window.SLIDES = [
+
+{sec:"SESSION 3", title:`FROM RESEARCH <span class="g">TO SPEC</span>`, center:true,
+ body:`<div class="sub">Discovery, PRDs & stories. Messy input in. A buildable spec out.</div>
+   <div style="display:flex;justify-content:center;margin-top:30px">${GRID}</div>
+   <div class="tbar" style="margin-left:auto;margin-right:auto"></div>`},
+
+{sec:"OPEN + FRAME · where today sits", title:`RESEARCH TO SPEC, <span class="g">END TO END</span>`, center:true,
+ body:`<div class="lifecycle" style="justify-content:center">
+   <span>Research</span><span class="n">→</span><span>Themes</span><span class="n">→</span><span>Opportunity</span><span class="n">→</span><span style="color:var(--green)">PRD</span><span class="n">→</span><span>Stories</span></div>
+   <div class="sub">One thread, start to finish, today. Same material flows through every step.</div>`},
+
+{sec:"OPEN + FRAME · recall", title:`R·C·T·C IS YOUR <span class="g">ENGINE TODAY</span>`,
+ body:`<div class="sub">You already have the tool. Today we point it at research and specs.</div>
+   <div class="blocks" style="margin-top:18px">
+   <div class="block"><div class="bl">R · Role</div><p>Who it should be</p></div>
+   <div class="block"><div class="bl">C · Context</div><p>About you + the situation</p></div>
+   <div class="block"><div class="bl">T · Task</div><p>What you want + the format</p></div>
+   <div class="block"><div class="bl">C · Critique</div><p>Make it challenge you, then iterate</p></div></div>`},
+
+{sec:"OPEN + FRAME · belief", title:`YOUR JOB ISN'T TO HAVE <span class="g">OPINIONS</span>`,
+ body:`<div class="sub">It's to turn evidence into a spec, and keep AI honest while it helps.</div>
+   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">One Thing / Arete - today's ONE Thing view (built from my own pain → notes → spec → product)</div></div></div>`},
+
+{sec:"SYNTHESIS", title:`<span class="g">SYNTHESIS</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">From a pile of quotes to a short list of truths.</div>`},
+
+{sec:"SYNTHESIS · concept", title:`WHAT YOU <span class="g">SYNTHESIZE</span>`,
+ body:`<div class="rows">
+   <div class="row"><span class="a">interviews · app reviews · tickets · surveys · sales notes</span><span class="arw">→</span><span class="b"><b>themes · sentiment · pain points</b></span></div></div>
+   <div class="cap">AI reads a hundred reviews in seconds and clusters them. A real superpower, if you trust it correctly.</div>`},
+
+{sec:"SYNTHESIS · the danger", title:`IT SMOOTHS. <span class="g">IT INVENTS.</span>`,
+ body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">AI will invent a clean theme that isn't in the data.</div>
+   <div class="cap">Fluent wrongness, again. A tidy summary is not a true one.</div>`},
+
+{sec:"SYNTHESIS · demo", title:`A SYNTHESIS <span class="g">PROMPT</span>`,
+ body:`<div class="mono"><span class="c">R</span> senior UX researcher.<br><span class="c">C</span> [paste research] - real user input for [product].<br><span class="c">T</span> cluster into 3-5 themes; per theme give sentiment + top pain + <b>quote the exact supporting line(s)</b>.<br><span class="c">C</span> flag any claim with no quote as ASSUMPTION.</div>
+   <div class="cap">"Quote the line" is what separates a real finding from a hallucination.</div>`},
+
+{sec:"SYNTHESIS · personas", title:`A PERSONA IS A <span class="g">WEAPON</span>`,
+ body:`<div class="sub">Not a poster. Build one from the evidence, then make it attack your idea.</div>
+   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Claude - a persona built strictly from the research, then told to argue against the idea</div></div></div>`},
+
+{sec:"THEMES → OPPORTUNITIES", title:`THEMES → <span class="g">OPPORTUNITIES</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">What's worth building, and what proves it.</div>`},
+
+{sec:"OPPORTUNITY MAP · concept", title:`THE OPPORTUNITY <span class="g">MAP</span>`,
+ body:`<div class="arc"><span class="st">Problem</span><span class="ar">·</span><span class="st">Who</span><span class="ar">·</span><span class="st final">Evidence (quote)</span><span class="ar">·</span><span class="st">Impact</span><span class="ar">·</span><span class="st">Confidence</span></div>
+   <div class="cap">One row per opportunity. No evidence column filled = not an opportunity yet, just a hunch. Label it honestly.</div>
+   <div class="ph" style="min-height:22vh"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Claude - an opportunity map table: Problem · Who · Evidence (quote) · Impact · Confidence</div></div></div>`},
+
+{sec:"OPPORTUNITY MAP · framework", title:`CITE, <span class="g">OR FLAG</span>`,
+ body:`<div class="sub">The rule that makes AI safe to spec with: every claim cites its source line. No source = flagged ASSUMPTION.</div>
+   <div class="blocks" style="grid-template-columns:repeat(3,1fr);margin-top:18px">
+   <div class="block"><div class="bl">Claim</div><p>What AI asserts</p></div>
+   <div class="block"><div class="bl">Source line</div><p>The exact input it quotes</p></div>
+   <div class="block"><div class="bl">Verdict</div><p>Supported, or ASSUMPTION</p></div></div>
+   <div class="cap">Same promise as Session 1: for any fact, you verify or you don't ship it.</div>`},
+
+{sec:"OPPORTUNITY MAP · demo", title:`THE CITE-YOUR-<span class="g">SOURCE</span> PATTERN`,
+ body:`<div class="mono">After any summary, ask:<br><br>"For each point, <span class="c">quote the exact line(s)</span> from my input that support it. If none, say <span class="c">NO SOURCE</span>."</div>
+   <div class="cap">Then delete every NO SOURCE line. This is exactly how my Book RAG works: it answers, then shows the passages it pulled from.</div>
+   <div class="ph" style="min-height:20vh"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Book RAG - Answer + Passages panel showing the cited source passages</div></div></div>`},
+
+{sec:"OPPORTUNITY MAP · verify", title:`CATCH IT IN <span class="g">30 SECONDS</span>`,
+ body:`<ul class="recaplist">
+   <li><span class="n">1</span><span>Does the quote actually appear in my input? Ctrl-F it.</span></li>
+   <li><span class="n">2</span><span>Does the quote actually mean what the claim says?</span></li></ul>
+   <div class="cap">A real quote used wrong is still a hallucination. You just became the fact-checker, the part of the job getting more valuable, not less.</div>`},
+
+{sec:"HANDS-ON A", title:`YOUR <span class="g">TURN</span> · PART A`, center:true,
+ body:`<span class="turn">Your turn</span>
+   <div class="rule" style="margin-left:auto;margin-right:auto"></div>
+   <div class="sub">Research → themes → persona → opportunity map. 3 tasks, ~24 min.</div>`},
+
+{sec:"HANDS-ON A · sample", title:`A SMALL <span class="g">RESEARCH SET</span>`,
+ body:`<div class="sub" style="margin-top:6px">Use if you have none. A habit-tracking app. Copy into <b style="color:#fff">research.md</b>.</div>
+   <div class="mono" style="margin-top:16px">• "Set it up Sunday, motivated. By Wednesday I forget it exists. No nudge."<br>• "I have 12 habits in there. Overwhelming. Don't know which one matters today."<br>• Review 3★: "Nice design but I keep losing streaks, reminders fire late."<br>• Review 2★: "Too many features. I just want ONE thing to do today."<br>• Tickets: ~40% are "notifications not arriving" or "streak reset wrong."<br>• Survey: 68% of churned users stopped opening it within 8 days.</div>`},
+
+{sec:"HANDS-ON A · task 1", title:`TASK 1 · <span class="g">SYNTHESIZE</span>`,
+ body:`<span class="turn">Task 1 · 9 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Put your research (or the sample) into <span class="c">research.md</span>.</li>
+   <li>Prompt (R·C·T·C): "<span class="c">R</span> senior UX researcher. <span class="c">C</span> research.md is real user input for [product]. <span class="c">T</span> cluster into 3-5 themes; per theme: sentiment + top pain + quote the exact supporting line(s). <span class="c">C</span> flag any claim with no quote as ASSUMPTION."</li>
+   <li>Ctrl-F one quote in research.md. Delete anything unsupported.</li></ol></div>`},
+
+{sec:"HANDS-ON A · task 2", title:`TASK 2 · PERSONA, <span class="g">THEN ATTACK</span>`,
+ body:`<span class="turn">Task 2 · 6 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>"<span class="c">R</span> PM. <span class="c">C</span> the themes above. <span class="c">T</span> build ONE persona from the evidence only: name, role, 1 goal, 2 frustrations, 1 real quote. <span class="c">C</span> mark anything you had to assume."</li>
+   <li>Then: "Now BE this persona and give me 3 reasons my idea [one line] would fail you."</li>
+   <li>Keep the objection that stings most.</li></ol></div>`},
+
+{sec:"HANDS-ON A · task 3", title:`TASK 3 · OPPORTUNITY <span class="g">MAP</span>`,
+ body:`<span class="turn">Task 3 · 9 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>"<span class="c">T</span> turn the themes into a table: Problem · Who · Evidence (quote) · Impact · Confidence. Fill Evidence only from research.md; leave blank if none."</li>
+   <li>Pick the top row by Impact × Confidence.</li>
+   <li>Verify: "Show me the exact source line for row 1." Confirm it's real.</li></ol></div>`},
+
+{sec:"BREAK", title:`<span class="g">BREAK</span> · 8 MIN`, center:true,
+ body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div><div class="sub">Back at [time]. Next: lock your capstone, then turn your top opportunity into a real PRD.</div>`},
+
+{sec:"LOCK THE CAPSTONE", title:`LOCK YOUR <span class="g">CAPSTONE</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">You brought 2 ideas in Session 1. Today you commit to ONE.</div>`},
+
+{sec:"LOCK THE CAPSTONE · how to choose", title:`HOW TO CHOOSE <span class="g">BETWEEN TWO</span>`,
+ body:`<div class="blocks">
+   <div class="block"><div class="bl">User pain</div><p>Is it real + sharp?</p></div>
+   <div class="block"><div class="bl">Scope</div><p>Buildable in ~2 sessions?</p></div>
+   <div class="block"><div class="bl">Access</div><p>Do you have data / users?</p></div>
+   <div class="block"><div class="bl">Energy</div><p>Will you still care in 3 weeks?</p></div></div>
+   <div class="cap">Score both 1-5 on each. Highest total wins. Then shrink it to the smallest thing that could ship.</div>`},
+
+{sec:"LOCK THE CAPSTONE · task 4", title:`TASK 4 · <span class="g">LOCK IT</span>`,
+ body:`<span class="turn">Task 4 · 7 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>"<span class="c">R</span> pragmatic product coach. <span class="c">C</span> my 2 ideas [A / B], my skills [..], I have ~2 build sessions + limited tokens. <span class="c">T</span> score each 1-5 on user-pain, scope, access, energy; recommend ONE + name its smallest shippable version. <span class="c">C</span> argue the opposite once, then give a final call."</li>
+   <li>Decide. Write the winner + its smallest version into <span class="c">capstone.md</span>.</li>
+   <li>Say it out loud to your pod: "I'm building ___."</li></ol></div>`},
+
+{sec:"THE PRD", title:`THE <span class="g">PRD</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">The one document engineering actually needs.</div>`},
+
+{sec:"THE PRD · concept", title:`WHAT A GOOD PRD <span class="g">CONTAINS</span>`,
+ body:`<ul class="checklist" style="font-size:clamp(15px,1.6vw,20px);line-height:1.7">
+   <li>Problem</li>
+   <li>Goal + <b style="color:var(--green)">non-goals</b></li>
+   <li>Target user</li>
+   <li>Core flow (happy path)</li>
+   <li><b style="color:var(--green)">Edge cases</b></li>
+   <li><b style="color:var(--green)">Negative / error flows</b></li>
+   <li><b style="color:var(--green)">Technical constraints</b></li>
+   <li>Success metric</li>
+   <li>Out of scope</li></ul>
+   <div class="cap">Most people write the happy path and stop. The value is in the parts they skip.</div>`},
+
+{sec:"THE PRD · demo", title:`A PRD-DRAFTING <span class="g">PROMPT</span>`,
+ body:`<div class="mono"><span class="c">R</span> senior PM.<br><span class="c">C</span> capstone.md + the opportunity map.<br><span class="c">T</span> draft a 1-page PRD with the 9 sections; cite research for the problem + top requirements.<br><span class="c">C</span> list the <b>3 riskiest assumptions</b> at the end.</div>
+   <div class="cap">That last line is gold: it tells you exactly what to go validate next.</div>`},
+
+{sec:"THE PRD · push harder", title:`FORCE THE PARTS <span class="g">EVERYONE SKIPS</span>`,
+ body:`<div class="sub">Don't accept the first PRD. Push it harder:</div>
+   <ul class="checklist" style="margin-top:14px">
+   <li>"List 5 edge cases."</li>
+   <li>"What happens when this FAILS at each step?"</li>
+   <li>"What technical constraints would an engineer raise?"</li></ul>
+   <div class="cap">Thin PRD in = thin PRD out. Interrogate it. Iterate, the third answer is usually the strong one.</div>`},
+
+{sec:"THE PRD · task 5", title:`TASK 5 · YOUR <span class="g">PRD</span>`,
+ body:`<span class="turn">Task 5 · 10 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Run the PRD prompt against <span class="c">capstone.md</span> + your opportunity map. Save to <span class="c">prd.md</span>.</li>
+   <li>Push once: "Add 5 edge cases + a negative flow for the core step."</li>
+   <li>Read the "riskiest assumptions." Fix or note the top one. Keep it to <b>one page.</b></li></ol></div>`},
+
+{sec:"STORIES + AC", title:`STORIES + <span class="g">ACCEPTANCE CRITERIA</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">The handoff that doesn't come back.</div>`},
+
+{sec:"STORIES + AC · concept", title:`STORY + <span class="g">TESTABLE AC</span>`,
+ body:`<div class="mono">Story: "As a <span class="c">[user]</span>, I want <span class="c">[x]</span>, so that <span class="c">[y]</span>."<br><br>AC in <span class="c">Given / When / Then</span>, each one testable. Include a negative-path AC.</div>
+   <div class="cap">Vague acceptance criteria are the number-one cause of rework and "that's not what I meant."</div>`},
+
+{sec:"STORIES + AC · demo", title:`STORY + AC <span class="g">PROMPT</span>`,
+ body:`<div class="mono"><span class="c">R</span> PM writing for engineers.<br><span class="c">C</span> the core flow in prd.md.<br><span class="c">T</span> 3 user stories, each with Given/When/Then AC, each testable; include 1 negative-path AC.<br><span class="c">C</span> flag any story too big for one sitting and split it.</div>
+   <div class="cap">That split instruction alone will make your engineers trust you.</div>`},
+
+{sec:"STORIES + AC · task 6", title:`TASK 6 · STORIES + <span class="g">AC</span>`,
+ body:`<span class="turn">Task 6 · 8 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Run the story prompt against <span class="c">prd.md</span>. Save to <span class="c">stories.md</span>.</li>
+   <li>Check each AC: could a tester mark it pass/fail with no guessing? Fix the vague ones.</li>
+   <li>Confirm one story has a negative-path AC.</li></ol></div>`},
+
+{sec:"RECAP", title:`THE THREE THAT <span class="g">MATTER</span>`, center:true,
+ body:`<ul class="recaplist" style="text-align:left;display:inline-block">
+   <li><span class="n">1</span><span>Every finding cites a source, or it's an assumption.</span></li>
+   <li><span class="n">2</span><span>A PRD is happy path plus edge cases, negative flows, constraints.</span></li>
+   <li><span class="n">3</span><span>Ship stories with testable acceptance criteria.</span></li></ul>`},
+
+{sec:"HOMEWORK · before Session 4", title:`HOMEWORK · <span class="g">BEFORE SESSION 4</span>`,
+ body:`<span class="turn">Homework · token-light</span>
+   <div class="mono"><ol class="steps2">
+   <li>Finish <span class="c">prd.md</span> to one clean page.</li>
+   <li>Turn the rest of your core flow into stories + AC in <span class="c">stories.md</span>.</li>
+   <li>Sanity-check your PRD with one real user or teammate; note one thing you got wrong.</li>
+   <li>Keep your capstone <b>locked</b> (no switching). Bring prd.md + stories.md to Session 4.</li></ol></div>`},
+
+{sec:"CLOSE", title:`NEXT · <span class="g">DATA</span>`, center:true,
+ body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
+   <div class="sub">Decisions, experiments & verifying answers. You now have a spec. Next we make sure the numbers behind it hold up. No SQL.</div>
+   <div style="display:flex;justify-content:center;margin-top:24px;opacity:.28">${GRID}</div>`}
+
+];
+</script>
+<script src="../../assets/deck.js"></script></body></html>

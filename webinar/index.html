@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ACA X · AI Fundamentals for Product Managers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#000000; --surface:#0e0e10; --line:#242426;
+  --green:#d0f539; --white:#ffffff; --muted:#8a8a90;
+  --h: 'Barlow', system-ui, 'Arial Narrow', sans-serif;
+  --b: 'Inter', system-ui, sans-serif;
+  --m: 'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--ink);color:var(--white);font-family:var(--b);overflow:hidden}
+.deck{position:fixed;inset:0}
+.slide{
+  position:absolute;inset:0;display:flex;align-items:center;
+  padding:6vh 8vw;opacity:0;visibility:hidden;transform:translateY(14px);
+  transition:opacity .5s ease, transform .5s ease;
+}
+.slide.active{opacity:1;visibility:visible;transform:none}
+.slide.center{justify-content:center;text-align:center}
+.wrap{width:100%;max-width:1180px}
+.slide.center .wrap{max-width:1000px}
+.kicker{font-family:var(--h);font-weight:700;font-size:14px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:26px}
+.kicker b{color:var(--green);font-weight:700}
+h1.title{font-family:var(--h);font-weight:800;text-transform:uppercase;
+  font-size:clamp(38px,6.2vw,88px);line-height:.98;letter-spacing:-.01em}
+.title .g{color:var(--green)}
+.sub{font-size:clamp(17px,2vw,24px);color:var(--muted);margin-top:22px;max-width:800px;line-height:1.35}
+.slide.center .sub{margin-left:auto;margin-right:auto}
+.body{margin-top:30px;font-size:clamp(16px,1.5vw,20px);line-height:1.5}
+.rule{width:72px;height:8px;background:var(--green);border-radius:2px;margin:26px 0}
+.slide.center .rule{margin-left:auto;margin-right:auto}
+
+/* giant number */
+.num{font-family:var(--h);font-weight:900;color:var(--green);
+  font-size:clamp(90px,20vw,260px);line-height:.85;letter-spacing:-.03em}
+.num.small{font-size:clamp(70px,12vw,150px)}
+.cap{font-size:clamp(16px,1.6vw,22px);color:var(--muted);margin-top:10px;max-width:760px;line-height:1.4}
+.src{font-size:12px;color:var(--line);margin-top:18px;letter-spacing:.04em;text-transform:uppercase}
+.src b{color:var(--muted)}
+
+/* framework blocks */
+.blocks{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:8px}
+.block{border:1px solid var(--line);border-left:4px solid var(--green);border-radius:12px;
+  padding:20px 22px;background:linear-gradient(180deg,rgba(208,245,57,.03),transparent)}
+.block .bl{font-family:var(--h);font-weight:800;text-transform:uppercase;color:var(--green);
+  font-size:22px;letter-spacing:.02em}
+.block p{color:var(--muted);margin-top:6px;font-size:16px}
+
+/* cards bad/good */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px}
+.card{border:1px solid var(--line);border-radius:12px;padding:22px;background:var(--surface)}
+.card.bad{opacity:.6}
+.card.good{border-color:var(--green);box-shadow:0 0 0 1px rgba(208,245,57,.25)}
+.card .tag{font-family:var(--h);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:13px;margin-bottom:10px}
+.card.bad .tag{color:var(--muted)}
+.card.good .tag{color:var(--green)}
+.card p{font-size:17px;line-height:1.45}
+
+/* table */
+.rows{margin-top:6px;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;
+  padding:18px 0;border-bottom:1px solid var(--line);font-size:clamp(16px,1.7vw,21px)}
+.row .a{color:var(--muted)}
+.row .arw{color:var(--green);font-family:var(--h);font-weight:800}
+.row .b{font-weight:600}
+.row .b b{color:var(--green)}
+
+/* task / your turn */
+.turn{display:inline-block;font-family:var(--h);font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink);background:var(--green);
+  padding:6px 12px;border-radius:6px;font-size:13px;margin-bottom:18px}
+.mono{font-family:var(--m);font-size:clamp(15px,1.5vw,18px);line-height:1.6;background:var(--surface);
+  border:1px solid var(--line);border-left:4px solid var(--green);border-radius:10px;padding:20px 22px;color:#e9e9ee}
+.mono .c{color:var(--green)}
+ol.steps2{margin:0 0 0 20px;font-size:clamp(16px,1.6vw,20px);line-height:1.7}
+ol.steps2 li{margin:4px 0}
+
+/* placeholder card (screenshots / photos) */
+.ph{margin-top:8px;border:1.5px dashed rgba(208,245,57,.5);border-radius:12px;
+  background:repeating-linear-gradient(45deg,rgba(208,245,57,.03),rgba(208,245,57,.03) 12px,transparent 12px,transparent 24px);
+  min-height:34vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:28px}
+.ph .pl{max-width:640px}
+.ph .pk{font-family:var(--h);font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--green);font-size:13px;margin-bottom:8px}
+.ph .pt{color:var(--muted);font-size:16px;line-height:1.45}
+
+/* lists */
+.checklist,.recaplist{list-style:none;margin-top:6px;font-size:clamp(17px,1.8vw,23px);line-height:1.9}
+.checklist li:before{content:"›";color:var(--green);font-family:var(--h);font-weight:800;margin-right:14px}
+.recaplist li{display:flex;gap:18px;align-items:baseline;margin:6px 0}
+.recaplist .n{font-family:var(--h);font-weight:900;color:var(--green);font-size:34px;line-height:1;min-width:42px}
+.poll{list-style:none;margin-top:10px;font-size:clamp(18px,2vw,26px);line-height:2}
+.poll .n{font-family:var(--h);font-weight:900;color:var(--green);margin-right:14px}
+
+/* arc steps */
+.arc{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+.arc .st{border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-size:14px;color:var(--muted);white-space:nowrap}
+.arc .st.final{border-color:var(--green);color:var(--green);font-weight:700}
+.arc .ar{color:var(--green);font-weight:800}
+.lifecycle{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px;font-family:var(--h);font-weight:800;
+  text-transform:uppercase;font-size:clamp(16px,2.2vw,30px)}
+.lifecycle .n{color:var(--green)}
+
+/* brand asterisk */
+.aster{display:inline-block;width:56px;height:56px;color:var(--green)}
+.bignum-wrap{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
+.twobars{display:flex;gap:26px;align-items:flex-end;height:34vh;margin-top:10px}
+.bar{width:120px;background:var(--green);border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:10px;color:var(--ink);font-family:var(--h);font-weight:900;font-size:26px}
+.bar.small{opacity:.45}
+.barlabel{color:var(--muted);font-size:13px;text-align:center;margin-top:8px}
+
+/* the cube (isometric) */
+.cubebox{margin-top:20px;display:flex;justify-content:center;perspective:900px}
+.slide.center .cubebox{margin-top:30px}
+.cube{width:150px;height:150px;transform-style:preserve-3d;transform:rotateX(-24deg) rotateY(-32deg);position:relative}
+.cube .f{position:absolute;width:150px;height:150px;border:2px solid #2c2c2e;background:#0c0c0d}
+.cube .top{transform:rotateX(90deg) translateZ(75px)}
+.cube .left{transform:rotateY(-90deg) translateZ(75px)}
+.cube .front{transform:translateZ(75px)}
+.cube.lit .f{border-color:var(--green);background:rgba(208,245,57,.08);
+  box-shadow:0 0 26px rgba(208,245,57,.55),inset 0 0 30px rgba(208,245,57,.25)}
+.cube.lit{animation:flick 2.6s ease-in-out infinite}
+@keyframes flick{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25)}}
+
+/* title bar accent */
+.tbar{width:180px;height:14px;background:var(--green);border-radius:3px;margin-top:34px}
+
+/* logo */
+.logo{position:fixed;top:22px;left:26px;font-family:var(--h);font-weight:800;font-size:26px;letter-spacing:.02em;z-index:5}
+.logo sup{color:var(--green);font-size:.6em;margin-left:1px}
+
+/* UI chrome */
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--green);width:0;z-index:6;transition:width .4s ease}
+.counter{position:fixed;bottom:18px;right:24px;font-family:var(--m);font-size:13px;color:var(--muted);z-index:6}
+.counter b{color:var(--white)}
+.hint{position:fixed;bottom:18px;left:26px;font-family:var(--m);font-size:12px;color:var(--line);z-index:6}
+.nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:6}
+.nav button{background:var(--surface);border:1px solid var(--line);color:var(--muted);
+  width:38px;height:32px;border-radius:8px;cursor:pointer;font-size:16px}
+.nav button:hover{border-color:var(--green);color:var(--green)}
+
+/* notes overlay */
+.notes{position:fixed;left:0;right:0;bottom:0;background:rgba(8,8,9,.97);border-top:2px solid var(--green);
+  padding:18px 26px 22px;z-index:8;transform:translateY(110%);transition:transform .35s ease;max-height:42vh;overflow:auto}
+.notes.on{transform:none}
+.notes .nk{font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--green);font-size:12px;margin-bottom:8px}
+.notes .nt{font-size:17px;line-height:1.5;color:#e9e9ee;max-width:1000px}
+.notes .vis{margin-top:12px;font-size:13px;color:var(--muted)}
+.notes .vis b{color:var(--green);text-transform:uppercase;letter-spacing:.08em}
+@media (max-width:640px){.blocks,.cards{grid-template-columns:1fr}.logo{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="logo">ACA<sup>x</sup></div>
+<div class="progress" id="prog"></div>
+<div class="deck" id="deck"></div>
+<div class="nav"><button id="prev">‹</button><button id="next">›</button></div>
+<div class="counter"><b id="cur">1</b> / <span id="tot">30</span></div>
+<div class="hint">← → navigate · F fullscreen</div>
+<div class="notes" id="notes">
+  <div class="nk">Speaker note</div>
+  <div class="nt" id="noteText"></div>
+  <div class="vis" id="visText"></div>
+</div>
+
+<script>
+const AST = `<svg class="aster" viewBox="0 0 100 100" fill="currentColor"><path d="M45 5h10v28l20-20 7 7-20 20h28v10H62l20 20-7 7-20-20v28H45V62L25 82l-7-7 20-20H10V45h28L18 25l7-7 20 20z"/></svg>`;
+
+const SLIDES = [
+{sec:"COLD OPEN", title:`AI FUNDAMENTALS FOR <span class="g">PRODUCT MANAGERS</span>`, center:true,
+ body:`<div class="sub">How the PM job is being rewritten, and how to be on the right side of it.</div>
+   <div class="cubebox"><div class="cube"><div class="f top"></div><div class="f left"></div><div class="f front"></div></div></div>
+   <div class="tbar" style="margin-left:auto;margin-right:auto"></div>
+   <div class="sub" style="font-size:16px">Tigran Sargsyan · Senior Product Operations Manager, Picsart</div>`},
+
+{sec:"COLD OPEN", title:`THE QUESTION ISN'T <span class="g">"WILL AI TAKE MY JOB?"</span>`, center:true,
+ body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">It's: will I be the PM who <span class="g">directs</span> AI, or the one who gets directed?</div>`},
+
+{sec:"COLD OPEN · chat poll", title:`DROP A NUMBER <span class="g">IN THE CHAT</span>`,
+ body:`<div class="sub">Which did you do this week?</div>
+   <ul class="poll"><li><span class="n">1</span> Wrote something with AI</li><li><span class="n">2</span> Analyzed data with AI</li><li><span class="n">3</span> Built something with AI</li><li><span class="n">4</span> Not yet</li></ul>`},
+
+{sec:"WHO + WHY LISTEN", title:`WHO AM I`,
+ body:`<ul class="checklist"><li>5 years in Product Ops at Picsart</li><li>Former President, AIESEC Armenia</li><li>A PM, not an engineer</li><li>AI turned me into a one-person product team</li></ul>
+   <div class="ph" style="min-height:24vh;margin-top:20px"><div class="pl"><div class="pk">Photo</div><div class="pt">A real, clean photo of Tigran (ACA: use real people)</div></div></div>`},
+
+{sec:"THE SHIFT", title:`<span class="g">3</span> YEARS`, center:true,
+ body:`<div class="num">3</div><div class="cap">The time AI took to reach ~50% of people. Faster than the PC. Faster than the internet.</div><div class="src"><b>Source:</b> Stanford AI Index 2026</div>`},
+
+{sec:"THE SHIFT", title:`<span class="g">1 BILLION</span> USERS`, center:true,
+ body:`<div class="num small">1B</div><div class="cap">ChatGPT crossed it in 2026. Not a demo. Infrastructure.</div>`},
+
+{sec:"THE SHIFT · the line for you", title:`AI LIFTS <span class="g">BEGINNERS</span> THE MOST`,
+ body:`<div class="twobars"><div><div class="bar small" style="height:38%">+17%</div><div class="barlabel">top performers</div></div><div><div class="bar" style="height:88%">+43%</div><div class="barlabel">lowest performers</div></div></div>
+   <div class="cap">A 758-person controlled study. You don't need to already be an expert.</div><div class="src"><b>Source:</b> Harvard / BCG</div>`},
+
+{sec:"THE SHIFT · the belief", title:`AI AMPLIFIES <span class="g">WHO YOU ARE</span>`, center:true,
+ body:`<div style="display:flex;justify-content:center;margin:10px 0">${AST}</div><div class="sub" style="color:#fff">A sharp thinker gets sharper. A lazy one just gets louder.</div>`},
+
+{sec:"WHAT IS AI, REALLY?", title:`WHAT IS AI, <span class="g">REALLY?</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">Enough to use it wisely.</div>`},
+
+{sec:"HOW IT WORKS", title:`IT PREDICTS THE <span class="g">NEXT WORD</span>`,
+ body:`<div class="mono" style="font-size:22px">"The cat sat on the ___"</div>
+   <div style="margin-top:16px;display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap">
+   <span style="font-family:var(--h);font-weight:900;font-size:44px;color:var(--green)">mat</span>
+   <span style="font-family:var(--h);font-weight:800;font-size:30px;color:#cfcfd4">floor</span>
+   <span style="font-family:var(--h);font-weight:700;font-size:22px;color:var(--muted)">keyboard</span>
+   <span style="font-size:16px;color:var(--line)">banana</span></div>`},
+
+{sec:"HOW IT WORKS", title:`IT PREDICTS. <span class="g">IT DOESN'T KNOW.</span>`,
+ body:`<div class="sub">Confident does not mean correct. This is why it makes things up.</div>
+   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">A real AI answer confidently stating a made-up fact or a fake citation</div></div></div>`},
+
+{sec:"HOW IT WORKS", title:`SUPERHUMAN AND <span class="g">CLUELESS</span> AT ONCE`,
+ body:`<div class="cards"><div class="card good"><div class="tag">Brilliant</div><p>Wins a Math Olympiad gold medal</p></div><div class="card bad"><div class="tag">Clueless</div><p>Reads an analog clock right ~50% of the time</p></div></div><div class="src"><b>Source:</b> Stanford AI Index 2026</div>`},
+
+{sec:"HOW IT WORKS", title:`MYTHS <span class="g">VS</span> REALITY`,
+ body:`<div class="rows">
+   <div class="row"><span class="a">"AI will replace me"</span><span class="arw">→</span><span class="b">replaces <b>tasks</b>, not people</span></div>
+   <div class="row"><span class="a">"AI is always right"</span><span class="arw">→</span><span class="b">confident, <b>often wrong</b></span></div>
+   <div class="row"><span class="a">"AI is only for engineers"</span><span class="arw">→</span><span class="b">for <b>anyone who thinks</b></span></div></div>`},
+
+{sec:"THE ONE SKILL", title:`THE ONE <span class="g">SKILL</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">How to actually talk to AI: the R·C·T·C prompt.</div>`},
+
+{sec:"THE ONE SKILL", title:`THE <span class="g">R·C·T·C</span> PROMPT`,
+ body:`<div class="blocks">
+   <div class="block"><div class="bl">R · Role</div><p>Who it should be</p></div>
+   <div class="block"><div class="bl">C · Context</div><p>About you + the situation</p></div>
+   <div class="block"><div class="bl">T · Task</div><p>What you want + the format</p></div>
+   <div class="block"><div class="bl">C · Critique</div><p>Make it challenge you</p></div></div>`},
+
+{sec:"THE ONE SKILL", title:`BAD <span class="g">VS</span> GOOD PROMPT`,
+ body:`<div class="cards"><div class="card bad"><div class="tag">✕ Bad</div><p>"Teach me product management."</p></div>
+   <div class="card good"><div class="tag">✓ Good</div><p>"Act as a senior PM. I'm a marketer with no PM experience. Ask me questions first, then teach me PM with real marketing examples, and critique my understanding."</p></div></div>`},
+
+{sec:"THE ONE SKILL", title:`TWO <span class="g">MULTIPLIERS</span>`,
+ body:`<div class="bignum-wrap"><div><div class="num small">5</div><div class="barlabel" style="text-align:left">exchanges to calibrate</div></div><div><div class="num small">50</div><div class="barlabel" style="text-align:left">variants for range</div></div></div>
+   <div class="cap"><b style="color:#fff">Iterate:</b> never accept the first answer. The third reply is usually the good one.</div>`},
+
+{sec:"THE ONE SKILL · your turn", title:`YOUR <span class="g">TURN</span>`,
+ body:`<span class="turn">Your turn</span>
+   <div class="mono">Paste this into Claude or ChatGPT:<br><br>"Act as a <span class="c">career coach</span>. Ask me about my strengths and goals, suggest 2-3 paths, then <span class="c">critique</span> each."</div>`},
+
+{sec:"ACROSS THE JOB", title:`ACROSS THE <span class="g">WHOLE JOB</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">Where AI shows up in the PM lifecycle.</div>`},
+
+{sec:"ACROSS THE JOB", title:`THE PM <span class="g">LIFECYCLE</span>`,
+ body:`<div class="lifecycle"><span>Discovery</span><span class="n">·</span><span>Specs</span><span class="n">·</span><span>Data</span><span class="n">·</span><span>Communication</span><span class="n">·</span><span>Building AI features</span></div>`},
+
+{sec:"ACROSS THE JOB · demo", title:`FROM 40 INTERVIEWS TO <span class="g">THEMES IN MINUTES</span>`,
+ body:`<div class="sub">Verify, don't trust: make it show its work.</div>
+   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Claude turning real reviews / feedback into themes with supporting quotes</div></div></div>`},
+
+{sec:"ACROSS THE JOB · demo", title:`ONE PM. AI MADE ME <span class="g">A TEAM.</span>`,
+ body:`<div class="sub">A personal command center, a trend-to-video engine, a full game, all built with AI.</div>
+   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Agent Command Center (+ small Catan / Book RAG thumbnails). Picsart kept high-level.</div></div></div>`},
+
+{sec:"ACROSS THE JOB", title:`SAME MIND. <span class="g">PLUGGED IN.</span>`, center:true,
+ body:`<div class="cubebox"><div class="cube lit"><div class="f top"></div><div class="f left"></div><div class="f front"></div></div></div>`},
+
+{sec:"THE COURSE", title:`GO FROM USER TO <span class="g">OPERATOR</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">8 sessions: from AI-curious to AI-native PM.</div>`},
+
+{sec:"THE COURSE", title:`THE <span class="g">ARC</span>`,
+ body:`<div class="arc"><span class="st">Foundations</span><span class="ar">→</span><span class="st">AI workspace</span><span class="ar">→</span><span class="st">Research to spec</span><span class="ar">→</span><span class="st">Data decisions</span><span class="ar">→</span><span class="st">Comms + design</span><span class="ar">→</span><span class="st">Build AI features</span><span class="ar">→</span><span class="st final">Ship a live product</span></div>
+   <div class="cap">Every session ships a real artifact.</div>`},
+
+{sec:"THE COURSE", title:`YOU <span class="g">LEAVE WITH</span>`,
+ body:`<ul class="checklist"><li>A personal AI system</li><li>A prompt library</li><li>A live product at a public URL</li><li>The judgment to trust AI in the right places</li></ul>`},
+
+{sec:"THE COURSE · enroll", title:`AI FOR <span class="g">PRODUCT MANAGERS</span>`,
+ body:`<div class="sub">Armenian Code Academy · starts <b style="color:#fff">[COURSE DATES]</b> · <b style="color:#fff">[PRICE]</b></div>
+   <div class="ph" style="min-height:26vh"><div class="pl"><div class="pk">QR</div><div class="pt">Enroll link → <b style="color:var(--green)">[ENROLL LINK]</b></div></div></div>`},
+
+{sec:"CLOSE", title:`THREE THINGS <span class="g">TO KEEP</span>`,
+ body:`<ul class="recaplist"><li><span class="n">1</span><span>AI amplifies who you are</span></li><li><span class="n">2</span><span>R·C·T·C is the skill</span></li><li><span class="n">3</span><span>Verify, don't trust</span></li></ul>`},
+
+{sec:"CLOSE", title:`TAKE THE <span class="g">CHEAT SHEET</span>`, center:true,
+ body:`<div class="sub">The one-page R·C·T·C cheat sheet. Use it on one real thing this week.</div>
+   <div class="ph" style="min-height:24vh;max-width:520px;margin:14px auto 0"><div class="pl"><div class="pk">QR</div><div class="pt">Link to the R·C·T·C cheat sheet PDF</div></div></div>`},
+
+{sec:"CLOSE", title:`<span class="g">QUESTIONS?</span>`, center:true,
+ body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div><div class="sub">[Tigran LinkedIn] · [ENROLL LINK]</div>`}
+];
+
+const deck=document.getElementById('deck');
+SLIDES.forEach((s,i)=>{
+  const el=document.createElement('section');
+  el.className='slide'+(s.center?' center':'');
+  el.innerHTML=`<div class="wrap"><div class="kicker">${s.sec||''}</div><h1 class="title">${s.title}</h1><div class="body">${s.body||''}</div></div>`;
+  deck.appendChild(el);
+});
+const slides=[...document.querySelectorAll('.slide')];
+document.getElementById('tot').textContent=slides.length;
+let i=0;
+const prog=document.getElementById('prog'),cur=document.getElementById('cur');
+const notes=document.getElementById('notes'),noteText=document.getElementById('noteText'),visText=document.getElementById('visText');
+function show(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  prog.style.width=((i+1)/slides.length*100)+'%';
+  cur.textContent=i+1;
+  noteText.textContent=SLIDES[i].note||'';
+  visText.innerHTML=SLIDES[i].vis?('<b>Visual:</b> '+SLIDES[i].vis):'';
+}
+function next(){show(i+1)} function prev(){show(i-1)}
+document.getElementById('next').onclick=next;
+document.getElementById('prev').onclick=prev;
+addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();next()}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+  else if(e.key==='Home'){show(0)} else if(e.key==='End'){show(slides.length-1)}
+  else if(e.key.toLowerCase()==='n'){notes.classList.toggle('on')}
+  else if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen()}
+});
+show(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ACA X · Session 4 - Data & Decisions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/deck.css"></head><body>
+<a class="logo" href="../../index.html">ACA<sup>x</sup></a>
+<div class="progress" id="prog"></div><div class="deck" id="deck"></div>
+<div class="nav"><button id="prev">‹</button><button id="next">›</button></div>
+<div class="counter"><b id="cur">1</b> / <span id="tot">37</span></div>
+<div class="hint">← → navigate · F fullscreen</div>
+<div class="notes" id="notes"><div class="nk">Speaker note</div><div class="nt" id="noteText"></div><div class="vis" id="visText"></div></div>
+<script>
+const DOTS = `<svg viewBox="0 0 260 130" width="260" height="130" aria-hidden="true" style="max-width:70vw"><g fill="#d0f539"><circle cx="28" cy="30" r="5" opacity=".28"/><circle cx="66" cy="86" r="5" opacity=".34"/><circle cx="104" cy="42" r="5" opacity=".26"/><circle cx="150" cy="98" r="5" opacity=".32"/><circle cx="52" cy="58" r="5" opacity=".44"/><circle cx="92" cy="104" r="5" opacity=".30"/><circle cx="188" cy="46" r="5" opacity=".40"/><circle cx="214" cy="92" r="5" opacity=".26"/><circle cx="236" cy="34" r="5" opacity=".33"/><circle cx="176" cy="104" r="5" opacity=".28"/><circle cx="132" cy="68" r="11" opacity="1" style="filter:drop-shadow(0 0 13px rgba(208,245,57,.9))"/></g></svg>`;
+
+window.SLIDES = [
+{sec:`SESSION 4 · DATA & DECISIONS`, title:`DATA WITHOUT <span class="g">SQL</span>`, center:true,
+ body:`<div class="sub">Data: Decisions, Experiments &amp; Verifying Answers</div>
+   <div style="margin:24px auto 0;display:flex;justify-content:center">${DOTS}</div>
+   <div class="sub" style="font-size:clamp(18px,2.4vw,30px);color:#fff;margin-top:20px">Answer the question. Verify the number. Own the decision.</div>
+   <div class="tbar" style="margin-left:auto;margin-right:auto"></div>`},
+
+{sec:`OPEN & FRAME`, title:`WHERE THIS SITS IN THE <span class="g">LIFECYCLE</span>`, center:true,
+ body:`<div class="rule"></div>
+   <div class="lifecycle" style="justify-content:center"><span>Research</span><span class="n">→</span><span>Spec</span><span class="n">→</span><span style="color:var(--green);text-shadow:0 0 22px rgba(208,245,57,.6)">Data</span><span class="n">→</span><span>Ship</span></div>
+   <div class="sub">You've made things. Now you'll defend them with numbers you actually trust.</div>`},
+
+{sec:`OPEN & FRAME · chat`, title:`CALIBRATE THE <span class="g">ROOM</span>`,
+ body:`<div class="sub" style="font-size:clamp(20px,2.6vw,32px);color:#fff;margin-top:0">One line in the chat: a time a "confident number" turned out wrong.</div>
+   <div class="sub">What did it cost?</div>`},
+
+{sec:`OPEN & FRAME · the belief`, title:`YOU OWN THE <span class="g">VERDICT</span>`, center:true,
+ body:`<div class="sub" style="margin-top:0">AI gives you the number in seconds.</div>
+   <div class="rule"></div>
+   <div class="sub" style="color:#fff;font-size:clamp(18px,2.2vw,28px)">A wrong number, shipped confidently, is worse than no number.</div>`},
+
+{sec:`BRING DATA TO AI`, title:`GET THE ANSWER, <span class="g">SKIP THE SYNTAX</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">Bring your data to AI. No query language required.</div>`},
+
+{sec:`BRING DATA TO AI`, title:`WHAT SQL WAS FOR, <span class="g">& WHY YOU CAN SKIP IT</span>`,
+ body:`<div class="sub" style="margin-top:0">SQL is a language to ask a database questions. AI removes the syntax tax: you ask in plain English, it writes and runs the query for you.</div>
+   <div class="ph" style="min-height:24vh"><div class="pl"><div class="pk">Screenshot</div><div class="pt">A plain-English question typed into Claude with its answer. The user wrote no SQL.</div></div></div>`},
+
+{sec:`BRING DATA TO AI`, title:`THREE WAYS TO <span class="g">GET DATA TO AI</span>`,
+ body:`<ul class="checklist"><li><b style="color:#fff">Upload a file</b> (CSV / Excel) into the chat</li><li><b style="color:#fff">Connect a source</b> (built-in connectors, where available)</li><li><b style="color:#fff">Analysis mode</b>: AI writes + runs code on your file and shows the result</li></ul>
+   <div class="ph" style="min-height:20vh"><div class="pl"><div class="pk">Screenshot</div><div class="pt">A CSV file being dragged into the Claude chat (door one: upload a file)</div></div></div>`},
+
+{sec:`BRING DATA TO AI · framework`, title:`R·C·T·C, <span class="g">APPLIED TO DATA</span>`,
+ body:`<div class="blocks">
+   <div class="block"><div class="bl">R · Role</div><p>Act as a skeptical data analyst.</p></div>
+   <div class="block"><div class="bl">C · Context</div><p>My CSV + what each column means + the business question.</p></div>
+   <div class="block"><div class="bl">T · Task</div><p>Answer it, then explain your logic in plain English.</p></div>
+   <div class="block" style="box-shadow:0 0 0 1px rgba(208,245,57,.4),0 0 26px rgba(208,245,57,.25)"><div class="bl">C · Critique</div><p>Now challenge your own answer: what could make this wrong?</p></div></div>`},
+
+{sec:`BRING DATA TO AI · Picsart`, title:`DATA TO ANSWERS, <span class="g">NO QUERIES</span>`,
+ body:`<div class="sub" style="margin-top:0">I run marketing reports across five platforms and a lifecycle dashboard. I ask questions in plain English. I never hand-write the queries.</div>
+   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Marketing dashboard or monthly social report, high-level, no confidential figures</div></div></div>`},
+
+{sec:`VERIFY WITHOUT SQL`, title:`CATCH THE <span class="g">SILENT WRONG NUMBER</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">The one skill that pays for this whole session.</div>`},
+
+{sec:`VERIFY WITHOUT SQL`, title:`THE SILENT <span class="g">WRONG NUMBER</span>`,
+ body:`<div style="display:flex;gap:48px;align-items:flex-end;flex-wrap:wrap;margin-top:6px">
+   <div><div class="num small" style="font-size:clamp(60px,11vw,140px)">42%</div><div class="barlabel">looks right</div></div>
+   <div><div class="num small" style="font-size:clamp(60px,11vw,140px)">42%</div><div class="barlabel">is wrong</div></div></div>
+   <div class="cap">AI won't warn you. A wrong 42% looks identical to a right one.</div>`},
+
+{sec:`VERIFY WITHOUT SQL`, title:`EXPLAIN THE LOGIC, <span class="g">NOT THE CODE</span>`,
+ body:`<div class="sub" style="margin-top:0">Don't ask to see the code. Ask: "Explain, in plain English, exactly how you got this number." You verify the logic, not the syntax.</div>
+   <div class="ph" style="min-height:24vh"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Claude explaining, in plain English step by step, how it calculated a number</div></div></div>`},
+
+{sec:`VERIFY WITHOUT SQL · framework`, title:`THE <span class="g">3 CHECKS</span>`,
+ body:`<div class="blocks" style="grid-template-columns:repeat(3,1fr)">
+   <div class="block"><div class="bl">Source</div><p>Which data, which rows. Is it complete?</p></div>
+   <div class="block"><div class="bl">Filters</div><p>What date range. What's included, what's excluded?</p></div>
+   <div class="block"><div class="bl">What it counted</div><p>People or sessions? Events or users? The right unit?</p></div></div>`},
+
+{sec:`VERIFY WITHOUT SQL · the questions`, title:`THE KILLER QUESTIONS <span class="g">(SAY THEM OUT LOUD)</span>`,
+ body:`<div class="sub" style="margin-top:0">Paste after any AI answer:</div>
+   <div class="mono" style="margin-top:16px">"What data and date range did you use?"<br>"What rows did you drop or exclude, and why?"<br>"Did you count people or sessions?"<br><span class="c">"What would make this number wrong?"</span></div>`},
+
+{sec:`VERIFY WITHOUT SQL · Picsart`, title:`THE SILENT WRONG NUMBER, <span class="g">FOR REAL</span>`,
+ body:`<ul class="checklist"><li>A viral post was <b style="color:#fff">missing</b> from one report (paid posts weren't in that source)</li><li>One platform reported <b style="color:#fff">impressions</b>, another <b style="color:#fff">views</b>. Off by ~20x</li><li>"Reach" counted differently everywhere</li></ul>
+   <div class="ph" style="min-height:18vh"><div class="pl"><div class="pk">Screenshot</div><div class="pt">A monthly social report missing a high-performing post, plus two platforms labeling the same metric "views" vs "impressions". High-level, no confidential figures.</div></div></div>`},
+
+{sec:`VERIFY WITHOUT SQL · the flip`, title:`VERIFICATION IS <span class="g">YOUR MOAT</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">Anyone can get a number now. Being the person who knows when to trust it is the rare, promotable skill.</div>`},
+
+{sec:`WARM-UP HANDS-ON`, title:`THE <span class="g">DATASET</span>`,
+ body:`<div class="sub" style="margin-top:0">We tested a new onboarding flow (B) vs the old one (A). Did B improve activation? Ship B to everyone? Paste this tiny CSV into Claude:</div>
+   <div class="mono" style="margin-top:14px;font-size:clamp(11px,1.15vw,15px);line-height:1.5">user_id,variant,signup_date,activated<br>1001,A,2026-06-01,yes<br>1002,A,2026-06-02,no<br>1003,A,2026-06-02,yes<br>1004,A,2026-06-03,<br>1005,A,2026-06-04,yes<br>1006,A,2026-06-05,no<br>1007,A,2026-06-07,yes<br>2001,B,2026-06-10,yes<br>2002,B,2026-06-11,yes<br>2003,B,2026-06-12,<br>2004,B,2026-06-13,yes<br>2005,B,2026-06-14,no</div>`},
+
+{sec:`WARM-UP HANDS-ON`, title:`YOUR <span class="g">TURN</span>`, center:true,
+ body:`<span class="turn">Your turn</span><div class="sub">Warm-up: get the answer, then make it explain. 1 task, ~8 min.</div><div class="rule"></div>`},
+
+{sec:`WARM-UP HANDS-ON · task`, title:`TASK 1 · <span class="g">ANSWER + EXPLAIN</span>`,
+ body:`<span class="turn">8 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Paste the CSV. Then: <span class="c">"Act as a skeptical data analyst. Which variant has the higher activation rate? Give the two rates."</span></li>
+   <li>Then: <span class="c">"Explain in plain English exactly how you calculated each rate, step by step."</span></li>
+   <li>Read the logic. Write down: <b style="color:#fff">did it count the blank row? did it treat A and B the same?</b></li></ol></div>`},
+
+{sec:`BREAK`, title:`BREAK · <span class="g">8 MIN</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">Back at [time].</div><div class="sub" style="font-size:16px">Next: how to read an experiment, the traps AI falls into, and how to turn all this into a decision you can defend.</div>`},
+
+{sec:`READ EXPERIMENTS`, title:`IS IT REAL, <span class="g">OR IS IT NOISE?</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">Significance, confidence, and the traps. No stats degree required.</div>`},
+
+{sec:`READ EXPERIMENTS`, title:`SIGNIFICANCE, <span class="g">IN PLAIN ENGLISH</span>`,
+ body:`<div class="sub" style="margin-top:0">Significance = "is this difference real, or could it be luck?" Small sample + small difference = probably luck.</div>
+   <div class="mono" style="margin-top:14px"><span class="c">"Is this difference statistically significant? Explain like I'm not a statistician."</span></div>
+   <div class="ph" style="min-height:18vh"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Claude answering "is this difference statistically significant?" in plain English</div></div></div>`},
+
+{sec:`READ EXPERIMENTS`, title:`CONFIDENCE, <span class="g">IN PLAIN ENGLISH</span>`,
+ body:`<div class="sub" style="margin-top:0">Don't trust a single point ("B is 75%"). Trust the range ("B is somewhere between 55% and 90%"). A wide range on a small sample = you don't know yet.</div>
+   <div class="ph" style="min-height:22vh"><div class="pl"><div class="pk">Screenshot</div><div class="pt">A chart Claude made showing a point estimate with its wide confidence range / error bar</div></div></div>`},
+
+{sec:`READ EXPERIMENTS · traps`, title:`THE <span class="g">3 TRAPS</span> AI FALLS INTO`,
+ body:`<div class="blocks" style="grid-template-columns:repeat(3,1fr)">
+   <div class="block"><div class="bl">Tiny sample</div><p>Declares a winner on 10 users.</p></div>
+   <div class="block"><div class="bl">Cherry-pick</div><p>Finds a segment that "works" (p-hacking).</p></div>
+   <div class="block"><div class="bl">Correlation ≠ causation</div><p>"Users who did X convert more." Did X cause it, or do good users just do X?</p></div></div>`},
+
+{sec:`READ EXPERIMENTS · red-team`, title:`MAKE AI <span class="g">RED-TEAM</span> THE EXPERIMENT`,
+ body:`<div class="sub" style="margin-top:0">After any experiment read, ask:</div>
+   <div class="mono" style="margin-top:16px">"Is the sample big enough to trust this?"<br>"Are you comparing the same time window and the same audience?"<br><span class="c">"Is this correlation or causation? What else could explain it?"</span></div>`},
+
+{sec:`READ EXPERIMENTS · Picsart`, title:`READ RESULTS, <span class="g">THEN DECIDE</span>`,
+ body:`<div class="sub" style="margin-top:0">We run a weekly loop: ~30 experiment ideas &rarr; leadership picks ~10 &rarr; launch &rarr; measure &rarr; learn. The AI drafts the read. A human makes the call.</div>
+   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Lifecycle experiment report or ideas sheet, high-level, no confidential figures</div></div></div>`},
+
+{sec:`NUMBER TO DECISION`, title:`FROM NUMBER TO <span class="g">VERDICT</span>`,
+ body:`<div class="rows"><div class="row"><span class="a">"B is 75%"</span><span class="arw">→</span><span class="b">"Hold. Sample too small, windows differ. <b>Re-run clean for two weeks.</b>"</span></div></div>
+   <div class="cap">A number just sits there. A decision says what we'll do and why.</div>`},
+
+{sec:`NUMBER TO DECISION · framework`, title:`THE DEFENSIBLE DECISION <span class="g">(4 LINES)</span>`,
+ body:`<div class="blocks">
+   <div class="block"><div class="bl">Decision</div><p>What we'll do.</p></div>
+   <div class="block"><div class="bl">Evidence</div><p>The number + how it was verified.</p></div>
+   <div class="block"><div class="bl">Confidence</div><p>High / medium / low, and why.</p></div>
+   <div class="block" style="box-shadow:0 0 0 1px rgba(208,245,57,.4),0 0 26px rgba(208,245,57,.25)"><div class="bl">What would change my mind</div><p>The result that flips this.</p></div></div>`},
+
+{sec:`NUMBER TO DECISION`, title:`PRIORITIZE THE <span class="g">NEXT TEST</span>`,
+ body:`<ul class="checklist"><li>Every decision spawns the next question</li><li>Pick the <b style="color:#fff">ONE</b> test that most reduces your uncertainty</li><li>Pre-register it: metric, audience, duration, win threshold. <b style="color:#fff">Before</b> you run it.</li></ul>`},
+
+{sec:`MAIN HANDS-ON`, title:`YOUR <span class="g">TURN</span>`, center:true,
+ body:`<span class="turn">Your turn</span><div class="sub">Break the answer, then make the call. 2 tasks, ~20 min.</div><div class="rule"></div>`},
+
+{sec:`MAIN HANDS-ON · task`, title:`TASK 2 · <span class="g">BREAK THE ANSWER</span>`,
+ body:`<span class="turn">10 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Paste the four killer questions: source? excluded rows? people or sessions? what would make this wrong?</li>
+   <li>Force it: <span class="c">"How did you handle the blank 'activated' value? Show both rates: blank excluded vs blank counted as 'no'."</span></li>
+   <li>Ask: <span class="c">"A started 2026-06-01, B started 2026-06-10 and has fewer users. Can I declare a winner? Why or why not?"</span></li>
+   <li>Write the <b style="color:#fff">one trap</b> that most changes the answer.</li></ol></div>`},
+
+{sec:`MAIN HANDS-ON · task`, title:`TASK 3 · <span class="g">MAKE THE CALL</span>`,
+ body:`<span class="turn">10 min</span>
+   <div class="mono"><ol class="steps2">
+   <li><b style="color:#fff">Decision</b> (ship B / hold / re-run?)</li>
+   <li><b style="color:#fff">Evidence</b> (rates + how you verified)</li>
+   <li><b style="color:#fff">Confidence</b> (high / med / low + why)</li>
+   <li><b style="color:#fff">What would change my mind</b></li>
+   <li>Then: <span class="c">the next test, pre-registered</span> (metric · audience · duration · win threshold)</li></ol></div>`},
+
+{sec:`MAIN HANDS-ON · share`, title:`THE <span class="g">NEAR-MISS</span>`,
+ body:`<div class="sub" style="margin-top:0;font-size:clamp(19px,2.3vw,28px);color:#fff">Share one: your decision in one sentence + the one thing you almost got wrong.</div>`},
+
+{sec:`RECAP & HOMEWORK`, title:`THE THREE <span class="g">THAT MATTER</span>`,
+ body:`<ul class="recaplist">
+   <li><span class="n">1</span><span>No SQL needed: interrogate data in plain English</span></li>
+   <li><span class="n">2</span><span>Verify every number: source · filters · what it counted</span></li>
+   <li><span class="n">3</span><span>A number isn't a decision: you write the verdict + the next test</span></li></ul>`},
+
+{sec:`RECAP & HOMEWORK · capstone`, title:`THE METRIC <span class="g">THAT MATTERS</span>`,
+ body:`<div class="bignum-wrap"><div class="num">1</div>
+   <div style="max-width:540px">
+   <div class="sub" style="margin-top:0;color:#fff">For YOUR capstone: what's the ONE number it lives or dies by?</div>
+   <div class="cap">Activation? Retention? Time saved? And when your product shows data, don't ship a silent wrong number.</div></div></div>`},
+
+{sec:`RECAP & HOMEWORK · homework`, title:`<span class="g">HOMEWORK</span> · BEFORE SESSION 5`,
+ body:`<div class="sub" style="margin-top:0;font-size:16px">Token-light.</div>
+   <div class="mono" style="margin-top:12px"><ol class="steps2">
+   <li>Take ONE real number from your work. Run the three checks on it with AI.</li>
+   <li>Write its 4-line defensible decision.</li>
+   <li>Name the ONE metric your capstone lives or dies by.</li>
+   <li>Bring one messy update or decision you need to communicate.</li></ol></div>`},
+
+{sec:`CLOSE`, title:`NEXT: <span class="g">COMMUNICATE & PRESENT</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">Stakeholders + Visual Design. You'll leave S5 with a real exec update and a designed one-pager.</div>
+   <div style="margin:22px auto 0;display:flex;justify-content:center;opacity:.5">${DOTS}</div>`}
+];
+</script>
+<script src="../../assets/deck.js"></script></body></html>
