@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The AI-Native PM Field Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#15171c;--muted:#5c636e;--line:#e5e8ee;--panel:#f6f8fb;--green:#7a9a08;--neon:#d0f539;--black:#0b0b0c}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.5;font-size:14px}
+  .page{max-width:820px;margin:0 auto;padding:0 34px}
+  h1,h2,h3,.k{font-family:'Barlow',sans-serif}
+  .hero{background:var(--black);color:#fff;margin:0 -34px 26px;padding:34px 34px 30px;border-bottom:6px solid var(--neon)}
+  .hero .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--neon);font-weight:700}
+  .hero h1{font-weight:900;font-size:38px;line-height:1.02;letter-spacing:-.01em;margin:8px 0 8px}
+  .hero p{color:#c7ccd6;font-size:14px;max-width:620px}
+  .hero .by{color:#8a8f9a;font-size:12.5px;margin-top:12px}
+  h2{font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:.01em;margin:26px 0 4px;padding-bottom:8px;border-bottom:2px solid var(--ink)}
+  h2 .n{color:var(--green)}
+  .lead{color:var(--muted);margin-bottom:14px;font-size:13.5px}
+  .rctc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+  .rctc .b{border:1px solid var(--line);border-left:4px solid var(--green);border-radius:9px;padding:11px 14px;background:var(--panel)}
+  .rctc .b b{font-family:'Barlow';text-transform:uppercase;color:var(--green);font-size:13px;letter-spacing:.03em}
+  .rctc .b p{font-size:12.5px;color:var(--muted);margin-top:2px}
+  ul.principles{list-style:none;margin:8px 0}
+  ul.principles li{padding:7px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+  ul.principles li b{font-family:'Barlow';font-weight:800}
+  .prompt{border:1px solid var(--line);border-left:4px solid var(--green);border-radius:9px;background:var(--panel);padding:12px 15px;margin:10px 0;break-inside:avoid}
+  .prompt .t{font-family:'Barlow';font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.02em;margin-bottom:7px}
+  .prompt .t .num{color:var(--green);margin-right:8px}
+  .prompt code{display:block;font-family:'JetBrains Mono',monospace;font-size:11.8px;line-height:1.55;color:#20242b;white-space:pre-wrap}
+  .prompt code i{color:var(--green);font-style:normal;font-weight:500}
+  .stack{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;margin:10px 0}
+  .stack div{font-size:13px;padding:5px 0;border-bottom:1px solid var(--line)}
+  .stack b{font-family:'Barlow';font-weight:800}
+  .foot{margin:24px 0 30px;padding-top:14px;border-top:2px solid var(--ink);font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  .foot b{color:var(--ink)}
+  .pb{page-break-before:always}
+  @page{size:A4;margin:14mm}
+  @media print{.hero{margin-top:0}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="tag">ACA X · AI for Product Managers</div>
+    <h1>The AI-Native PM Field Kit</h1>
+    <p>Prompts, principles, and templates you can paste straight into Claude or ChatGPT. Steal all of it. Use one thing this week.</p>
+    <div class="by">Tigran Sargsyan · from the "Humans x AI" webinar · bootcamps.aca.am/ai-pm</div>
+  </div>
+
+  <h2><span class="n">01</span> The one skill: the R·C·T·C prompt</h2>
+  <div class="lead">A weak prompt gets a weak answer. Four moves turn any AI into a sharp thinking partner.</div>
+  <div class="rctc">
+    <div class="b"><b>R · Role</b><p>Tell it who to be. "Act as a senior PM."</p></div>
+    <div class="b"><b>C · Context</b><p>About you + the situation. The step everyone skips.</p></div>
+    <div class="b"><b>T · Task</b><p>Exactly what you want, and in what format.</p></div>
+    <div class="b"><b>C · Critique</b><p>Make it question you and push back, not just please you.</p></div>
+  </div>
+  <div class="prompt"><div class="t">The pattern, assembled</div>
+  <code>Act as a <i>senior product manager</i>. I'm a <i>[your role, your context]</i>. <i>[What you want, and the format]</i>. Ask me clarifying questions first, then answer, then critique my thinking and tell me what to do next.</code></div>
+
+  <h2><span class="n">02</span> Principles that keep you ahead</h2>
+  <ul class="principles">
+    <li><b>Verify, don't trust.</b> AI predicts plausible text. Check every fact, number, and quote before you use it.</li>
+    <li><b>Iterate.</b> Never ship the first answer. The third reply is usually the good one.</li>
+    <li><b>The 5-50 rule.</b> ~5 exchanges to calibrate it to you; ~50 variants when you want range and creativity.</li>
+    <li><b>Assistant vs operator.</b> Chat advises; an operator (Claude Code, Codex) opens tools and does the work. Reach for the operator when you want it built, not described.</li>
+    <li><b>Guard your data.</b> Never paste secrets, customer PII, or confidential company data into a public AI.</li>
+  </ul>
+
+  <h2><span class="n">03</span> Prime your AI once</h2>
+  <div class="lead">Paste this at the start of a project or a custom instruction, so every answer fits you.</div>
+  <div class="prompt"><div class="t">Your product copilot</div>
+  <code>You are my product copilot. About me: I'm a <i>[role]</i> at <i>[company]</i>, working on <i>[product]</i> for <i>[users]</i>. Constraints: <i>[time / tech / brand]</i>. How I like answers: structured, skeptical, with a source or a flag when you're unsure, and a clear recommendation (not a menu of options). Before answering, check if you have enough context; if not, ask first. Confirm you've got this.</code></div>
+
+  <div class="foot pb"><b>The AI-Native PM Field Kit</b> · Tigran Sargsyan · ACA X</div>
+
+  <h2><span class="n">04</span> Steal these prompts</h2>
+  <div class="lead">Copy, swap the <i style="color:var(--green)">[brackets]</i> for your real details, and iterate.</div>
+
+  <div class="prompt"><div class="t"><span class="num">1</span> Synthesize research into themes</div>
+  <code>Act as a senior product researcher. Here is user feedback / interview notes / reviews:
+<i>[PASTE]</i>
+Cluster it into 4-6 themes. For each: a one-line summary, the underlying pain, how many sources mention it, and 2 real supporting quotes. Mark anything you're inferring vs directly stated. End with the 3 biggest opportunities.</code></div>
+
+  <div class="prompt"><div class="t"><span class="num">2</span> Draft a PRD from rough notes</div>
+  <code>Act as a senior PM. Turn these rough notes into a PRD:
+<i>[PASTE]</i>
+Include: problem, target user, goals & non-goals, user stories with Given/When/Then acceptance criteria, edge cases and failure modes, open questions, and success metrics. Ask me up to 5 clarifying questions first, then write it.</code></div>
+
+  <div class="prompt"><div class="t"><span class="num">3</span> Answer a data question, and verify it</div>
+  <code>Act as a skeptical data analyst. Dataset: <i>[ATTACH/PASTE]</i>. Question: <i>[YOUR QUESTION]</i>.
+Answer it, then show your work in plain English: which rows you included and excluded, the exact filters, and what you counted (people vs events, date range). Then argue why your answer might be wrong and what would change it.</code></div>
+
+  <div class="prompt"><div class="t"><span class="num">4</span> Simulate a user interview</div>
+  <code>Act as <i>[a specific persona: e.g., a busy ops manager at a mid-size logistics firm]</i>. I'm researching <i>[problem]</i>. Answer as this person really would, with genuine objections and messy priorities. Stay in character and push back where they would. After 8 exchanges, break character and tell me the 3 insights I should have caught.</code></div>
+
+  <div class="prompt"><div class="t"><span class="num">5</span> Exec update in your voice</div>
+  <code>Act as my chief of staff. Turn this into a 6-line exec update for <i>[audience]</i>:
+<i>[PASTE status]</i>
+Lead with the decision or ask, then progress, risks, next step. Keep my voice: direct, no hype, no filler. Give me two versions: one for our VP, one for the wider team.</code></div>
+
+  <div class="prompt"><div class="t"><span class="num">6</span> Build the judge (eval a feature)</div>
+  <code>Act as an evaluation designer. I'm building an AI feature that <i>[does X]</i>. Write a scoring rubric to judge its output quality: 4-6 criteria, each on a 1-5 scale with what each score looks like. Then give me 5 test cases (including 2 hard edge cases) with the ideal answer for each, so I can measure it before shipping.</code></div>
+
+  <h2><span class="n">05</span> The modern AI stack, in one glance</h2>
+  <div class="stack">
+    <div><b>Models</b> — Claude / GPT / Gemini + open. Pick per task; the frontier moves monthly.</div>
+    <div><b>MCP</b> — a standard plug so AI can use your tools and data.</div>
+    <div><b>Agents</b> — AI that takes multi-step action with tools.</div>
+    <div><b>Skills</b> — reusable abilities you teach an AI once.</div>
+    <div><b>APIs</b> — the same models, built into products.</div>
+    <div><b>Operators</b> — Claude Code, Codex: they build and ship, not just chat.</div>
+  </div>
+
+  <div class="foot"><span><b>Your move this week:</b> use R·C·T·C on one real thing.</span><span>Learn to build it all → <b>bootcamps.aca.am/ai-pm</b></span></div>
+
+</div>
+</body>
+</html>
