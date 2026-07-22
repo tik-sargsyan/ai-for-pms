@@ -1,0 +1,236 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ACA X · Session 2 - AI-Native Workspace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/deck.css"></head><body>
+<a class="logo" href="../../index.html">ACA<sup>x</sup></a>
+<div class="progress" id="prog"></div><div class="deck" id="deck"></div>
+<div class="nav"><button id="prev">‹</button><button id="next">›</button></div>
+<div class="counter"><b id="cur">1</b> / <span id="tot">30</span></div>
+<div class="hint">← → navigate · F fullscreen</div>
+<div class="notes" id="notes"><div class="nk">Speaker note</div><div class="nt" id="noteText"></div><div class="vis" id="visText"></div></div>
+<script>
+const AST = `<svg class="aster" viewBox="0 0 100 100" fill="currentColor"><path d="M45 5h10v28l20-20 7 7-20 20h28v10H62l20 20-7 7-20-20v28H45V62L25 82l-7-7 20-20H10V45h28L18 25l7-7 20 20z"/></svg>`;
+
+window.SLIDES = [
+{sec:"SESSION 2 · OPEN", title:`SET UP &amp; RUN YOUR <span class="g">AI-NATIVE WORKSPACE</span>`, center:true,
+ body:`<div class="sub">Walk out with a working setup, an assistant, and your first automation.</div>
+   <div style="display:flex;justify-content:center;margin:22px 0 4px">${AST}</div>
+   <div class="tbar" style="margin-left:auto;margin-right:auto"></div>
+   <div class="sub" style="font-size:16px">Tigran Sargsyan · Senior Product Operations Manager, Picsart</div>`},
+
+{sec:"SESSION 2 · OPEN", title:`WHAT YOU <span class="g">WALK OUT WITH</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">Today you leave with 4 things: a <b style="color:#fff">working environment</b> · a <b style="color:#fff">personal AI assistant</b> · <b style="color:#fff">one automation</b> · a <b style="color:#fff">prompt library.</b></div>`},
+
+{sec:"OPEN &amp; FRAME · check", title:`SETUP <span class="g">STATUS CHECK</span>`,
+ body:`<div class="sub">Quick hands up:</div>
+   <ul class="checklist"><li>Who has a Claude account?</li><li>Node installed?</li><li>VS Code or Cursor?</li><li>Ran the pre-session checklist?</li></ul>`},
+
+{sec:"OPEN &amp; FRAME · belief", title:`SET IT UP ONCE, <span class="g">COMPOUND FOREVER</span>`,
+ body:`<div class="sub">You set this up <b style="color:#fff">once.</b> Then it compounds every day for the rest of the course, and after.</div>
+   <div style="display:flex;align-items:center;gap:26px;margin-top:22px">
+     <span style="width:22px;height:22px;border-radius:50%;background:var(--green);box-shadow:0 0 20px rgba(208,245,57,.6)"></span>
+     <span style="color:var(--green);font-family:var(--h);font-weight:900;font-size:38px">&rarr;</span>
+     <span style="display:grid;grid-template-columns:repeat(4,15px);gap:12px">
+       <span style="width:15px;height:15px;border-radius:50%;background:var(--green)"></span><span style="width:15px;height:15px;border-radius:50%;background:var(--green)"></span><span style="width:15px;height:15px;border-radius:50%;background:var(--green)"></span><span style="width:15px;height:15px;border-radius:50%;background:var(--green)"></span>
+       <span style="width:15px;height:15px;border-radius:50%;background:var(--green)"></span><span style="width:15px;height:15px;border-radius:50%;background:var(--green)"></span><span style="width:15px;height:15px;border-radius:50%;background:var(--green)"></span><span style="width:15px;height:15px;border-radius:50%;background:var(--green)"></span>
+     </span>
+   </div>`},
+
+{sec:"SET UP YOUR WORKSPACE", title:`YOUR <span class="g">WORKSPACE</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">Accounts · IDE · Claude · Claude Code.</div>`},
+
+{sec:"SET UP YOUR WORKSPACE", title:`THE STACK YOU ARE <span class="g">BUILDING</span>`,
+ body:`<div class="blocks">
+   <div class="block"><div class="bl">Claude</div><p>Chat + Projects = your assistant</p></div>
+   <div class="block"><div class="bl">Claude Code</div><p>Terminal = builds + files</p></div>
+   <div class="block"><div class="bl">AI IDE</div><p>VS Code or Cursor = where code lives</p></div>
+   <div class="block"><div class="bl">Node / CLI</div><p>The plumbing that installs it all</p></div></div>`},
+
+{sec:"SET UP YOUR WORKSPACE", title:`THREE SURFACES, <span class="g">WHEN TO USE WHICH</span>`,
+ body:`<div class="sub">Same brain, three surfaces. Spend tokens where they count.</div>
+   <div class="rows">
+   <div class="row"><span class="a">Claude chat / Projects</span><span class="arw">&rarr;</span><span class="b">90% of your work <b>(cheap)</b></span></div>
+   <div class="row"><span class="a">Claude Code</span><span class="arw">&rarr;</span><span class="b">building + file tasks <b>(token-heavy)</b></span></div>
+   <div class="row"><span class="a">The IDE</span><span class="arw">&rarr;</span><span class="b">the <b>capstone</b> in S7-8</span></div></div>`},
+
+{sec:"SET UP YOUR WORKSPACE · story", title:`EVERYTHING I BUILD, <span class="g">SAME STACK</span>`,
+ body:`<div class="sub">A command center, a trend-to-video engine, even a full game. No hand-written code.</div>
+   <img class="shot" src="../../assets/img/command-center.png"><div class="shotcap">The Agent Command Center that runs my day (Picsart work kept high-level)</div>`},
+
+{sec:"SET UP YOUR WORKSPACE · task", title:`TASK 1 · GET TO <span class="g">GREEN</span>`,
+ body:`<span class="turn">Your turn · 3 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Sign in at <span class="c">claude.ai</span> (or open the Claude desktop app).</li>
+   <li>Send one message: <span class="c">"Reply with OK if you can read this."</span></li>
+   <li>Confirm you see a reply. You are live.</li></ol></div>`},
+
+{sec:"SET UP YOUR WORKSPACE · task", title:`TASK 2 · OPEN YOUR <span class="g">IDE</span>`,
+ body:`<span class="turn">Your turn · 5 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Install <span class="c">VS Code</span> (or <span class="c">Cursor</span>) if you have not.</li>
+   <li>Open it. File &rarr; Open Folder &rarr; make a new folder <span class="c">ai-pm-course</span>.</li>
+   <li>Open the built-in terminal (View &rarr; Terminal).</li></ol></div>`},
+
+{sec:"SET UP YOUR WORKSPACE · task", title:`TASK 3 · FIRST <span class="g">CLAUDE CODE</span> RUN`,
+ body:`<span class="turn">Your turn · 6 min · token-light</span>
+   <div class="mono"><ol class="steps2">
+   <li>In the terminal: <span class="c">npm install -g @anthropic-ai/claude-code</span></li>
+   <li>Run <span class="c">claude</span> and log in when prompted.</li>
+   <li>One small command: <span class="c">"Create a file prompt-library.md with the heading: My PM Prompt Library."</span></li></ol></div>`},
+
+{sec:"SET UP YOUR WORKSPACE · checkpoint", title:`CHECKPOINT · <span class="g">EVERYONE GREEN</span>`,
+ body:`<ul class="checklist"><li>IDE open</li><li>Claude replies</li><li>Claude Code made a file</li></ul>
+   <div class="sub">Stuck? Pair up now. Nobody moves on stuck.</div>`},
+
+{sec:"PROMPTING · R·C·T·C", title:`PROMPTING IS <span class="g">THE SKILL</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">The tool is the same for everyone. How you ask is not.</div>`},
+
+{sec:"PROMPTING · R·C·T·C", title:`THE MODEL IS <span class="g">NOT THE VARIABLE</span>`, center:true,
+ body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">The model is not the variable. <span class="g">Your prompt is.</span></div>`},
+
+{sec:"PROMPTING · R·C·T·C", title:`THE <span class="g">R·C·T·C</span> FRAMEWORK`,
+ body:`<div class="blocks">
+   <div class="block"><div class="bl">R · Role</div><p>Who the AI should be</p></div>
+   <div class="block"><div class="bl">C · Context</div><p>What it cannot know: situation, constraints, audience, your docs</p></div>
+   <div class="block"><div class="bl">T · Task</div><p>The one ask + the exact output shape</p></div>
+   <div class="block"><div class="bl">C · Critique</div><p>Make it check its work, then iterate</p></div></div>`},
+
+{sec:"PROMPTING · R·C·T·C", title:`R IS FOR <span class="g">ROLE</span>`,
+ body:`<div class="mono">"You are a senior B2B product manager."</div>
+   <div class="cap">A role sets vocabulary, depth, and priorities in one line. The cheapest, highest-impact line in your prompt. Never skip it.</div>`},
+
+{sec:"PROMPTING · R·C·T·C", title:`C IS FOR <span class="g">CONTEXT</span>`,
+ body:`<div class="sub">Everything it cannot know: the situation, constraints, audience, and <b style="color:#fff">your own docs + examples.</b> This is where most of the quality comes from.</div>
+   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">A Claude chat with rich context pasted in: situation, constraints, and a pasted doc</div></div></div>`},
+
+{sec:"PROMPTING · R·C·T·C", title:`T IS FOR <span class="g">TASK</span>`,
+ body:`<div class="sub">One clear ask + the <b style="color:#fff">exact output shape:</b> format, length, structure.</div>
+   <div class="mono">"Give me 5 bullets, under 120 words, exec tone, one risk flagged."</div>`},
+
+{sec:"PROMPTING · R·C·T·C", title:`C IS FOR <span class="g">CRITIQUE</span>`,
+ body:`<div class="mono">"List 3 weaknesses in this draft before finalizing."</div>
+   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Claude listing 3 weaknesses in its own draft before finalizing</div></div></div>`},
+
+{sec:"PROMPTING · R·C·T·C", title:`LAZY <span class="g">VS</span> R·C·T·C`,
+ body:`<div class="cards">
+   <div class="card bad"><div class="tag">Lazy</div><p>"write a product update."</p></div>
+   <div class="card good"><div class="tag">R·C·T·C</div><p>"You are a senior PM <span style="color:var(--green)">(R)</span>. We shipped X to enterprise users, audience is the exec team, tone is confident but honest <span style="color:var(--green)">(C)</span>. Write a 5-bullet update, under 120 words, one risk flagged <span style="color:var(--green)">(T)</span>. Then list anything vague or unverifiable <span style="color:var(--green)">(C)</span>."</p></div></div>`},
+
+{sec:"PROMPTING · R·C·T·C", title:`FEW-SHOT · <span class="g">SHOW, DON'T TELL</span>`,
+ body:`<div class="sub">Few-shot = give 1-3 <b style="color:#fff">examples.</b> Show beats describe.</div>
+   <div class="rows"><div class="row"><span class="a">Paste 2 of your past updates</span><span class="arw">&rarr;</span><span class="b">it matches your <b>voice + format</b></span></div></div>`},
+
+{sec:"PROMPTING · R·C·T·C", title:`CHAINING · <span class="g">BREAK BIG INTO SMALL</span>`,
+ body:`<div class="arc"><span class="st">extract themes</span><span class="ar">&rarr;</span><span class="st">draft</span><span class="ar">&rarr;</span><span class="st">critique</span><span class="ar">&rarr;</span><span class="st final">tighten</span></div>
+   <div class="cap">Chaining = a sequence of small prompts. Smaller steps = better output <b>and</b> fewer tokens.</div>`},
+
+{sec:"PROMPTING · R·C·T·C", title:`ITERATION + THE <span class="g">5-50 RULE</span>`,
+ body:`<div class="sub">First output = a <b style="color:#fff">draft,</b> not a delivery. Steer with specific edits, do not restart.</div>
+   <div class="bignum-wrap">
+   <div><div class="num small">5</div><div class="barlabel" style="text-align:left">min on Role + Context</div></div>
+   <div style="color:var(--muted);font-family:var(--h);font-weight:800;font-size:38px">saves</div>
+   <div><div class="num small">50</div><div class="barlabel" style="text-align:left">min of rework</div></div></div>`},
+
+{sec:"PROMPTING · your turn", title:`TASK · YOUR FIRST <span class="g">R·C·T·C PROMPT</span>`,
+ body:`<span class="turn">Your turn · 7 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Pick a <span class="c">real recurring task</span> (weekly update, standup notes, meeting &rarr; actions).</li>
+   <li>Write it as <span class="c">R·C·T·C</span> (all four parts).</li>
+   <li>Run it. Then iterate once with a specific edit.</li>
+   <li><span class="c">Keep the good version</span>, we save it later.</li></ol></div>`},
+
+{sec:"BREAK", title:`<span class="g">BREAK</span> · 8 MIN`, center:true,
+ body:`<div class="rule"></div><div class="sub">Back in ~8 min. If your Claude Code install fought you, grab me now and we fix it.</div>`},
+
+{sec:"YOUR AI ASSISTANT", title:`BUILD YOUR PERSONAL <span class="g">AI ASSISTANT</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">No code. It knows your work.</div>`},
+
+{sec:"YOUR AI ASSISTANT", title:`TWO LAYERS · A <span class="g">LIGHT RAG</span>`,
+ body:`<div class="blocks">
+   <div class="block"><div class="bl">Custom instructions</div><p>Who you are + how you like answers. Applies everywhere.</p></div>
+   <div class="block"><div class="bl">Projects</div><p>A room with your docs + its own instructions. Grounded answers = light RAG.</p></div></div>
+   <div class="cap">ChatGPT has custom instructions + GPTs. Gemini has Gems. We use Claude Projects.</div>`},
+
+{sec:"YOUR AI ASSISTANT · story", title:`THE <span class="g">NO-CODE VERSION</span> OF WHAT I BUILT`,
+ body:`<div class="sub">I built a search-and-answer engine over 112 books + my notes, with code. A <b style="color:#fff">Claude Project</b> is the no-code version of the same idea, for your work.</div>
+   <img class="shot" src="../../assets/img/book-rag.png"><div class="shotcap">Book RAG library UI (search + grounded answers)</div>`},
+
+{sec:"YOUR AI ASSISTANT · task", title:`TASK 1 · YOUR <span class="g">CUSTOM INSTRUCTIONS</span>`,
+ body:`<span class="turn">Your turn · 5 min</span>
+   <div class="mono"><ol class="steps2">
+   <li><span class="c">Who you are:</span> role, product, company type.</li>
+   <li><span class="c">How you like answers:</span> concise, structured, no fluff.</li>
+   <li><span class="c">Your red-lines</span> (from Session 1): never invent facts; flag assumptions.</li></ol></div>`},
+
+{sec:"YOUR AI ASSISTANT · task", title:`TASK 2 · BUILD <span class="g">"MY PM COPILOT"</span>`,
+ body:`<span class="turn">Your turn · 8 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Projects &rarr; New Project: name it <span class="c">My PM Copilot</span>.</li>
+   <li>Add project instructions (its job, your product, your voice).</li>
+   <li>Upload <span class="c">3-5 anonymized docs</span>: role, product one-pager, a past update, a style sample.</li></ol></div>`},
+
+{sec:"YOUR AI ASSISTANT · task", title:`TASK 3 · <span class="g">PROVE IT KNOWS YOU</span>`,
+ body:`<span class="turn">Your turn · 4 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Ask: <span class="c">"Draft a status update for MY product, in MY voice, from these docs."</span></li>
+   <li>Compare it to a blank Claude with no context.</li>
+   <li>Note the difference.</li></ol></div>`},
+
+{sec:"AUTOMATE + LIBRARY", title:`AUTOMATE ONE <span class="g">RECURRING TASK</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">The one you already do by hand.</div>`},
+
+{sec:"AUTOMATE + LIBRARY", title:`THE BEST <span class="g">FIRST AUTOMATION</span>`,
+ body:`<div class="sub">Best first automation = the <b style="color:#fff">weekly task you already do by hand.</b></div>
+   <div class="cap">A saved, named prompt beats a clever one-off every time.</div>`},
+
+{sec:"AUTOMATE + LIBRARY · story", title:`MY AUTOMATIONS ARE THE <span class="g">BORING ONES</span>`,
+ body:`<ul class="checklist"><li>A weekly trends report</li><li>A morning brief</li><li>A daily suggestion agent</li></ul>
+   <div class="cap">All boring. All recurring. All running without me.</div>
+   <img class="shot" src="../../assets/img/command-center.png"><div class="shotcap">A brief / dashboard output from the Agent Command Center (high-level only)</div>`},
+
+{sec:"AUTOMATE + LIBRARY · task", title:`TASK 1 · <span class="g">THE RECIPE</span>`,
+ body:`<span class="turn">Your turn · 6 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Pick your recurring task (reuse your R·C·T·C prompt if it fits).</li>
+   <li>Finalize it as R·C·T·C with a clear <span class="c">INPUT slot: [paste this week's notes here]</span>.</li>
+   <li>Test it once inside <span class="c">My PM Copilot</span>.</li></ol></div>`},
+
+{sec:"AUTOMATE + LIBRARY · task", title:`TASK 2 · <span class="g">RUN + SAVE</span>`,
+ body:`<span class="turn">Your turn · 8 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Run the recipe <span class="c">end to end</span> on real input. Get a usable result.</li>
+   <li>In your terminal, one Claude Code command: <span class="c">"Append my [task] prompt to prompt-library.md under a new heading."</span></li>
+   <li>Paste your prompt. Done: your library has entry #1.</li></ol></div>`},
+
+{sec:"AUTOMATE + LIBRARY · share", title:`SHARE <span class="g">ONE</span>`,
+ body:`<span class="turn">Share out · 3 min</span>
+   <div class="sub">The recurring task you just automated. Roughly how long did it take by hand?</div>`},
+
+{sec:"RECAP &amp; HOMEWORK", title:`THE THREE <span class="g">THAT MATTER</span>`, center:true,
+ body:`<ul class="recaplist">
+   <li><span class="n">1</span><span><b style="color:#fff">R·C·T·C</b> is the whole game (Critique = your quality gate)</span></li>
+   <li><span class="n">2</span><span><b style="color:#fff">Context is the moat</b> (your assistant knows what generic AI cannot)</span></li>
+   <li><span class="n">3</span><span><b style="color:#fff">Systematize the recurring</b> (a saved prompt beats a clever one-off)</span></li></ul>`},
+
+{sec:"RECAP &amp; HOMEWORK · capstone thread", title:`THIS IS YOUR <span class="g">CAPSTONE STACK</span>`,
+ body:`<div class="sub">The stack you set up today = the stack you ship your capstone on <b style="color:#fff">(Sessions 7-8)</b>. Your assistant + prompt library grow every session.</div>
+   <div class="twobars" style="height:22vh;align-items:flex-end">
+   <div class="bar" style="height:42%"></div>
+   <div class="bar" style="height:70%"></div>
+   <div class="bar" style="height:100%"></div>
+   <span style="color:var(--green);font-family:var(--h);font-weight:900;font-size:44px;align-self:flex-start">&nearr;</span></div>`},
+
+{sec:"RECAP &amp; HOMEWORK", title:`HOMEWORK · <span class="g">BEFORE SESSION 3</span>`,
+ body:`<ul class="checklist">
+   <li>Use <b>My PM Copilot</b> for one real task at work</li>
+   <li>Run your <b>automation</b> once for real, on live input</li>
+   <li>Add <b>2 more prompts</b> to prompt-library.md</li>
+   <li>Keep your <b>IDE + Claude Code</b> working (do not uninstall)</li>
+   <li>Narrow your <b>2 capstone ideas to 1 favorite</b></li></ul>`},
+
+{sec:"RECAP &amp; HOMEWORK · close", title:`NEXT · FROM <span class="g">RESEARCH TO SPEC</span>`, center:true,
+ body:`<div class="rule"></div><div class="sub">Discovery, PRDs &amp; stories. You now have the workspace. Next we put it to work on real PM output.</div>`}
+];
+</script>
+<script src="../../assets/deck.js"></script></body></html>
