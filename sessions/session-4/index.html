@@ -38,11 +38,11 @@ window.SLIDES = [
 
 {sec:`BRING DATA TO AI`, title:`WHAT SQL WAS FOR, <span class="g">& WHY YOU CAN SKIP IT</span>`,
  body:`<div class="sub" style="margin-top:0">SQL is a language to ask a database questions. AI removes the syntax tax: you ask in plain English, it writes and runs the query for you.</div>
-   <div class="ph" style="min-height:24vh"><div class="pl"><div class="pk">Screenshot</div><div class="pt">A plain-English question typed into Claude with its answer. The user wrote no SQL.</div></div></div>`},
+   <img class="shot" src="../../assets/img/s4/plain-english-answer.png"><div class="shotcap">A plain-English question typed into Claude with its answer. The user wrote no SQL.</div>`},
 
 {sec:`BRING DATA TO AI`, title:`THREE WAYS TO <span class="g">GET DATA TO AI</span>`,
  body:`<ul class="checklist"><li><b style="color:#fff">Upload a file</b> (CSV / Excel) into the chat</li><li><b style="color:#fff">Connect a source</b> (built-in connectors, where available)</li><li><b style="color:#fff">Analysis mode</b>: AI writes + runs code on your file and shows the result</li></ul>
-   <div class="ph" style="min-height:20vh"><div class="pl"><div class="pk">Screenshot</div><div class="pt">A CSV file being dragged into the Claude chat (door one: upload a file)</div></div></div>`},
+   <img class="shot" src="../../assets/img/s4/csv-drag.png"><div class="shotcap">A CSV file being dragged into the Claude chat (door one: upload a file)</div>`},
 
 {sec:`BRING DATA TO AI · framework`, title:`R·C·T·C, <span class="g">APPLIED TO DATA</span>`,
  body:`<div class="blocks">
@@ -53,7 +53,7 @@ window.SLIDES = [
 
 {sec:`BRING DATA TO AI · Picsart`, title:`DATA TO ANSWERS, <span class="g">NO QUERIES</span>`,
  body:`<div class="sub" style="margin-top:0">I run marketing reports across five platforms and a lifecycle dashboard. I ask questions in plain English. I never hand-write the queries.</div>
-   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Marketing dashboard or monthly social report, high-level, no confidential figures</div></div></div>`},
+   <img class="shot" src="../../assets/img/s4/marketing-dashboard.png"><div class="shotcap">Marketing dashboard or monthly social report, high-level, no confidential figures</div>`},
 
 {sec:`VERIFY WITHOUT SQL`, title:`CATCH THE <span class="g">SILENT WRONG NUMBER</span>`, center:true,
  body:`<div class="rule"></div><div class="sub">The one skill that pays for this whole session.</div>`},
@@ -66,7 +66,7 @@ window.SLIDES = [
 
 {sec:`VERIFY WITHOUT SQL`, title:`EXPLAIN THE LOGIC, <span class="g">NOT THE CODE</span>`,
  body:`<div class="sub" style="margin-top:0">Don't ask to see the code. Ask: "Explain, in plain English, exactly how you got this number." You verify the logic, not the syntax.</div>
-   <div class="ph" style="min-height:24vh"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Claude explaining, in plain English step by step, how it calculated a number</div></div></div>`},
+   <img class="shot" src="../../assets/img/s4/explain-rate.png"><div class="shotcap">Claude explaining, in plain English step by step, how it calculated a number</div>`},
 
 {sec:`VERIFY WITHOUT SQL · framework`, title:`THE <span class="g">3 CHECKS</span>`,
  body:`<div class="blocks" style="grid-template-columns:repeat(3,1fr)">
@@ -80,7 +80,7 @@ window.SLIDES = [
 
 {sec:`VERIFY WITHOUT SQL · Picsart`, title:`THE SILENT WRONG NUMBER, <span class="g">FOR REAL</span>`,
  body:`<ul class="checklist"><li>A viral post was <b style="color:#fff">missing</b> from one report (paid posts weren't in that source)</li><li>One platform reported <b style="color:#fff">impressions</b>, another <b style="color:#fff">views</b>. Off by ~20x</li><li>"Reach" counted differently everywhere</li></ul>
-   <div class="ph" style="min-height:18vh"><div class="pl"><div class="pk">Screenshot</div><div class="pt">A monthly social report missing a high-performing post, plus two platforms labeling the same metric "views" vs "impressions". High-level, no confidential figures.</div></div></div>`},
+   <img class="shot" src="../../assets/img/s4/views-vs-impressions.png"><div class="shotcap">A monthly social report missing a high-performing post, plus two platforms labeling the same metric "views" vs "impressions". High-level, no confidential figures.</div>`},
 
 {sec:`VERIFY WITHOUT SQL · the flip`, title:`VERIFICATION IS <span class="g">YOUR MOAT</span>`, center:true,
  body:`<div class="rule"></div><div class="sub">Anyone can get a number now. Being the person who knows when to trust it is the rare, promotable skill.</div>`},
@@ -108,11 +108,11 @@ window.SLIDES = [
 {sec:`READ EXPERIMENTS`, title:`SIGNIFICANCE, <span class="g">IN PLAIN ENGLISH</span>`,
  body:`<div class="sub" style="margin-top:0">Significance = "is this difference real, or could it be luck?" Small sample + small difference = probably luck.</div>
    <div class="mono" style="margin-top:14px"><span class="c">"Is this difference statistically significant? Explain like I'm not a statistician."</span></div>
-   <div class="ph" style="min-height:18vh"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Claude answering "is this difference statistically significant?" in plain English</div></div></div>`},
+   <img class="shot" src="../../assets/img/s4/significance.png"><div class="shotcap">Claude answering "is this difference statistically significant?" in plain English</div>`},
 
 {sec:`READ EXPERIMENTS`, title:`CONFIDENCE, <span class="g">IN PLAIN ENGLISH</span>`,
  body:`<div class="sub" style="margin-top:0">Don't trust a single point ("B is 75%"). Trust the range ("B is somewhere between 55% and 90%"). A wide range on a small sample = you don't know yet.</div>
-   <div class="ph" style="min-height:22vh"><div class="pl"><div class="pk">Screenshot</div><div class="pt">A chart Claude made showing a point estimate with its wide confidence range / error bar</div></div></div>`},
+   <img class="shot" src="../../assets/img/s4/confidence-chart.png"><div class="shotcap">A chart Claude made showing a point estimate with its wide confidence range / error bar</div>`},
 
 {sec:`READ EXPERIMENTS · traps`, title:`THE <span class="g">3 TRAPS</span> AI FALLS INTO`,
  body:`<div class="blocks" style="grid-template-columns:repeat(3,1fr)">
@@ -126,7 +126,7 @@ window.SLIDES = [
 
 {sec:`READ EXPERIMENTS · Picsart`, title:`READ RESULTS, <span class="g">THEN DECIDE</span>`,
  body:`<div class="sub" style="margin-top:0">We run a weekly loop: ~30 experiment ideas &rarr; leadership picks ~10 &rarr; launch &rarr; measure &rarr; learn. The AI drafts the read. A human makes the call.</div>
-   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Lifecycle experiment report or ideas sheet, high-level, no confidential figures</div></div></div>`},
+   <img class="shot" src="../../assets/img/s4/experiment-ideas.png"><div class="shotcap">Lifecycle experiment report or ideas sheet, high-level, no confidential figures</div>`},
 
 {sec:`NUMBER TO DECISION`, title:`FROM NUMBER TO <span class="g">VERDICT</span>`,
  body:`<div class="rows"><div class="row"><span class="a">"B is 75%"</span><span class="arw">→</span><span class="b">"Hold. Sample too small, windows differ. <b>Re-run clean for two weeks.</b>"</span></div></div>

@@ -51,7 +51,7 @@
 
 {sec:`POLISH & QA · guardrails`, title:`APPLY THE GUARDRAILS <span class="g">FROM DAY 6</span>`,
  body:`<div class="sub">If it uses AI, the "judge" ships too. Guardrails: validate input · handle the failure out loud · never show a raw error · keep it least-privilege.</div>
-   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">The prototype showing a graceful "Something went wrong. Please try again." message instead of a raw error or stack trace</div></div></div>`},
+   <img class="shot" src="../../assets/img/s8/graceful-error.png"><div class="shotcap">The prototype showing a graceful "Something went wrong. Please try again." message instead of a raw error or stack trace</div>`},
 
 {sec:`POLISH & QA · your turn`, title:`YOUR <span class="g">TURN</span>`, center:true,
  body:`<span class="turn">Your turn</span><div class="rule" style="margin-left:auto;margin-right:auto"></div>
@@ -84,29 +84,33 @@
 
 {sec:`DEPLOY · task 2A`, title:`TASK 2A · <span class="g">DRAG-AND-DROP</span>`,
  body:`<span class="turn">Task 2A · 10 min</span>
-   <div class="mono"><ol class="steps2">
+   <div style="display:grid;grid-template-columns:1.02fr .98fr;gap:30px;align-items:center;margin-top:2px">
+   <div class="mono" style="margin-top:0"><ol class="steps2">
    <li>In Claude Code: "Build my site into a folder ready to host, and tell me the folder name."</li>
    <li>Open <span class="c">app.netlify.com/drop</span> in your browser (sign up free, ~30 sec).</li>
    <li>Drag that folder onto the drop zone.</li>
    <li>Wait ~20 seconds and you get a live URL like <span class="c">sunny-otter-1234.netlify.app</span>.</li>
-   <li>Copy the URL. It is live.</li></ol></div>`},
+   <li>Copy the URL. It is live.</li></ol></div>
+   <div><img class="shot" style="margin-top:0" src="../../assets/img/s8/netlify-drop.png"><div class="shotcap">Netlify Drop page, the drag-and-drop zone</div></div></div>`},
 
 {sec:`DEPLOY · task 2B`, title:`TASK 2B · CLAUDE CODE <span class="g">+ CLI</span>`,
  body:`<span class="turn">Task 2B · 12 min</span>
-   <div class="mono">Tell Claude Code, in plain English:<ol class="steps2">
+   <div style="display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;margin-top:2px">
+   <div class="mono" style="margin-top:0">Tell Claude Code, in plain English:<ol class="steps2">
    <li>"Install the Netlify CLI globally and start login." → <span class="c">npm i -g netlify-cli</span> then <span class="c">netlify login</span></li>
    <li>"Build my app for production." → <span class="c">npm run build</span> (output usually <span class="c">dist/</span> or <span class="c">build/</span>)</li>
    <li>"Deploy a draft I can preview." → <span class="c">netlify deploy</span></li>
    <li>Check the draft link, then: "Deploy to production." → <span class="c">netlify deploy --prod</span></li>
-   <li>Copy the production URL it prints. It is live.</li></ol></div>`},
+   <li>Copy the production URL it prints. It is live.</li></ol></div>
+   <div><img class="shot" style="margin-top:0" src="../../assets/img/s8/deploy-terminal.png"><div class="shotcap">VS Code terminal after netlify deploy --prod, the "Website URL" line</div></div></div>`},
 
 {sec:`DEPLOY · the moment`, title:`YOU HAVE <span class="g">A URL</span>`,
  body:`<div class="sub">This is the moment. You now own a public link. Send it to someone. Right now.</div>
-   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Netlify "Deploy successful" / site overview with the live URL highlighted</div></div></div>`},
+   <img class="shot" src="../../assets/img/s8/deploy-success.png"><div class="shotcap">Netlify "Deploy successful" / site overview with the live URL highlighted</div>`},
 
 {sec:`DEPLOY · name it`, title:`NAME <span class="g">IT</span>`,
  body:`<div class="sub">Make the link yours: Netlify → Site settings → <b style="color:#fff">Change site name</b> → <span style="font-family:var(--m);color:var(--green)">your-app.netlify.app</span> (free). Optional: buy a domain later and point it here. Not required today.</div>
-   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">Netlify "Change site name" field</div></div></div>`},
+   <img class="shot" src="../../assets/img/s8/change-name.png"><div class="shotcap">Netlify "Change site name" field</div>`},
 
 {sec:`DEPLOY · task 3`, title:`TASK 3 · SMOKE-TEST <span class="g">ON YOUR PHONE</span>`,
  body:`<span class="turn">Task 3 · 5 min</span>
@@ -124,7 +128,7 @@
 
 {sec:`MAKE IT LEARN · analytics`, title:`THE ONLY 3 NUMBERS <span class="g">YOU NEED</span>`,
  body:`<div class="sub">Don't drown in dashboards. Track <b style="color:var(--green)">3</b>: <b style="color:#fff">1</b> Did anyone come? (visits) · <b style="color:#fff">2</b> Did they do the ONE thing? (key action) · <b style="color:#fff">3</b> Where did they drop? (last step before leaving)</div>
-   <div class="ph"><div class="pl"><div class="pk">Screenshot</div><div class="pt">A lightweight analytics dashboard (e.g. GoatCounter) showing visits + one key-action count</div></div></div>`},
+   <img class="shot" src="../../assets/img/s8/analytics.png"><div class="shotcap">A lightweight analytics dashboard (e.g. GoatCounter) showing visits + one key-action count</div>`},
 
 {sec:`MAKE IT LEARN · task 4`, title:`TASK 4 · ADD <span class="g">ANALYTICS</span>`,
  body:`<span class="turn">Task 4 · 6 min</span>
@@ -179,7 +183,24 @@
 {sec:`LAUNCH & DEMO · task 7`, title:`TASK 7 · SHIP IT <span class="g">TO THE ROOM</span>`,
  body:`<span class="turn">Task 7 · round-robin · 15 min</span>
    <div class="sub">Each person: 90 seconds · your live URL on screen · the 4 beats · then drop your link in the chat for everyone to try.</div>
-   <div class="ph" style="min-height:24vh"><div class="pl"><div class="pk">Photo</div><div class="pt">A student presenting live to the room, laptop turned out showing their live product, natural candid classroom scene</div></div></div>`},
+   <div style="margin-top:20px;display:flex;align-items:center;justify-content:center;gap:52px;border:1px solid var(--line);border-radius:16px;padding:34px 44px;background:linear-gradient(180deg,rgba(208,245,57,.03),transparent)">
+     <div style="display:flex;flex-direction:column;align-items:center">
+       <div style="width:56px;height:56px;border-radius:50%;border:3px solid var(--green);box-shadow:0 0 22px rgba(208,245,57,.5)"></div>
+       <div style="width:98px;height:70px;border:3px solid var(--green);border-bottom:none;border-radius:44px 44px 12px 12px;margin-top:11px;box-shadow:0 0 22px rgba(208,245,57,.3)"></div>
+     </div>
+     <div style="font-family:var(--h);font-weight:900;color:var(--green);font-size:clamp(36px,5vw,60px);line-height:1">&rsaquo;</div>
+     <div style="text-align:center">
+       <div style="width:clamp(260px,30vw,330px);border:2px solid var(--green);border-radius:12px;background:#0e0e10;box-shadow:0 0 34px rgba(208,245,57,.26);padding:14px 16px;display:flex;flex-direction:column;gap:10px">
+         <div style="display:flex;align-items:center;gap:8px"><span style="width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)"></span><span style="font-family:var(--m);font-size:12px;color:var(--muted)">your-app.netlify.app</span><span style="margin-left:auto;font-family:var(--m);font-size:10px;letter-spacing:.16em;color:var(--green)">LIVE</span></div>
+         <div style="height:13px;width:72%;background:#242426;border-radius:3px"></div>
+         <div style="height:13px;width:92%;background:#242426;border-radius:3px"></div>
+         <div style="height:34px;width:128px;background:var(--green);border-radius:8px;margin-top:6px"></div>
+       </div>
+       <div style="display:inline-flex;flex-direction:column;width:78px;height:17px;margin-top:16px;border-radius:3px;overflow:hidden;border:1px solid var(--line)"><span style="flex:1;background:#d90012"></span><span style="flex:1;background:#0033a0"></span><span style="flex:1;background:#f2a800"></span></div>
+       <div style="font-family:var(--h);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:7px">Live from Yerevan</div>
+     </div>
+   </div>
+   <div class="shotcap">On-brand illustration: a student presenting their live product to the room</div>`},
 
 {sec:`COURSE WRAP`, title:`LOOK HOW <span class="g">FAR YOU CAME</span>`, center:true,
  body:`<div class="rule"></div><div class="sub">8 sessions ago you were AI-curious. Today you shipped.</div>`},
