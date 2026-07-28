@@ -97,6 +97,63 @@ window.SLIDES = [
 {sec:"WHAT AI ACTUALLY IS", title:`WHAT IS AI, <span class="g">REALLY?</span>`, center:true,
  body:`<div class="rule"></div><div class="sub">An accurate mental model. No CS degree needed.</div>`,},
 
+{sec:"A SHORT HISTORY", center:true, title:`CAN MACHINES <span class="g">THINK?</span>`,
+ body:`<div class="sub" style="font-size:clamp(19px,2.4vw,30px);color:#fff">1950: Alan Turing asks the founding question.</div>
+   <div style="display:flex;gap:16px;justify-content:center;align-items:center;margin:22px 0;flex-wrap:wrap">
+     <div style="border:2px solid #2a2f38;border-radius:14px;padding:14px 20px;min-width:150px;background:#0f1114">
+       <div style="font:700 11px Barlow;letter-spacing:.16em;color:#8a929e">PLAYER A</div>
+       <div style="margin-top:6px;color:#cfd4dc">"Ask me anything."</div></div>
+     <div style="font:900 42px Barlow;color:var(--green)">?</div>
+     <div style="border:2px solid var(--green);border-radius:14px;padding:14px 20px;min-width:150px;background:#0f1114">
+       <div style="font:700 11px Barlow;letter-spacing:.16em;color:var(--green)">PLAYER B</div>
+       <div style="margin-top:6px;color:#cfd4dc">"Ask me anything."</div></div></div>
+   <div class="cap" style="max-width:780px;margin:0 auto">His test wasn't "is it truly thinking?" It was <b style="color:#fff">"can it convince you it is?"</b> If you can't tell which player is the machine, does the difference still matter?</div>
+   <div class="src"><b>1956:</b> the field gets its name at the Dartmouth workshop. John McCarthy coins the term <b style="color:var(--green)">"Artificial Intelligence."</b></div>`,},
+
+{sec:"A SHORT HISTORY", title:`NOBODY CAN <span class="g">DEFINE IT</span>`,
+ body:`<div class="sub" style="color:#fff">There is still <span class="g">no strict definition</span> of AI.</div>
+   <div class="cap" style="max-width:840px;margin:6px auto 18px">Because there is no strict definition of <b style="color:#fff">human intelligence</b> either. We cannot fully pin down thinking, understanding, or consciousness, so "artificial" intelligence inherits the same blur.</div>
+   <div style="max-width:760px;margin:0 auto;text-align:left;border-left:3px solid var(--green);padding:12px 18px;background:#0f1114;border-radius:0 12px 12px 0">
+     <div style="font:700 11px Barlow;letter-spacing:.16em;color:var(--green);margin-bottom:6px">THE WORKING DEFINITION</div>
+     <div style="color:#eef1f5;font-size:18px">A machine doing something we would call <b style="color:var(--green)">intelligent</b> if a human did it.</div></div>
+   <div class="src"><b>The AI effect:</b> the moment it works, we stop calling it AI. Chess, spam filters, autocomplete, face unlock, all "just software" now.</div>`,},
+
+{sec:"A SHORT HISTORY", title:`<span class="g">WINTERS</span> AND SUMMERS`,
+ body:`<svg viewBox="0 0 1000 340" style="width:100%;max-width:940px;height:auto;display:block;margin:6px auto 0">
+     <rect x="300" y="30" width="85" height="255" fill="#ff5a5a" opacity="0.07"/>
+     <rect x="455" y="30" width="80" height="255" fill="#ff5a5a" opacity="0.07"/>
+     <line x1="40" y1="285" x2="960" y2="285" stroke="#2a2f38" stroke-width="2"/>
+     <polyline points="60,205 130,110 342,240 412,128 495,245 787,155 846,92 905,50" fill="none" stroke="var(--green)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+     <g fill="var(--green)" stroke="#000" stroke-width="2">
+       <circle cx="60" cy="205" r="6"/><circle cx="130" cy="110" r="7"/><circle cx="412" cy="128" r="7"/><circle cx="787" cy="155" r="6"/><circle cx="846" cy="92" r="6"/><circle cx="905" cy="50" r="8"/></g>
+     <g fill="#ff7a7a" stroke="#000" stroke-width="2"><circle cx="342" cy="240" r="6"/><circle cx="495" cy="245" r="6"/></g>
+     <g font-family="Barlow" font-weight="700" font-size="14" fill="var(--green)" text-anchor="middle">
+       <text x="60" y="195" text-anchor="start">1950 Turing</text>
+       <text x="130" y="96">1956 named</text>
+       <text x="412" y="114">1980s expert systems</text>
+       <text x="787" y="140">2012 deep learning</text>
+       <text x="846" y="78">2017 transformers</text></g>
+     <text x="905" y="38" font-family="Barlow" font-weight="900" font-size="16" fill="#fff" text-anchor="end">2022 ChatGPT</text>
+     <g font-family="Barlow" font-weight="800" font-size="13" fill="#ff7a7a" text-anchor="middle" letter-spacing="1">
+       <text x="342" y="268">AI WINTER</text><text x="495" y="272">AI WINTER</text></g>
+   </svg>
+   <div class="cap" style="max-width:840px;margin:14px auto 0">Two full boom-and-bust cycles before it worked. Hype, then disappointment, then funding dries up. We are now in the biggest summer ever, so keep perspective: the tech is real, and some of the hype still is not.</div>`,},
+
+{sec:"A SHORT HISTORY", title:`CHESS, <span class="g">THEN GO</span>`,
+ body:`<div style="display:flex;gap:46px;justify-content:center;align-items:flex-start;margin:6px 0 16px;flex-wrap:wrap">
+     <div style="text-align:center">
+       <div style="width:150px;height:150px;border:2px solid #2a2f38;border-radius:8px;background-color:#0f1114;background-image:linear-gradient(45deg,#2a2f38 25%,transparent 25%,transparent 75%,#2a2f38 75%),linear-gradient(45deg,#2a2f38 25%,transparent 25%,transparent 75%,#2a2f38 75%);background-size:38px 38px;background-position:0 0,19px 19px"></div>
+       <div style="font:800 15px Barlow;color:#fff;margin-top:10px;letter-spacing:.06em">CHESS</div>
+       <div class="cap" style="margin-top:2px">1997 · Deep Blue beats Kasparov</div></div>
+     <div style="text-align:center">
+       <div style="position:relative;width:150px;height:150px;border:2px solid #2a2f38;border-radius:8px;background-color:#0f1114;background-image:linear-gradient(#2a2f38 1px,transparent 1px),linear-gradient(90deg,#2a2f38 1px,transparent 1px);background-size:25px 25px">
+         <span style="position:absolute;left:43px;top:43px;width:14px;height:14px;border-radius:50%;background:#fff"></span>
+         <span style="position:absolute;left:68px;top:68px;width:14px;height:14px;border-radius:50%;background:var(--green)"></span>
+         <span style="position:absolute;left:93px;top:43px;width:14px;height:14px;border-radius:50%;background:#fff"></span></div>
+       <div style="font:800 15px Barlow;color:#fff;margin-top:10px;letter-spacing:.06em">GO</div>
+       <div class="cap" style="margin-top:2px">2016 · AlphaGo beats Lee Sedol 4-1</div></div></div>
+   <div class="cap" style="max-width:840px;margin:0 auto">Go has more legal positions than there are atoms in the universe. Experts said a machine winning was decades away. Then it did. The lesson: AI can be <b style="color:#fff">superhuman at one task and clueless at the next.</b> That gap has a name, the jagged frontier, and it is coming up.</div>`,},
+
 {sec:"WHAT AI ACTUALLY IS", title:`<span class="g">TWO</span> KINDS OF AI`,
  body:`<div class="cards"><div class="card"><div class="tag">Predictive AI</div><p>Scores, forecasts, classifies. Recommendations, fraud, churn.</p></div>
    <div class="card good"><div class="tag">Generative AI</div><p>Creates text, images, code.</p></div></div>
