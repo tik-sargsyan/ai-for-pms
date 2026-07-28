@@ -8,7 +8,7 @@
 <div class="progress" id="prog"></div><div class="deck" id="deck"></div>
 <div class="nav"><button id="prev">‹</button><button id="next">›</button></div>
 <div class="counter"><b id="cur">1</b> / <span id="tot">35</span></div>
-<div class="hint">← → navigate · F fullscreen</div>
+<div class="hint">← → navigate · N notes · F fullscreen</div>
 <div class="notes" id="notes"><div class="nk">Speaker note</div><div class="nt" id="noteText"></div><div class="vis" id="visText"></div></div>
 <script>
 const AST = `<svg class="aster" viewBox="0 0 100 100" fill="currentColor"><path d="M45 5h10v28l20-20 7 7-20 20h28v10H62l20 20-7 7-20-20v28H45V62L25 82l-7-7 20-20H10V45h28L18 25l7-7 20 20z"/></svg>`;
@@ -20,29 +20,87 @@ window.SLIDES = [
  body:`<div class="sub">Become AI-native across the PM lifecycle.</div>
    <div class="cubebox"><div class="cube"><div class="f top"></div><div class="f left"></div><div class="f front"></div></div></div>
    <div class="tbar" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub" style="font-size:16px">Tigran Sargsyan · AI for Product Managers · Session 1</div>`},
+   <div class="sub" style="font-size:16px">Tigran Sargsyan · AI for Product Managers · Session 1</div>`,},
 
 {sec:"OPEN + FRAME", title:`THE PROMISE OF THE <span class="g">COURSE</span>`, center:true,
  body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">In 8 sessions you will build a personal AI system, answer real work with AI, and <span class="g">ship a live product.</span></div>
    <div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub">Today: the foundation.</div>`},
+   <div class="sub">Today: the foundation.</div>`,},
 
-{sec:"OPEN + FRAME", title:`CALIBRATE <span class="g">THE ROOM</span>`, center:true,
- body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">Hands up.</div>
-   <div class="sub">One word in the chat: what's your biggest AI question or fear right now?</div>`},
+{sec:"OPEN + FRAME", title:`WHAT THIS <span class="g">COURSE</span> IS`,
+ body:`<div class="arc" style="justify-content:center"><span class="st">Foundations</span><span class="ar">→</span><span class="st">Your AI workspace</span><span class="ar">→</span><span class="st">Research to spec</span><span class="ar">→</span><span class="st">Data decisions</span><span class="ar">→</span><span class="st">Comms + design</span><span class="ar">→</span><span class="st">Build the judge</span><span class="ar">→</span><span class="st final">Ship a live product</span></div>
+   <div class="cap" style="text-align:center;max-width:820px;margin-left:auto;margin-right:auto">8 hands-on sessions. Every session you make something real. By the end you'll have a <b style="color:var(--green)">personal AI system</b>, the <b style="color:var(--green)">judgment</b> to trust AI in the right places, and a <b style="color:var(--green)">live product</b> you shipped.</div>`,},
 
-{sec:"OPEN + FRAME", title:`THE <span class="g">THROUGH-LINE</span>`,
- body:`<div class="sub" style="color:#fff">AI amplifies <span class="g">who you are.</span></div>
-   <div class="sub">It multiplies your thinking. It doesn't replace it.</div>
-   <img src="../../assets/img/tigran.jpg" alt="Tigran Sargsyan" style="width:230px;height:230px;object-fit:cover;border-radius:14px;border:2px solid var(--green);margin-top:18px">`},
+{sec:"WHO AM I", title:`WHO <span class="g">AM I</span>`,
+ body:`<div style="display:flex;gap:40px;align-items:center;flex-wrap:wrap;margin-top:8px">
+   <img src="../../assets/img/tigran.jpg" alt="Tigran Sargsyan" style="width:220px;height:220px;object-fit:cover;border-radius:16px;border:2px solid var(--green)">
+   <ul class="checklist" style="flex:1;min-width:320px">
+   <li>5+ years running product & marketing <b style="color:var(--green)">AI ops at Picsart (~150M users)</b></li>
+   <li>Built <b style="color:var(--green)">120+ AI agents</b> and <b style="color:var(--green)">20+ websites & products</b>, shipped in production</li>
+   <li>Coached <b style="color:var(--green)">60+ PMs</b> across courses and workshops</li>
+   <li>A PM, <b>not an engineer</b>. All of it by directing AI.</li></ul></div>`,},
+
+{sec:"THE SHIFT", center:true, title:`WHY <span class="g">NOW</span>`,
+ body:`<div class="num">3</div><div class="cap" style="max-width:760px;margin-left:auto;margin-right:auto">Years for AI to reach ~50% of people. The internet took ~7. The PC took ~15. And ChatGPT alone has <b style="color:var(--green)">~900M weekly users.</b></div><div class="src"><b>Source:</b> CCIA / Stanford AI Index 2026 · OpenAI 2026</div>`,},
+
+{sec:"THE SHIFT", title:`AND IT ALREADY <span class="g">WORKS</span>`,
+ body:`<div class="twobars"><div><div class="bar" style="height:60%">+25%</div><div class="barlabel">faster</div></div><div><div class="bar" style="height:92%">+40%</div><div class="barlabel">higher quality</div></div></div>
+   <div class="cap">In a controlled study of 758 professionals, those using AI worked ~25% faster and produced ~40% higher-quality work. It lifts juniors and seniors both.</div><div class="src"><b>Source:</b> Harvard / BCG</div>`,},
+
+{sec:"OPEN + FRAME", center:true, title:`THE <span class="g">THROUGH-LINE</span>`,
+ body:`<div class="sub" style="font-size:clamp(22px,2.8vw,36px);color:#fff">AI amplifies <span class="g">who you are.</span></div>
+   <div class="sub">A sharp thinker gets sharper. A lazy one just gets louder. It multiplies your thinking, it doesn't replace it.</div>`,},
+
+{sec:"QUICK ASSESSMENT", center:true, title:`FIRST, <span class="g">WHERE ARE YOU?</span>`,
+ body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div><div class="sub">Six fast questions. Answer in the chat or hands up. It shapes how I teach today.</div>`,},
+
+{sec:"QUICK ASSESSMENT · 1", title:`HOW DO YOU USE <span class="g">AI TODAY?</span>`,
+ body:`<div class="sub">Drop 1, 2, or 3:</div>
+   <ul class="poll"><li><span class="n">1</span> Beginner: I chat with ChatGPT/Claude sometimes</li>
+   <li><span class="n">2</span> Regular: I use it daily for real work</li>
+   <li><span class="n">3</span> Proficient: I build with AI (automations, agents, apps)</li></ul>`,},
+
+{sec:"QUICK ASSESSMENT · 2", title:`WHAT HAVE YOU <span class="g">DONE</span> WITH AI?`,
+ body:`<div class="sub">Shout any that apply:</div>
+   <ul class="poll"><li><span class="n">A</span> Written or analyzed docs / data</li>
+   <li><span class="n">B</span> Drafted a PRD, spec, or user stories</li>
+   <li><span class="n">C</span> Built an automation, an app, or a custom GPT / agent</li>
+   <li><span class="n">D</span> None of these yet</li></ul>`,},
+
+{sec:"QUICK ASSESSMENT · 3", title:`WHICH TOOLS DO YOU <span class="g">HAVE?</span>`,
+ body:`<div class="sub">Type all you have right now:</div>
+   <ul class="poll"><li><span class="n">1</span> ChatGPT / ChatGPT Plus</li>
+   <li><span class="n">2</span> Claude / Claude Pro</li>
+   <li><span class="n">3</span> Claude Code / Cursor / an AI coding tool</li>
+   <li><span class="n">4</span> None yet</li></ul>`,},
+
+{sec:"QUICK ASSESSMENT · 4", title:`WHAT'S YOUR <span class="g">ROLE?</span>`,
+ body:`<div class="sub">One number:</div>
+   <ul class="poll"><li><span class="n">1</span> PM / PO / BA (junior or senior)</li>
+   <li><span class="n">2</span> Project or program manager</li>
+   <li><span class="n">3</span> Founder</li>
+   <li><span class="n">4</span> From tech, but not a PM (eng, design, marketing)</li></ul>`,},
+
+{sec:"QUICK ASSESSMENT · 5", title:`TECHNICAL OR <span class="g">NOT?</span>`,
+ body:`<div class="sub">Be honest, it changes nothing about your welcome here:</div>
+   <ul class="poll"><li><span class="n">1</span> Technical (I read/write code or data)</li>
+   <li><span class="n">2</span> Semi-technical (I read specs/data, not code)</li>
+   <li><span class="n">3</span> Non-technical (business, design, marketing)</li></ul>`,},
+
+{sec:"QUICK ASSESSMENT · 6", title:`YOUR BIGGEST <span class="g">OUTCOME?</span>`,
+ body:`<div class="sub">Pick the ONE you want most, then type your one-line goal in the chat:</div>
+   <ul class="poll"><li><span class="n">1</span> Do my PM work faster and better</li>
+   <li><span class="n">2</span> Build my own AI system / assistant</li>
+   <li><span class="n">3</span> Learn to build and ship products myself</li>
+   <li><span class="n">4</span> Build AI features & agents into products</li></ul>`,},
 
 {sec:"WHAT AI ACTUALLY IS", title:`WHAT IS AI, <span class="g">REALLY?</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">An accurate mental model. No CS degree needed.</div>`},
+ body:`<div class="rule"></div><div class="sub">An accurate mental model. No CS degree needed.</div>`,},
 
 {sec:"WHAT AI ACTUALLY IS", title:`<span class="g">TWO</span> KINDS OF AI`,
  body:`<div class="cards"><div class="card"><div class="tag">Predictive AI</div><p>Scores, forecasts, classifies. Recommendations, fraud, churn.</p></div>
    <div class="card good"><div class="tag">Generative AI</div><p>Creates text, images, code.</p></div></div>
-   <div class="cap">This course = mostly <b>generative + agents.</b></div>`},
+   <div class="cap">This course = mostly <b>generative + agents.</b></div>`,},
 
 {sec:"WHAT AI ACTUALLY IS", title:`AN LLM PREDICTS THE <span class="g">NEXT WORD</span>`,
  body:`<div class="mono" style="font-size:22px">"The cat sat on the ___"</div>
@@ -50,98 +108,98 @@ window.SLIDES = [
    <span style="font-family:var(--h);font-weight:900;font-size:44px;color:var(--green)">mat</span>
    <span style="font-family:var(--h);font-weight:800;font-size:30px;color:#cfcfd4">floor</span>
    <span style="font-family:var(--h);font-weight:700;font-size:22px;color:var(--muted)">keyboard</span>
-   <span style="font-size:16px;color:var(--line)">banana</span></div>`},
+   <span style="font-size:16px;color:var(--line)">banana</span></div>`,},
 
 {sec:"WHAT AI ACTUALLY IS", title:`<span class="g">PLAUSIBLE,</span> NOT TRUE`, center:true,
  body:`<div class="sub" style="font-size:clamp(22px,2.6vw,34px);color:#fff">It generates what <span class="g">sounds</span> right.</div>
-   <div class="sub">Not necessarily what <span class="g">is</span> right.</div>`},
+   <div class="sub">Not necessarily what <span class="g">is</span> right.</div>`,},
 
 {sec:"WHAT AI ACTUALLY IS", title:`CONTEXT WINDOW = ITS <span class="g">WORKING MEMORY</span>`,
  body:`<div class="sub">What it can "see" right now. More context in, better output. Nothing outside it exists.</div>
-   <img class="shot" src="../../assets/img/s1/context-window.png"><div class="shotcap">A Claude chat conversation showing everything currently in the context window</div>`},
+   <img class="shot" src="../../assets/img/s1/context-window.png"><div class="shotcap">A Claude chat conversation showing everything currently in the context window</div>`,},
 
 {sec:"WHAT AI ACTUALLY IS", title:`<span class="g">TOKENS</span> (WHY IT'S NOT FREE)`,
  body:`<div class="sub">Tokens are the units AI reads and writes. Long chats plus big files mean more tokens: slower, costlier, and it can lose the thread.</div>
-   <img class="shot" src="../../assets/img/s1/tokenizer.png"><div class="shotcap">A tokenizer view showing a sentence split into highlighted token pieces</div>`},
+   <img class="shot" src="../../assets/img/s1/tokenizer.png"><div class="shotcap">A tokenizer view showing a sentence split into highlighted token pieces</div>`,},
 
 {sec:"WHAT AI ACTUALLY IS", title:`THE <span class="g">AMPLIFICATION,</span> CONCRETELY`,
  body:`<div class="sub">One PM, directing AI well: a command center, a trend-to-video engine, a full game. No hand-written code.</div>
-   <img class="shot" src="../../assets/img/command-center.png"><div class="shotcap">The Agent Command Center (Picsart work kept high-level)</div>`},
+   <img class="shot" src="../../assets/img/command-center.png"><div class="shotcap">The Agent Command Center (Picsart work kept high-level)</div>`,},
 
 {sec:"HOW AI FAILS", title:`WHERE IT <span class="g">BREAKS</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">How AI fails, so you catch it. Three failure modes.</div>`},
+ body:`<div class="rule"></div><div class="sub">How AI fails, so you catch it. Three failure modes.</div>`,},
 
 {sec:"HOW AI FAILS", title:`<span class="g">HALLUCINATION</span>`,
  body:`<div class="sub" style="color:#fff">A confident, wrong answer. It's not lying. It's predicting plausible text.</div>
-   <img class="shot" src="../../assets/img/s1/hallucination.png"><div class="shotcap">An AI chat confidently stating a made-up fact or citation, a real hallucination</div>`},
+   <img class="shot" src="../../assets/img/s1/hallucination.png"><div class="shotcap">An AI chat confidently stating a made-up fact or citation, a real hallucination</div>`,},
 
 {sec:"HOW AI FAILS", title:`THE <span class="g">JAGGED</span> FRONTIER`,
  body:`<div class="cards"><div class="card good"><div class="tag">Superhuman</div><p>Wins a Math Olympiad gold medal</p></div>
    <div class="card bad"><div class="tag">Clueless</div><p>Reads an analog clock right ~50% of the time</p></div></div>
-   <div class="src"><b>Source:</b> Stanford AI Index 2026</div>`},
+   <div class="src"><b>Source:</b> Stanford AI Index 2026</div>`,},
 
 {sec:"HOW AI FAILS", title:`DATA RECENCY AND THE <span class="g">TRAINING CUTOFF</span>`,
  body:`<div class="sub">It has a training cutoff. Ask for "latest" and it may confidently give you last year, unless it can search.</div>
-   <img class="shot" src="../../assets/img/s1/training-cutoff.png"><div class="shotcap">An AI stating its training cutoff date when asked for "the latest"</div>`},
+   <img class="shot" src="../../assets/img/s1/training-cutoff.png"><div class="shotcap">An AI stating its training cutoff date when asked for "the latest"</div>`,},
 
 {sec:"HOW AI FAILS", title:`BIAS AND THE <span class="g">CONFIDENCE TRAP</span>`, center:true,
  body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">It mirrors its training data, and your prompt.</div>
-   <div class="sub">The danger isn't wrongness. It's <span class="g">fluent</span> wrongness.</div>`},
+   <div class="sub">The danger isn't wrongness. It's <span class="g">fluent</span> wrongness.</div>`,},
 
 {sec:"HOW AI FAILS", title:`THIS IS WHY <span class="g">YOU MATTER</span>`, center:true,
  body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
    <div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">The blind spots are exactly why judgment is the job.</div>
-   <div class="sub">AI does the volume. You do the verdict.</div>`},
+   <div class="sub">AI does the volume. You do the verdict.</div>`,},
 
 {sec:"BREAK", title:`<span class="g">BREAK</span> · 8 MIN`, center:true,
- body:`<div class="num small">8</div><div class="cap">Minutes. Back in ~8 min.</div>`},
+ body:`<div class="num small">8</div><div class="cap">Minutes. Back in ~8 min.</div>`,},
 
 {sec:"MYTHS + WHERE IT'S HEADING", title:`MYTHS VS <span class="g">REALITY</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">What to stop believing.</div>`},
+ body:`<div class="rule"></div><div class="sub">What to stop believing.</div>`,},
 
 {sec:"MYTHS + WHERE IT'S HEADING", title:`THREE <span class="g">MYTHS</span>`,
  body:`<div class="rows">
    <div class="row"><span class="a">"AI will replace me"</span><span class="arw">→</span><span class="b">replaces <b>tasks</b>, not people</span></div>
    <div class="row"><span class="a">"AI is always right"</span><span class="arw">→</span><span class="b">confident, <b>often wrong</b></span></div>
-   <div class="row"><span class="a">"AI is only for engineers"</span><span class="arw">→</span><span class="b">for <b>anyone who thinks</b></span></div></div>`},
+   <div class="row"><span class="a">"AI is only for engineers"</span><span class="arw">→</span><span class="b">for <b>anyone who thinks</b></span></div></div>`,},
 
 {sec:"MYTHS + WHERE IT'S HEADING", title:`AGENTS: FROM ANSWERING TO <span class="g">DOING</span>`,
  body:`<div class="sub">A chatbot answers. An agent <span class="g">acts</span>: it uses tools, runs steps, and finishes multi-step work. This is where the leverage is going.</div>
-   <img class="shot" src="../../assets/img/s1/agent-workflow.png"><div class="shotcap">A real agent workflow (an n8n graph or Claude Code invoking tools) branching into tool steps</div>`},
+   <img class="shot" src="../../assets/img/s1/agent-workflow.png"><div class="shotcap">A real agent workflow (an n8n graph or Claude Code invoking tools) branching into tool steps</div>`,},
 
 {sec:"MYTHS + WHERE IT'S HEADING", title:`WHERE IT'S <span class="g">HEADING</span>`, center:true,
  body:`<div style="display:flex;justify-content:center;margin:6px 0 16px">${UPARROW}</div>
    <div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">More capable, more agentic, more embedded.</div>
-   <div class="sub">The winners won't resist or blindly trust. They'll pair <span class="g">judgment</span> with a <span class="g">system.</span></div>`},
+   <div class="sub">The winners won't resist or blindly trust. They'll pair <span class="g">judgment</span> with a <span class="g">system.</span></div>`,},
 
 {sec:"MYTHS + WHERE IT'S HEADING", title:`THE <span class="g">HUMAN-AI</span> RELATIONSHIP`,
  body:`<div class="sub" style="color:#fff">The calculator didn't kill math. It freed mathematicians to think bigger.</div>
    <div class="sub">AI does that for knowledge work. Your job moves up: less typing, more deciding.</div>
-   <img class="shot" src="../../assets/img/s1/calculator.png"><div class="shotcap">A real calculator on a black surface, lit with a single neon green accent (brand-shape placeholder, needs a real photo)</div>`},
+   <img class="shot" src="../../assets/img/s1/calculator.png"><div class="shotcap">A real calculator on a black surface, lit with a single neon green accent (brand-shape placeholder, needs a real photo)</div>`,},
 
 {sec:"MYTHS + WHERE IT'S HEADING", title:`WHAT AN <span class="g">AI-NATIVE PM</span> LOOKS LIKE`, center:true,
  body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">Not "a PM who uses ChatGPT."</div>
-   <div class="sub">A PM with a personal AI system, sharp judgment, and the ability to <span class="g">build.</span></div>`},
+   <div class="sub">A PM with a personal AI system, sharp judgment, and the ability to <span class="g">build.</span></div>`,},
 
 {sec:"WORKING SAFELY", title:`YOUR DATA <span class="g">RED-LINES</span>`,
  body:`<div class="rule"></div>
    <div class="sub">What never to paste into a public AI:</div>
-   <ul class="checklist"><li>Customer PII</li><li>Confidential or company secrets</li><li>Anything under NDA</li><li>Credentials, passwords, keys</li></ul>`},
+   <ul class="checklist"><li>Customer PII</li><li>Confidential or company secrets</li><li>Anything under NDA</li><li>Credentials, passwords, keys</li></ul>`,},
 
 {sec:"WORKING SAFELY", title:`<span class="g">SAFE</span> BY DEFAULT`,
- body:`<ul class="checklist"><li>Anonymize: strip names and specifics before pasting</li><li>Use enterprise or private modes for work data</li><li>Keep personal experiments separate from real work data</li></ul>`},
+ body:`<ul class="checklist"><li>Anonymize: strip names and specifics before pasting</li><li>Use enterprise or private modes for work data</li><li>Keep personal experiments separate from real work data</li></ul>`,},
 
 {sec:"HANDS-ON", title:`YOUR <span class="g">TURN</span>`, center:true,
  body:`<span class="turn">Your turn</span>
    <div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub">Build your foundation: 3 short tasks, all in the Claude chat, no setup. This is your first artifact.</div>`},
+   <div class="sub">Build your foundation: 3 short tasks, all in the Claude chat, no setup. This is your first artifact.</div>`,},
 
 {sec:"HANDS-ON", title:`TASK 1 · <span class="g">MEET THE MACHINE</span>`,
  body:`<span class="turn">Task 1 · 5 min</span>
    <div class="mono"><ol class="steps2">
    <li>Ask: <span class="c">"Explain how you generate answers, in 3 sentences, simply."</span></li>
    <li>Then: <span class="c">"Now give me one example of something you'd likely get wrong, and why."</span></li>
-   <li>Note what it admits.</li></ol></div>`},
+   <li>Note what it admits.</li></ol></div>`,},
 
 {sec:"HANDS-ON", title:`TASK 2 · YOUR <span class="g">MENTAL MODEL</span>`,
  body:`<span class="turn">Task 2 · 5 min</span>
@@ -149,39 +207,51 @@ window.SLIDES = [
    <li>What AI is, one sentence, in your words.</li>
    <li>The one thing it's great at.</li>
    <li>The one thing to never trust blindly.</li>
-   <li>One task in your job you'll hand to it this week.</li></ol></div>`},
+   <li>One task in your job you'll hand to it this week.</li></ol></div>`,},
 
 {sec:"HANDS-ON", title:`TASK 3 · YOUR <span class="g">RED-LINES</span>`,
  body:`<span class="turn">Task 3 · 4 min</span>
    <div class="mono"><ol class="steps2">
    <li>List 3 things from YOUR work you must never paste into a public AI.</li>
-   <li>Write your one-line safe rule (e.g., "anonymize before paste").</li></ol></div>`},
+   <li>Write your one-line safe rule (e.g., "anonymize before paste").</li></ol></div>`,},
 
 {sec:"HANDS-ON", title:`QUICK <span class="g">ROUND</span>`, center:true,
- body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">Share one: the task you'll hand to AI this week.</div>`},
+ body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">Share one: the task you'll hand to AI this week.</div>`,},
 
 {sec:"RECAP + HOMEWORK", title:`THE THREE THAT <span class="g">MATTER</span>`, center:true,
  body:`<div style="max-width:660px;margin:0 auto;text-align:left"><ul class="recaplist">
    <li><span class="n">1</span><span>It predicts plausible text. Verify facts.</span></li>
    <li><span class="n">2</span><span>The frontier is jagged. Know the edge.</span></li>
-   <li><span class="n">3</span><span>AI amplifies who you are. Bring judgment.</span></li></ul></div>`},
+   <li><span class="n">3</span><span>AI amplifies who you are. Bring judgment.</span></li></ul></div>`,},
 
 {sec:"RECAP + HOMEWORK", title:`PICK YOUR <span class="g">IDEA</span>`, center:true,
  body:`<div class="num" style="font-size:clamp(72px,16vw,200px)">SHIP</div>
-   <div class="cap">A small product or tool that solves one real problem for you or your users, small enough to build in a day. You build it live in Sessions 7 and 8.<br><br>Stuck? Starters: an idea-scorer, a personal assistant over your own docs, a mini status dashboard, or a "draft my update" tool.</div>`},
+   <div class="cap">A small product or tool that solves one real problem for you or your users, small enough to build in a day. You build it live in Sessions 7 and 8.<br><br>Stuck? Starters: an idea-scorer, a personal assistant over your own docs, a mini status dashboard, or a "draft my update" tool.</div>`,},
+
+{sec:"BEFORE NEXT SESSION", title:`GET <span class="g">CLAUDE CODE</span> THIS WEEK`,
+ body:`<ul class="checklist" style="max-width:800px;margin:0 auto;text-align:left">
+   <li><b style="color:var(--green)">Everyone needs Claude Code</b> before Session 2. The Pro plan (~$20/month) is enough.</li>
+   <li>Optional power-ups once you have it: <b>Codex</b> or <b>Antigravity</b>.</li>
+   <li>This is what lets you actually <b>operate</b>: build, run, and ship, not just chat.</li>
+   <li>Install it before next session so we spend our time building, not installing.</li></ul>`,},
 
 {sec:"RECAP + HOMEWORK", title:`BEFORE <span class="g">SESSION 2</span>`,
  body:`<div class="mono">Homework (all token-light):<ol class="steps2">
    <li>Do the one task you named, with AI, for real.</li>
    <li>Finish your Mental Model + Red-Lines (4+2 lines).</li>
    <li>Bring 2 possible capstone ideas (or pick from the starters shown).</li>
-   <li>Have a Claude account ready (we set up Claude Code next).</li></ol></div>`},
+   <li><b>Install Claude Code (Pro, ~$20/mo). Required</b>, see the previous slide.</li></ol></div>`,},
 
-{sec:"CLOSE", title:`WHAT'S <span class="g">NEXT</span>`, center:true,
+{sec:"CLOSE", title:`NEXT TIME: <span class="g">SESSION 2</span>`, center:true,
  body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub" style="color:#fff">Next: set up and run your AI-native workspace.</div>
-   <div class="sub">You'll leave Session 2 with a working setup and your first automation.</div>
-   <div class="cubebox"><div class="cube"><div class="f top"></div><div class="f left"></div><div class="f front"></div></div></div>`}
+   <div class="sub" style="color:#fff">We set up your AI-native environment, together, live.</div>
+   <div class="mono" style="max-width:640px;margin:14px auto 0;text-align:left">Session 2 = hands on keyboard:<ol class="steps2">
+     <li>Install + configure your workspace (Claude Code, your first project).</li>
+     <li>Wire your tools and files so AI can see your real work.</li>
+     <li>Ship your first automation before you leave the room.</li></ol></div>
+   <div class="sub" style="color:var(--green);font-weight:800;margin-top:12px">Come with Claude Code already installed. That's the one thing.</div>
+   <div class="sub" style="margin-top:10px">Take home: <a href="../../assets/resource-pack.pdf" download style="color:var(--green);text-decoration:underline">the AI-Native PM Field Kit (PDF)</a>, the R&middot;C&middot;T&middot;C prompt plus principles. Skim it before Session 2.</div>
+   <div class="cubebox"><div class="cube"><div class="f top"></div><div class="f left"></div><div class="f front"></div></div></div>`,}
 
 ];
 </script>
