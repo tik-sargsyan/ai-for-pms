@@ -1,0 +1,14 @@
+
+# Secrets. Broad by design: the failure mode is always a variant nobody thought
+# to list (.env.bak-2026-09-13, .env.prod). Examples stay committable so the
+# next person knows what to set.
+.env*
+!.env.example
+!.env.sample
+!.env.template
+*.pem
+*.p12
+credentials.json
+service-account*.json
+.npmrc
+.netrc
