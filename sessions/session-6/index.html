@@ -6,8 +6,8 @@
 <a class="logo" href="../../index.html">ACA<sup>x</sup></a>
 <div class="progress" id="prog"></div><div class="deck" id="deck"></div>
 <div class="nav"><button id="prev">‹</button><button id="next">›</button></div>
-<div class="counter"><b id="cur">1</b> / <span id="tot">40</span></div>
-<div class="hint">← → navigate · F fullscreen</div>
+<div class="counter"><b id="cur">1</b> / <span id="tot">47</span></div>
+<div class="hint">← → navigate · N notes · F fullscreen</div>
 <div class="notes" id="notes"><div class="nk">Speaker note</div><div class="nt" id="noteText"></div><div class="vis" id="visText"></div></div>
 <script>
 const AST = `<svg class="aster" viewBox="0 0 100 100" fill="currentColor"><path d="M45 5h10v28l20-20 7 7-20 20h28v10H62l20 20-7 7-20-20v28H45V62L25 82l-7-7 20-20H10V45h28L18 25l7-7 20 20z"/></svg>`;
@@ -15,20 +15,30 @@ const AST = `<svg class="aster" viewBox="0 0 100 100" fill="currentColor"><path 
 window.SLIDES = [
 
 {sec:`SESSION 6 · OPEN`, title:`BUILD THE <span class="g">JUDGE</span>`, center:true,
- body:`<div class="sub">Building AI features & agents. Today the job changes: you spec and build AI into a product, and you decide if it's good enough to ship.</div>
+ body:`<div class="sub">Building AI features and agents. Today the job changes: you spec and build AI into a product, and you decide if it is good enough to ship.</div>
    <div class="tbar" style="margin-left:auto;margin-right:auto"></div>
    <div class="sub" style="font-size:16px">Tigran Sargsyan · Senior Product Operations Manager, Picsart</div>`},
 
+{sec:`SESSION 6 · RECAP`, title:`LAST TIME: <span class="g">SESSION 5</span>`,
+ body:`<div class="sub">You made AI <span class="g">communicate</span>: one messy update became a clean exec brief and a designed one-pager.</div>
+   <div class="arc" style="justify-content:center;margin-top:18px"><span class="st">Research</span><span class="ar">→</span><span class="st">Spec</span><span class="ar">→</span><span class="st">Data</span><span class="ar">→</span><span class="st">Comms + design</span><span class="ar">→</span><span class="st final">Build the judge</span></div>
+   <div class="cap" style="max-width:820px;margin:14px auto 0">Five sessions you used AI on your own work. Today the seat changes: you put AI <b style="color:var(--green)">inside a product</b>, and you decide if it is good enough to ship.</div>`},
+
 {sec:`SESSION 6 · THE SHIFT`, title:`THE <span class="g">SHIFT</span>`, center:true,
- body:`<div class="rule"></div><div class="sub" style="color:#fff">So far: you use AI. Today: you <span class="g">build</span> with it, and you decide if it's good enough to ship.</div>`},
+ body:`<div class="rule"></div><div class="sub" style="color:#fff">So far: you use AI. Today: you <span class="g">build</span> with it, and you decide if it is good enough to ship.</div>`},
 
 {sec:`SESSION 6 · CALIBRATE`, title:`CALIBRATE <span class="g">THE ROOM</span>`,
- body:`<div class="sub">One line in the chat: an AI feature you'd ship if you could.</div>
-   <ul class="checklist"><li>Support bot</li><li>Summary</li><li>Recommendation</li><li>Auto-draft</li></ul>`},
+ body:`<div class="sub">One line in the chat: an AI feature you would ship into your product if you could.</div>
+   <ul class="checklist"><li>A support bot for account and card questions</li><li>A summary of a loan file or a long complaint thread</li><li>A next-product recommendation</li><li>An auto-drafted reply to a transaction dispute</li></ul>`},
 
 {sec:`SESSION 6 · THE THROUGH-LINE`, title:`AI OUTPUT IS <span class="g">NOT FIXED</span>`,
- body:`<div class="sub">So you don't write a rigid spec. You <span class="g">build the judge</span> that decides what's good.</div>
+ body:`<div class="sub">So you do not write a rigid spec. You <span class="g">build the judge</span> that decides what is good.</div>
    <img class="shot" src="../../assets/img/s6/nondeterminism.png" alt="The same prompt run twice, two different valid answers side by side"><div class="shotcap">Same prompt, run twice: two different valid answers. AI output is nondeterministic.</div>`},
+
+{sec:`SESSION 6 · TRY IT`, title:`TRY IT: RUN IT <span class="g">TWICE</span>`, center:true,
+ body:`<div class="sub" style="color:#fff">30 seconds, in claude.ai (free is fine):</div>
+   <div class="mono" style="max-width:740px;margin:12px auto 0;text-align:left">Ask: "Draft a one-line reply to a customer disputing a 12 USD card fee." Send it. Now send the exact same prompt again.</div>
+   <div class="cap" style="max-width:760px;margin:12px auto 0">Two runs, two different valid replies. That is nondeterminism. It is why a rigid spec cannot hold, and why you need a judge.</div>`},
 
 {sec:`SECTION 1 · SPEC THE FEATURE`, title:`USING AI VS <span class="g">BUILDING AI</span>`, center:true,
  body:`<div class="rule"></div><div class="sub">The PM's new spec.</div>`},
@@ -40,7 +50,7 @@ window.SLIDES = [
    <div class="block"><div class="bl">3 · Success criteria</div><p>What does "good" mean, concretely?</p></div></div>`},
 
 {sec:`SECTION 1 · STORY`, title:`TREND REPLICATOR, AN <span class="g">AI FEATURE AS A PIPELINE</span>`,
- body:`<div class="sub">Paste a video → AI decodes the mechanic → generates replicas → organic + ad cuts → CDN + hand-off. Inputs, steps, outputs. And a checkpoint before it ships.</div>
+ body:`<div class="sub">Paste a video, AI decodes the mechanic, generates replicas, cuts organic + ad, ships to CDN + hand-off. Inputs, steps, outputs. And a checkpoint before it ships.</div>
    <div style="margin-top:8px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg,rgba(208,245,57,.07),transparent);min-height:34vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:34px">
      <div style="width:0;height:0;border-left:52px solid var(--green);border-top:32px solid transparent;border-bottom:32px solid transparent;filter:drop-shadow(0 0 26px rgba(208,245,57,.45))"></div>
      <div style="font-family:var(--h);font-weight:900;text-transform:uppercase;letter-spacing:.01em;font-size:clamp(30px,4.4vw,54px);line-height:.95;text-align:center;color:#fff">TREND <span style="color:var(--green)">REPLICATOR</span></div>
@@ -54,7 +64,7 @@ window.SLIDES = [
 {sec:`SECTION 1 · MINI-TASK`, title:`ONE-LINE <span class="g">SPEC</span>`,
  body:`<span class="turn">Mini-task · 4 min</span>
    <div class="mono"><div style="margin-bottom:12px">In Claude, write 5 lines:</div>
-   <ol class="steps2"><li>Job to be done.</li><li>Inputs + where they come from.</li><li>Output shape.</li><li>Three things that make it "good."</li><li>Two failure modes you'd fear.</li></ol></div>`},
+   <ol class="steps2"><li>Job to be done.</li><li>Inputs + where they come from.</li><li>Output shape.</li><li>Three things that make it "good."</li><li>Two failure modes you would fear.</li></ol></div>`},
 
 {sec:`SECTION 2 · TRADEOFFS`, title:`THE <span class="g">TRADEOFFS</span>`, center:true,
  body:`<div class="rule"></div><div class="sub">Cost, latency, model choice, and when NOT to use AI.</div>`},
@@ -62,25 +72,25 @@ window.SLIDES = [
 {sec:`SECTION 2 · THE TRIANGLE`, title:`QUALITY · COST · <span class="g">LATENCY</span>`,
  body:`<div class="blocks">
    <div class="block"><div class="bl">Quality</div><p>Bigger model, better, but slower + pricier</p></div>
-   <div class="block"><div class="bl">Cost</div><p>Scales with tokens and with every user</p></div>
+   <div class="block"><div class="bl">Cost</div><p>Scales with tokens and with every customer</p></div>
    <div class="block"><div class="bl">Latency</div><p>Smaller model, faster + cheaper + weaker</p></div></div>
    <div class="cap">Pick two, tune the third. <b>Rule:</b> the cheapest model that <b style="color:var(--green)">passes your judge</b> wins.</div>`},
 
 {sec:`SECTION 2 · BUILD VS BUY`, title:`BUILD <span class="g">VS BUY</span>`,
- body:`<div class="sub" style="color:#fff">Don't build what you can <span class="g">call</span>.</div>
+ body:`<div class="sub" style="color:#fff">Do not build what you can <span class="g">call</span>.</div>
    <div class="blocks" style="margin-top:22px">
    <div class="block"><div class="bl">Buy / API</div><p>Someone's feature, a model endpoint, a ready capability. Default here.</p></div>
-   <div class="block"><div class="bl">Build</div><p>Only where it's your edge, your data, your control.</p></div></div>`},
+   <div class="block"><div class="bl">Build</div><p>Only where it is your edge, your data, your control.</p></div></div>`},
 
 {sec:`SECTION 2 · WHEN NOT TO`, title:`WHEN <span class="g">NOT</span> TO USE AI`,
- body:`<ul class="checklist"><li>A rule or formula is exact and cheaper</li><li>A wrong answer is costly and you can't verify it</li><li>Latency or cost kill the experience</li></ul>
-   <div class="rule"></div><div class="sub">You can't judge any of this without... a judge.</div>`},
+ body:`<ul class="checklist"><li>A rule or formula is exact and cheaper (interest, fees, eligibility)</li><li>A wrong answer is costly and you cannot verify it (a credit decision)</li><li>Latency or cost kill the experience</li></ul>
+   <div class="rule"></div><div class="sub">You cannot judge any of this without... a judge.</div>`},
 
 {sec:`SECTION 3 · BUILD THE JUDGE`, title:`BUILD THE <span class="g">JUDGE</span>`, center:true,
  body:`<div class="rule"></div><div class="sub">Evals + guardrails. The centerpiece of the whole course.</div>`},
 
 {sec:`SECTION 3 · WHY EVALS`, title:`SCORE IT, <span class="g">DON'T DICTATE IT</span>`,
- body:`<div class="sub">You can't unit-test a paragraph. Same prompt, different words, every time. So: define "good" once, and score every output against it.</div>`},
+ body:`<div class="sub">You cannot unit-test a paragraph. Same prompt, different words, every time. So: define "good" once, and score every output against it.</div>`},
 
 {sec:`SECTION 3 · THE TECHNIQUE`, title:`LLM-AS-<span class="g">JUDGE</span>`,
  body:`<div class="sub">A rubric + a scorer. You use one AI to grade another AI's output against your rules. Calibrate it to agree with a human (~0.8), then let it scale.</div>
@@ -107,11 +117,21 @@ window.SLIDES = [
    <img class="shot" src="../../assets/img/s6/eval-run.png" alt="Eval run over a fixed test set with a SHIP gate" style="max-height:38vh;margin-top:14px"><div class="shotcap">An eval run over a fixed test set: per-case scores, 0 hard-fails, an average, and a SHIP gate.</div>`},
 
 {sec:`SECTION 3 · STORY`, title:`PICSART'S TREND MODEL <span class="g">IS A JUDGE</span>`,
- body:`<div class="sub">You already trust judges. Picsart trend scoring: 5 weighted dimensions → 75+ act, 50-74 watch, &lt;50 skip. My "Judge" ventures and a UI judge run the same pattern.</div>
+ body:`<div class="sub">You already trust judges. A credit score is one: weighted factors, a number, a threshold. Picsart trend scoring works the same: 5 weighted dimensions → 75+ act, 50-74 watch, &lt;50 skip.</div>
    <img class="shot" src="../../assets/img/s6/trend-scoring.png" alt="Picsart trend scoring model: 5 weighted dimensions and thresholds"><div class="shotcap">Picsart's trend scoring model: 5 weighted dimensions, a total, and act/watch/skip thresholds. A judge.</div>`},
 
+{sec:`SECTION 3 · LIVE`, title:`LIVE: A JUDGE + AN AGENT IN <span class="g">aca-demo</span>`, center:true,
+ body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
+   <div class="sub" style="color:#fff">Watch me now. You do the same after the break.</div>
+   <div class="mono" style="max-width:760px;margin:14px auto 0;text-align:left">In the aca-demo project I run Claude Code and:<ol class="steps2">
+     <li>Open the existing <b>pm-reviewer</b> agent: one file, read-only tools. A scoped worker.</li>
+     <li>Build a tiny <b>feedback-summarizer</b> agent: reads the mock feedback CSV, returns a 3-line summary. Read-only.</li>
+     <li>Write a small judge: Grounded, Correct, Tone, and a hard-fail gate (any claim not in the CSV = FAIL).</li>
+     <li>Plant a bad summary: I slip in a complaint the CSV never mentioned, then run the judge.</li></ol></div>
+   <div class="cap" style="max-width:760px;margin:12px auto 0">Watch the judge <b style="color:var(--green)">FAIL the plant</b> on the hard gate. Generator plus judge, working, in one small project.</div>`},
+
 {sec:`BREAK`, title:`<span class="g">BREAK</span> · 8 MIN`, center:true,
- body:`<div class="rule"></div><div class="sub">Back in ~8 min. When we're back: no more slides for a while. You build a real working judge.</div>`},
+ body:`<div class="rule"></div><div class="sub">Back in ~8 min. When we are back: no more slides for a while. You build a real working judge.</div>`},
 
 {sec:`SECTION 4 · HANDS-ON`, title:`YOUR TURN: <span class="g">BUILD THE JUDGE</span>`, center:true,
  body:`<span class="turn">Your turn</span>
@@ -121,7 +141,7 @@ window.SLIDES = [
 {sec:`SECTION 4 · TASK 1`, title:`WRITE THE <span class="g">RUBRIC</span>`,
  body:`<span class="turn">Task 1 · 6 min</span>
    <div class="mono"><div style="margin-bottom:12px">In Claude, write:</div>
-   <ol class="steps2"><li>The task in one line + one short "source" (the facts the answer must stick to).</li><li>3-4 dimensions (e.g. Grounded · Correct · Tone · Safe).</li><li>For each: what a 1 looks like, what a 5 looks like.</li><li>Your hard-fail gate (e.g. "any claim not in the source = FAIL").</li></ol></div>`},
+   <ol class="steps2"><li>The task in one line + one short "source" (the facts the answer must stick to, e.g. the fee policy).</li><li>3-4 dimensions (e.g. Grounded · Correct · Tone · Safe).</li><li>For each: what a 1 looks like, what a 5 looks like.</li><li>Your hard-fail gate (e.g. "any fee or policy claim not in the source = FAIL").</li></ol></div>`},
 
 {sec:`SECTION 4 · TASK 2`, title:`WRITE THE JUDGE WITH <span class="g">R·C·T·C</span>`,
  body:`<span class="turn">Task 2 · 6 min</span>
@@ -133,8 +153,8 @@ window.SLIDES = [
 
 {sec:`SECTION 4 · TASK 3`, title:`SEED BAD OUTPUTS, <span class="g">TEST THE JUDGE</span>`,
  body:`<span class="turn">Task 3 · 8 min</span>
-   <div class="mono"><div style="margin-bottom:12px">Prove it catches failures:</div>
-   <ol class="steps2"><li>Write 4 short test outputs: 2 good, 2 deliberately bad.</li><li>Bad #1: invent a fact that's NOT in the source. Bad #2: correct facts, wrong/rude tone.</li><li>Run your judge over all 4 in one message.</li><li>Did it FAIL the hallucination? Did it dock the tone? Fix the rubric if it missed.</li></ol></div>`},
+   <div class="mono"><div style="margin-bottom:12px">Prove it catches failures (the plant test):</div>
+   <ol class="steps2"><li>Write 4 short test outputs: 2 good, 2 deliberately bad.</li><li>Bad #1: invent a fee or fact that is NOT in the source. Bad #2: correct facts, wrong/rude tone.</li><li>Run your judge over all 4 in one message.</li><li>Did it FAIL the hallucination? Did it dock the tone? Fix the rubric if it missed.</li></ol></div>`},
 
 {sec:`SECTION 4 · TASK 4`, title:`TURN IT INTO A <span class="g">GUARDRAIL</span>`,
  body:`<span class="turn">Task 4 · 4 min</span>
@@ -154,10 +174,22 @@ window.SLIDES = [
    <div class="arc"><span class="st">Read context</span><span class="ar">→</span><span class="st">Pick a tool</span><span class="ar">→</span><span class="st">Act</span><span class="ar">→</span><span class="st">Check</span><span class="ar">↺</span></div>`},
 
 {sec:`SECTION 5 · STORY`, title:`THE COMMAND CENTER, A REAL <span class="g">PM OS</span>`,
- body:`<ul class="checklist"><li>5 workspace modes + a chat grounded in live state</li><li>A PM agent that ships one suggestion at 08:30 daily</li><li>A sync agent that runs nightly + on every commit</li></ul>
+ body:`<ul class="checklist"><li>One live cockpit page + a chat grounded in current state</li><li>A PM agent that ships one suggestion at 08:30 daily</li><li>A sync agent that runs nightly + on every commit</li></ul>
    <div class="cap">Not one big app. A cockpit of small scoped agents.</div>
    <img class="shot" src="../../assets/img/command-center.png" alt="Agent Command Center dashboard: a cockpit of small, scoped agents" style="max-height:40vh;margin-top:14px">
    <div class="shotcap">My live Agent Command Center: a cockpit of small, scoped agents, with a human keeping the verdict.</div>`},
+
+{sec:`SECTION 5 · MULTI-AGENT`, title:`ONE AGENT, OR A <span class="g">TEAM?</span>`,
+ body:`<div class="sub">One agent is one worker. A multi-agent system is a coordinated <span class="g">team of specialists</span>, plus a judge that keeps them honest. Four ways to wire a team:</div>
+   <div class="rows" style="margin-top:14px">
+     <div class="row"><span class="a">Orchestrator + specialists</span><span class="arw">→</span><span class="b">A lead routes a loan case to a KYC checker, an income checker, a risk scorer.</span></div>
+     <div class="row"><span class="a">Pipeline</span><span class="arw">→</span><span class="b">Fixed stages in order: extract statement data, categorize, draft the summary.</span></div>
+     <div class="row"><span class="a">Parallel fan-out, then synthesize</span><span class="arw">→</span><span class="b">Three agents read three quarters of filings at once, one merges the findings.</span></div>
+     <div class="row"><span class="a">Generator + judge</span><span class="arw">→</span><span class="b">One drafts the dispute reply, one grades it against policy. Today's pattern.</span></div></div>`},
+
+{sec:`SECTION 5 · MULTI-AGENT`, title:`WHEN TO GO <span class="g">MULTI-AGENT</span>`, center:true,
+ body:`<div class="sub" style="color:#fff">More agents means more <span class="g">cost, latency, and failure surface.</span></div>
+   <div class="cap" style="max-width:820px;margin:14px auto 0">Go multi-agent only when the task is genuinely <b style="color:#fff">separable</b>, or needs <b style="color:#fff">independent perspectives</b>. Otherwise one good agent plus one judge wins.</div>`},
 
 {sec:`SECTION 5 · SAFETY`, title:`MCP + <span class="g">LEAST-PRIVILEGE</span>`,
  body:`<div class="sub">MCP = the socket an agent plugs tools into: files, calendar, data, APIs.</div>
@@ -179,7 +211,7 @@ window.SLIDES = [
 {sec:`SECTION 6 · TASK 5`, title:`DEFINE YOUR <span class="g">TINY AGENT</span>`,
  body:`<span class="turn">Task 5 · 8 min</span>
    <div class="mono"><div style="margin-bottom:12px">R·C·T·C + least-privilege:</div>
-   <ol class="steps2"><li>Pick a boring recurring job (standup digest, ticket → user story, release-note draft).</li><li><span class="c">R + C + T:</span> role, the context it gets, the one output it produces.</li><li><span class="c">Least-privilege:</span> allow ONLY read tools it needs. No write, no send, no delete.</li><li>In Claude Code, save it as a small custom agent (name + description + allowed tools + instructions).</li></ol></div>`},
+   <ol class="steps2"><li>Pick a boring recurring job (complaint-thread digest, ticket → user story, dispute-triage draft).</li><li><span class="c">R + C + T:</span> role, the context it gets, the one output it produces.</li><li><span class="c">Least-privilege:</span> allow ONLY read tools it needs. No write, no send, no delete.</li><li>In Claude Code, save it as a small custom agent (name + description + allowed tools + instructions).</li></ol></div>`},
 
 {sec:`SECTION 6 · TASK 6`, title:`RUN IT ONCE, <span class="g">THEN JUDGE IT</span>`,
  body:`<span class="turn">Task 6 · 8 min</span>
@@ -189,20 +221,34 @@ window.SLIDES = [
 {sec:`SECTION 6 · SHARE`, title:`ONE THING YOUR <span class="g">AGENT DID</span>`,
  body:`<div class="sub">Share one: your agent's job + your judge's verdict on it.</div>`},
 
+{sec:`SECTION 6 · MILESTONE`, title:`YOU BUILT A <span class="g">TWO-AGENT SYSTEM</span>`, center:true,
+ body:`<div class="sub" style="color:#fff">A <span class="g">generator</span> that acts, and a <span class="g">judge</span> that keeps it honest.</div>
+   <div class="cards" style="margin-top:20px">
+     <div class="card good"><div class="tag">Generator</div><p>Your tiny read-only agent. One job, one output.</p></div>
+     <div class="card good"><div class="tag">Judge</div><p>Your rubric. Grades every output, fails the plant.</p></div></div>
+   <div class="cap" style="max-width:820px;margin:16px auto 0"><b style="color:var(--green)">Today's milestone:</b> a working judge and a simple agent. The atom of every serious AI system.</div>`},
+
 {sec:`SECTION 7 · RECAP`, title:`THE THREE THAT <span class="g">MATTER</span>`,
  body:`<ul class="recaplist">
    <li><span class="n">1</span><span>AI is nondeterministic → build the judge, don't write a rigid spec.</span></li>
    <li><span class="n">2</span><span>Pick the cheapest model that passes the judge; know when NOT to use AI.</span></li>
    <li><span class="n">3</span><span>Agents act → least-privilege + treat read-in content as data, never commands.</span></li></ul>`},
 
+{sec:`SECTION 7 · APIs`, title:`APIs: WHEN YOU <span class="g">BUILD AI IN</span>`,
+ body:`<div class="sub">So far AI lived in your workspace. To put it <span class="g">inside a product</span> your customers use, you call the model through an API.</div>
+   <ul class="checklist" style="margin-top:8px"><li>PMs do not write the API code.</li><li>PMs decide: which model, what quality bar, what cost and latency budget.</li><li>And the guardrail around it: <b style="color:var(--green)">the judge.</b></li></ul>
+   <div class="cap" style="max-width:820px;margin:12px auto 0">This is the bridge from using AI to building AI features. It is the capstone.</div>`},
+
 {sec:`SECTION 7 · CAPSTONE`, title:`BRING YOUR <span class="g">RUBRIC</span>`,
  body:`<div class="sub">Sessions 7-8 you ship a live product. The judge + guardrails you built today are what keep it from embarrassing you in front of real users. Bring your rubric. You'll wire it in.</div>`},
 
 {sec:`SECTION 7 · HOMEWORK`, title:`BEFORE <span class="g">SESSION 7</span>`,
- body:`<span class="turn">Homework · token-light</span>
-   <div class="mono"><ol class="steps2"><li>Run your judge on 5 more real outputs; tune the rubric once.</li><li>Give your tiny agent one more real input; confirm least-privilege.</li><li>Lock your capstone idea + write its 5-field AI-feature spec.</li></ol></div>
-   <div class="sub" style="margin-top:20px">Next: <span class="g">Capstone I, vibe-code a prototype.</span></div>
-   <div style="margin-top:18px;opacity:.45">${AST}</div>`}
+ body:`<span class="turn">Homework · one task · token-light</span>
+   <div class="mono"><div style="margin-bottom:12px">Write a rubric for one of your own features:</div>
+   <ol class="steps2"><li>Pick one real AI feature you would ship (a support reply, a loan-file summary, a dispute triage).</li><li>Write 3 to 4 dimensions, each with a 1-anchor and a 5-anchor.</li><li>Add one hard-fail gate: the sin that fails everything.</li></ol></div>
+   <div class="cap" style="max-width:760px;margin:14px auto 0">No tokens needed. Just write it. Bring it to Session 7 and we wire it into your build.</div>
+   <div class="sub" style="margin-top:16px">Next: <span class="g">Capstone I, vibe-code a prototype.</span></div>
+   <div style="margin-top:14px;opacity:.45">${AST}</div>`}
 
 ];
 </script>

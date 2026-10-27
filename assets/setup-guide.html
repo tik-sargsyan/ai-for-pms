@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI for PMs - Setup Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#15171c;--muted:#5c636e;--line:#e5e8ee;--panel:#f6f8fb;--green:#5e7406;--neon:#d0f539;--black:#0b0b0c;--red:#b4232a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.55;font-size:14px}
+  .page{max-width:840px;margin:0 auto;padding:0 34px 40px}
+  h1,h2,h3,.k,.stepnum,.chip,.pill{font-family:'Barlow',sans-serif}
+  a{color:var(--green);font-weight:600;text-decoration:none;border-bottom:1.5px solid rgba(94,116,6,.35)}
+  a:hover{border-bottom-color:var(--green)}
+
+  .hero{background:var(--black);color:#fff;margin:0 -34px 26px;padding:34px 34px 30px;border-bottom:6px solid var(--neon)}
+  .hero .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--neon);font-weight:700}
+  .hero h1{font-weight:900;font-size:36px;line-height:1.03;margin:10px 0 10px}
+  .hero h1 .g{color:var(--neon)}
+  .hero p{color:#c7ccd6;font-size:14.5px;max-width:640px}
+
+  .strip{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 24px}
+  .fact{flex:1;min-width:150px;border:1px solid var(--line);border-radius:11px;background:var(--panel);padding:12px 14px}
+  .fact .n{font-family:'Barlow';font-weight:800;font-size:20px;color:var(--ink)}
+  .fact .l{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-top:2px}
+
+  .need{border:1px solid var(--line);border-left:4px solid var(--neon);border-radius:0 11px 11px 0;background:var(--panel);padding:14px 18px;margin:0 0 28px}
+  .need b{font-family:'Barlow';font-weight:800}
+  .need ul{margin:8px 0 0;padding-left:20px}
+  .need li{margin:3px 0}
+
+  h2{font-family:'Barlow';font-weight:900;font-size:15px;text-transform:uppercase;letter-spacing:.03em;margin:30px 0 4px;color:var(--muted)}
+  .step{border:1px solid var(--line);border-radius:14px;padding:20px 22px 18px;margin:12px 0 0;position:relative}
+  .step.req{border-left:4px solid var(--green)}
+  .step h3{font-weight:800;font-size:21px;display:flex;align-items:center;gap:12px;line-height:1.1}
+  .stepnum{flex:none;width:38px;height:38px;border-radius:50%;background:var(--black);color:var(--neon);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px}
+  .step .lead{color:var(--muted);font-size:13.5px;margin:8px 0 0;padding-left:50px}
+  .req-badge{position:absolute;top:20px;right:22px;font-family:'Barlow';font-weight:800;font-size:10.5px;letter-spacing:.1em;color:var(--green);border:1.5px solid var(--green);border-radius:20px;padding:3px 10px}
+
+  ol.do{margin:14px 0 0 0;padding-left:50px;list-style:none;counter-reset:d}
+  ol.do>li{counter-increment:d;position:relative;padding:6px 0 6px 30px;border-top:1px dashed var(--line)}
+  ol.do>li:first-child{border-top:0}
+  ol.do>li::before{content:counter(d);position:absolute;left:0;top:6px;font-family:'Barlow';font-weight:800;font-size:12px;color:#fff;background:var(--green);width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  ol.do b{color:var(--ink)}
+  .see{color:var(--muted);font-size:12.5px;font-style:italic}
+
+  .os{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 0;padding-left:50px}
+  .os .col{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#fff}
+  .os .head{font-family:'Barlow';font-weight:800;font-size:12px;letter-spacing:.1em;padding:7px 14px;color:#fff}
+  .os .mac .head{background:#3a3f48}
+  .os .win .head{background:#1668c1}
+  .os .col ol{margin:0;padding:12px 16px 12px 30px;font-size:13px}
+  .os .col li{margin:5px 0}
+
+  .box{margin:16px 0 0;border:1px solid var(--line);border-left:4px solid var(--neon);border-radius:0 12px 12px 0;background:#fbfde9;padding:14px 18px}
+  .box .bt{font-family:'Barlow';font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin-bottom:5px}
+  .box.warn{border-left-color:var(--red);background:#fdf1f1}
+  .box.warn .bt{color:var(--red)}
+  .box p{font-size:13.5px}
+
+  .win-note{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px 16px;margin:14px 0 0;font-size:13.5px}
+  .win-note .chip{display:inline-block;background:#1668c1;color:#fff;font-weight:800;font-size:10.5px;letter-spacing:.08em;padding:2px 8px;border-radius:5px;margin-right:8px;vertical-align:1px}
+
+  .ready{background:var(--black);color:#fff;border-radius:14px;padding:20px 24px;margin:26px 0 0;border:2px solid var(--neon)}
+  .ready .bt{font-family:'Barlow';font-weight:900;font-size:20px;color:var(--neon)}
+  .ready p{color:#dfe3ea;font-size:14px;margin-top:5px}
+
+  .tro{margin:12px 0 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .tro .r{display:grid;grid-template-columns:1fr 1.3fr;gap:0;border-top:1px solid var(--line);font-size:13px}
+  .tro .r:first-child{border-top:0}
+  .tro .q{background:var(--panel);padding:10px 14px;font-weight:600;color:var(--ink)}
+  .tro .a{padding:10px 14px;color:var(--muted)}
+
+  .opt{border:1px dashed #cfd6df;border-radius:12px;padding:16px 20px;margin:12px 0 0;background:#fcfcfd}
+  .opt h3{font-family:'Barlow';font-weight:800;font-size:16px}
+  .opt .free{display:inline-block;background:var(--green);color:#fff;font-weight:800;font-size:10.5px;letter-spacing:.06em;padding:2px 9px;border-radius:20px;margin-left:8px;font-family:'Barlow';vertical-align:2px}
+  .opt p{font-size:13px;color:var(--muted);margin-top:5px}
+
+  .foot{margin:30px 0 0;padding-top:16px;border-top:2px solid var(--ink);font-size:13px;color:var(--muted)}
+  .foot b{color:var(--ink);font-family:'Barlow';font-weight:800}
+  .foot .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:12px}
+
+  @media (max-width:620px){.os{grid-template-columns:1fr;padding-left:0}ol.do{padding-left:26px}.step .lead{padding-left:0}.tro .r{grid-template-columns:1fr}}
+  @page{size:A4;margin:12mm}
+  @media print{a{color:var(--ink)}.step,.opt,.tro{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="tag">ACA X &middot; AI for Product Managers</div>
+    <h1>Get Ready: Your <span class="g">AI Setup</span> Guide</h1>
+    <p>Everything you need installed <b style="color:#fff">before Session 2</b>, so we spend class building, not installing. Follow it top to bottom. No technical experience needed. If you can install a normal app, you can do this.</p>
+  </div>
+
+  <div class="strip">
+    <div class="fact"><div class="n">~30 min</div><div class="l">Total time</div></div>
+    <div class="fact"><div class="n">4 steps</div><div class="l">To be ready</div></div>
+    <div class="fact"><div class="n">$20/mo</div><div class="l">Claude Pro (required)</div></div>
+    <div class="fact"><div class="n">Mac + Win</div><div class="l">Both covered</div></div>
+  </div>
+
+  <div class="need">
+    <b>Before you start, have these ready:</b>
+    <ul>
+      <li>Your own laptop (Mac or Windows) that you can install apps on. A personal laptop is best. Work laptops sometimes block installs.</li>
+      <li>A payment card for the Claude Pro subscription (about $20/month, cancel anytime).</li>
+      <li>About 30 quiet minutes. Do this on a decent internet connection.</li>
+      <li>Stuck at any point? Message me (contact at the bottom). Do not skip Session 2 setup because of a snag.</li>
+    </ul>
+  </div>
+
+  <h2>The 4 steps</h2>
+
+  <!-- STEP 1 -->
+  <div class="step req">
+    <span class="req-badge">REQUIRED</span>
+    <h3><span class="stepnum">1</span> Create your Claude account and get Pro</h3>
+    <p class="lead">This is the one thing that costs money, and it is required. One account powers everything we use.</p>
+    <ol class="do">
+      <li>Go to <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> and click <b>Sign up</b>. Use your email or your Google account.</li>
+      <li>Upgrade to <b>Pro</b> at <a href="https://claude.com/pricing" target="_blank" rel="noopener">claude.com/pricing</a>. It is <b>$20/month</b> (or $17/month if you pay for a year up front).</li>
+      <li>That is it. The same login now works in the app, in VS Code, everywhere.</li>
+    </ol>
+    <div class="box warn">
+      <div class="bt">Important: the Free plan will not work</div>
+      <p>Claude Code is not included in the free plan. You must be on <b>Pro</b> (or higher). If a screen later says "upgrade to continue," this step was missed.</p>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step req">
+    <span class="req-badge">REQUIRED</span>
+    <h3><span class="stepnum">2</span> Install VS Code (your workspace)</h3>
+    <p class="lead">VS Code is a free app from Microsoft. It is the window where we will build things all course. Download it from <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com/download</a>, then follow your system below.</p>
+    <div class="os">
+      <div class="col mac">
+        <div class="head">ON A MAC</div>
+        <ol>
+          <li>Download the <b>Mac Universal</b> file (a <b>.dmg</b>).</li>
+          <li>Open the downloaded .dmg file.</li>
+          <li>Drag the <b>Visual Studio Code</b> icon into your <b>Applications</b> folder.</li>
+          <li>Open it from Applications (or Launchpad).</li>
+        </ol>
+      </div>
+      <div class="col win">
+        <div class="head">ON WINDOWS</div>
+        <ol>
+          <li>Download the <b>Windows User Installer</b> (x64 for most PCs).</li>
+          <li>Double-click the downloaded <b>.exe</b> file.</li>
+          <li>Accept the agreement and click <b>Next</b> through the wizard, then <b>Finish</b>.</li>
+          <li>VS Code opens automatically.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step req">
+    <span class="req-badge">REQUIRED</span>
+    <h3><span class="stepnum">3</span> Add Claude Code inside VS Code</h3>
+    <p class="lead">This puts your AI assistant right inside your workspace. No terminal, no coding tools to install.</p>
+    <ol class="do">
+      <li>In VS Code, click the <b>Extensions</b> icon on the left bar (the four little squares). <span class="see">Or press Cmd+Shift+X on Mac, Ctrl+Shift+X on Windows.</span></li>
+      <li>In the search box, type <b>Claude Code</b>. Pick the one by publisher <b>anthropic</b> and click <b>Install</b>.</li>
+      <li>Open a folder to work in: <b>File &rarr; Open Folder</b>, then create or pick an empty folder (for example, a new folder on your Desktop called <b>ai-course</b>).</li>
+      <li>Click the <b>Claude Code</b> icon (a spark, near the top right when a file is open, or the small icon in the bottom bar).</li>
+      <li>Click <b>Sign in</b>. A browser window opens. Log in with your account from Step 1 and approve. <span class="see">Done. You are connected.</span></li>
+    </ol>
+    <div class="box warn">
+      <div class="bt">If it ever asks for an "API key"</div>
+      <p>Do not enter one. Just choose <b>Sign in</b> and log in with your normal Claude account in the browser. API keys are a separate paid thing you do not need.</p>
+    </div>
+    <div class="box">
+      <div class="bt">Too much? The simplest possible option</div>
+      <p>If VS Code feels overwhelming, do this instead and you will still be ready: download the <b>Claude desktop app</b> from <a href="https://claude.com/download" target="_blank" rel="noopener">claude.com/download</a>, install it, sign in, and click the <b>Code</b> tab. Claude Code is built in, nothing else to install. We will help you move into VS Code in class. <b>Windows users</b> who take this route: also install Git first (see the blue note below).</p>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step req">
+    <span class="req-badge">REQUIRED</span>
+    <h3><span class="stepnum">4</span> Check that it works</h3>
+    <p class="lead">A 20-second test so you walk into Session 2 confident.</p>
+    <ol class="do">
+      <li>In the Claude Code panel, type this and press Enter:<br><b>Create a file called hello.txt that says "hello from [your name]".</b></li>
+      <li>Claude proposes a change. Click <b>Accept</b> (or Yes).</li>
+      <li>Look in your folder. If <b>hello.txt</b> is there, you are done.</li>
+    </ol>
+    <div class="ready">
+      <div class="bt">You are ready for Session 2 when...</div>
+      <p>you can open Claude Code, type a request, and watch it do the thing. That is the whole finish line. Bring your laptop charged.</p>
+    </div>
+  </div>
+
+  <!-- WINDOWS EXTRA -->
+  <div class="win-note">
+    <span class="chip">WINDOWS ONLY</span> <b>One extra install:</b> so Claude Code can work smoothly with files and projects, install <b>Git for Windows</b> from <a href="https://git-scm.com/downloads/win" target="_blank" rel="noopener">git-scm.com/downloads/win</a>. Download it, run the installer, and click Next through with the default options. Mac users already have this, nothing to do.
+  </div>
+
+  <!-- TROUBLESHOOTING -->
+  <h2>If something goes wrong</h2>
+  <div class="tro">
+    <div class="r"><div class="q">"Upgrade to continue" or Code will not open</div><div class="a">You are on the Free plan. Go back to Step 1 and subscribe to Pro. That unlocks it.</div></div>
+    <div class="r"><div class="q">It asks for an API key</div><div class="a">Do not enter one. Choose Sign in and log in with your account in the browser instead.</div></div>
+    <div class="r"><div class="q">I installed the extension but see nothing</div><div class="a">Open a file or folder first (the icon only appears then). Then close and reopen VS Code.</div></div>
+    <div class="r"><div class="q">A "command not found" message</div><div class="a">You went down a harder path. Use the VS Code extension (Step 3) or the desktop app instead. No commands needed.</div></div>
+    <div class="r"><div class="q">My work laptop blocks the install</div><div class="a">Company laptops often block new apps or websites. Use a personal laptop if you can, or ask IT to allow claude.ai and VS Code.</div></div>
+    <div class="r"><div class="q">It says my computer is too old</div><div class="a">Claude Code needs macOS 13 or newer, or Windows 10 (2018 update) or newer. Check for a system update.</div></div>
+    <div class="r"><div class="q">Not in a supported country</div><div class="a">Claude is available in most, not all, countries. See anthropic.com/supported-countries. Tell me and we will find a workaround.</div></div>
+  </div>
+
+  <!-- OPTIONAL -->
+  <h2>Want to try more? (Optional, not required)</h2>
+  <p style="font-size:13.5px;color:var(--muted);margin-top:4px">Only if you are curious. If Claude Code works, you already have everything you need for the course. These are extra playgrounds, not requirements.</p>
+
+  <div class="opt">
+    <h3>Google Antigravity <span class="free">FREE</span></h3>
+    <p>A full AI coding studio, free, that signs in with a normal Gmail account. The best zero-cost way to see an AI agent build and test something end to end. Download from <a href="https://antigravity.google/download" target="_blank" rel="noopener">antigravity.google/download</a>, install like any app, and log in with Google. Works on Mac and Windows.</p>
+  </div>
+  <div class="opt">
+    <h3>OpenAI Codex</h3>
+    <p>Worth it <b>only if you already pay for ChatGPT</b>. In that case, open <a href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com</a> and use Codex right there, nothing to install. Do not pay a second $20/month just for this if you already have Claude Code.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <b>Stuck? Do not suffer in silence.</b> Send me a message before Session 2 and we will get you set up. It is normal to hit one snag, that is what I am here for.
+    <div class="row">
+      <span>Telegram: <b>+374 43 090290</b> &nbsp;&middot;&nbsp; Email: <b>i.am.tigran.sargsyan@gmail.com</b></span>
+      <span><b>AI for Product Managers</b> &middot; Armenian Code Academy</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

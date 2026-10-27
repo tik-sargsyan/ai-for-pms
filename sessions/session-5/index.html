@@ -6,8 +6,8 @@
 <a class="logo" href="../../index.html">ACA<sup>x</sup></a>
 <div class="progress" id="prog"></div><div class="deck" id="deck"></div>
 <div class="nav"><button id="prev">‹</button><button id="next">›</button></div>
-<div class="counter"><b id="cur">1</b> / <span id="tot">39</span></div>
-<div class="hint">← → navigate · F fullscreen</div>
+<div class="counter"><b id="cur">1</b> / <span id="tot">42</span></div>
+<div class="hint">← → navigate · N notes · F fullscreen</div>
 <div class="notes" id="notes"><div class="nk">Speaker note</div><div class="nt" id="noteText"></div><div class="vis" id="visText"></div></div>
 <script>
 const AST = `<svg class="aster" viewBox="0 0 100 100" fill="currentColor"><path d="M45 5h10v28l20-20 7 7-20 20h28v10H62l20 20-7 7-20-20v28H45V62L25 82l-7-7 20-20H10V45h28L18 25l7-7 20 20z"/></svg>`;
@@ -22,6 +22,12 @@ window.SLIDES = [
  body:`<div class="sub">Session 5 · Communicating & Presenting: Stakeholders + Visual Design</div>
    <div class="tbar" style="margin-left:auto;margin-right:auto"></div>
    <div class="sub" style="font-size:clamp(18px,2.2vw,28px);color:#fff">Great work that no one understands did not happen.</div>`},
+
+{sec:"RECAP · SESSION 4", title:`LAST TIME: A DECISION <span class="g">FROM DATA</span>`,
+ body:`<div class="sub">Session 4: you pointed Claude at a read-only data source, asked a real question, verified the answer, then made the call. No SQL.</div>
+   <div class="rows" style="margin-top:20px">
+     <div class="row"><span class="a">Session 4</span><span class="arw">→</span><span class="b">You found the answer and decided.</span></div>
+     <div class="row"><span class="a">Today</span><span class="arw">→</span><span class="b">You make people act on it.</span></div></div>`},
 
 {sec:"OPEN & FRAME · the stakes", title:`WHERE GOOD <span class="g">WORK DIES</span>`, center:true,
  body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">Most good PM work dies in the inbox. Not because it was wrong. Because it was <span class="g">unread, unclear, or off-key.</span></div>`},
@@ -113,8 +119,8 @@ window.SLIDES = [
 {sec:"UPDATE → NARRATIVE → EXEC DOC", title:`HEADLINE = <span class="g">THE TAKEAWAY</span>`,
  body:`<div class="sub">If you present it: one idea per slide. The headline IS the takeaway, not the topic.</div>
    <div class="cards">
-   <div class="card good"><div class="tag">✓ Takeaway</div><p>"Q3 retention up 4pts, driven by onboarding."</p></div>
-   <div class="card bad"><div class="tag">✕ Topic</div><p>"Retention Metrics."</p></div></div>`},
+   <div class="card good"><div class="tag">✓ Takeaway</div><p>"Card activation up 6 pts after the new mobile KYC flow (illustrative)."</p></div>
+   <div class="card bad"><div class="tag">✕ Topic</div><p>"Activation Metrics."</p></div></div>`},
 
 {sec:"UPDATE → NARRATIVE → EXEC DOC", title:`YOUR <span class="g">TURN</span>`, center:true,
  body:`<span class="turn">Part 1</span>
@@ -126,7 +132,7 @@ window.SLIDES = [
    <div class="mono"><ol class="steps2">
    <li>Paste your <span class="c">raw update</span> (messy is fine: what happened, what's stuck, what's next).</li>
    <li>Add a <span class="c">voice sample</span> (3-5 sentences you actually wrote before) + 3 words you never use.</li>
-   <li>Prompt <span class="c">R·C·T·C:</span> Role = sharp comms partner · Context = audience is my leadership + my voice sample + raw update · Task = the exec template, under 150 words · Critique = "flag any sentence that sounds like generic AI."</li>
+   <li>Prompt <span class="c">R·C·T·C:</span> Role = sharp comms partner · Context = audience is my bank's leadership team + my voice sample + raw update · Task = the exec template, under 150 words · Critique = "flag any sentence that sounds like generic AI."</li>
    <li>Rewrite the <span class="c">first and last line yourself.</span> That's your artifact.</li></ol></div>`},
 
 {sec:"UPDATE → NARRATIVE → EXEC DOC", title:`READ THE <span class="g">TL;DR</span>`,
@@ -184,6 +190,13 @@ window.SLIDES = [
  body:`<div class="sub">This course's decks, the report PDFs, the dashboards. Different outputs, one design DNA, all AI-built. Consistency looks expensive. It's mostly just discipline.</div>
    <img class="shot" src="../../assets/img/command-center.png" style="max-height:44vh"><div class="shotcap">The Agent Command Center. My decks, report PDFs, and this dashboard all share one design DNA (Picsart work kept high-level).</div>`},
 
+{sec:"ANATOMY SLICE · SKILLS", title:`MAKE THESE <span class="g">TWO SKILLS</span>`,
+ body:`<div class="sub">Session 2 taught the skill: a reusable recipe in <span style="font-family:var(--m);color:var(--green)">.claude/skills/</span>. Today gives you two worth saving, so you never retype them.</div>
+   <div class="cards" style="margin-top:18px">
+     <div class="card good"><div class="tag">my-voice</div><p>Your writing sample, your never-use words, the exec template. Triggers on "draft an update".</p></div>
+     <div class="card good"><div class="tag">house-design</div><p>Your five design words and the @page print rule. Triggers on "make a one-pager".</p></div></div>
+   <div class="cap">Comms and design, each packaged once, reused forever. That is what a skill is for.</div>`},
+
 {sec:"SHAREABLE HTML + CLEAN PDF", title:`ONE FILE, SHAREABLE + <span class="g">PRINTABLE</span>`, center:true,
  body:`<div class="rule"></div><div class="sub">Send as a link. Print to PDF. The most useful format a PM can produce.</div>`},
 
@@ -205,6 +218,14 @@ window.SLIDES = [
    <li>In the file: <span style="font-family:var(--m);color:var(--green)">@page</span> CSS sets size and margins.</li>
    <li>Automatable later: headless Chrome <span style="font-family:var(--m);color:var(--green)">--headless=new --no-pdf-header-footer</span>.</li></ul>
    <img class="shot" src="../../assets/img/s5/print-dialog.png"><div class="shotcap">The browser print dialog: destination "Save as PDF", "Headers and footers" unchecked so no URLs or page numbers get stamped on.</div>`},
+
+{sec:"LIVE · WATCH ME", title:`LIVE: BACKLOG TO EXEC UPDATE TO <span class="g">ONE-PAGER</span>`,
+ body:`<div class="sub" style="color:#fff">Watch me build both artifacts in Claude Code, on the demo project. You do the same next, on your real work.</div>
+   <div class="mono" style="max-width:840px;margin:14px auto 0;text-align:left">In <span class="c">aca-demo</span> I reset the scores, then type:<ol class="steps2">
+     <li>"Run the <span class="c">pm-reviewer</span> agent to rank the backlog." It reads the agent and returns the top item.</li>
+     <li>"Write a <span class="c">150-word exec update</span> on that item for a bank leadership team. Use the exec template. Plain, direct, no filler."</li>
+     <li>"Now build <span class="c">one-pager.html</span> from that update: minimal, bold, one accent, white cards, @page for A4, no images." Then I print it to PDF.</li></ol></div>
+   <div class="cap" style="max-width:780px;margin:12px auto 0">Same operator loop from Session 1: read the context, act, check. One project, one exec message, one designed page.</div>`},
 
 {sec:"SHAREABLE HTML + CLEAN PDF", title:`YOUR <span class="g">TURN</span>`, center:true,
  body:`<span class="turn">Part 2</span>
@@ -269,12 +290,12 @@ window.SLIDES = [
    <div class="shotcap">On-brand illustration, not stock. One clean leaf, dark canvas, single neon accent. Growth as the capstone metaphor.</div>`},
 
 {sec:"RECAP, HOMEWORK & CAPSTONE", title:`HOMEWORK BEFORE <span class="g">SESSION 6</span>`,
- body:`<span class="turn">Homework · token-light</span>
+ body:`<span class="turn">Homework · one task · token-light</span>
    <div class="mono"><ol class="steps2">
-   <li><span class="c">Send</span> the exec update to a real audience (or have it ready to send Monday).</li>
-   <li><span class="c">Finish</span> the one-pager + PDF for your capstone; keep both files.</li>
-   <li>Save a reusable <span class="c">"my voice"</span> prompt block (sample + never-use words) in your prompt library.</li>
-   <li>Bring your capstone one-pager to <span class="c">Session 6.</span></li></ol></div>`},
+   <li>Take <span class="c">one real update</span> you sent at work recently.</li>
+   <li>Redo it with AI: tailor it to its audience, strip the generic tone, keep <span class="c">your voice.</span></li>
+   <li>Put the two side by side. Send the better one if it fits.</li></ol></div>
+   <div class="cap" style="max-width:760px;margin:12px auto 0;text-align:center">One update, in the Claude chat, ten minutes. Bring your one-pager to Session 6.</div>`},
 
 {sec:"CLOSE", title:`NEXT: AI FEATURES <span class="g">& AGENTS</span>`, center:true,
  body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>

@@ -6,8 +6,8 @@
 <a class="logo" href="../../index.html">ACA<sup>x</sup></a>
 <div class="progress" id="prog"></div><div class="deck" id="deck"></div>
 <div class="nav"><button id="prev">‹</button><button id="next">›</button></div>
-<div class="counter"><b id="cur">1</b> / <span id="tot">30</span></div>
-<div class="hint">← → navigate · F fullscreen</div>
+<div class="counter"><b id="cur">1</b> / <span id="tot">41</span></div>
+<div class="hint">← → navigate · N notes · F fullscreen</div>
 <div class="notes" id="notes"><div class="nk">Speaker note</div><div class="nt" id="noteText"></div><div class="vis" id="visText"></div></div>
 <script>window.SLIDES = [
 
@@ -16,6 +16,11 @@
    <div class="cubebox"><div class="cube"><div class="f top"></div><div class="f left"></div><div class="f front"></div></div></div>
    <div class="tbar" style="margin-left:auto;margin-right:auto"></div>
    <div class="sub" style="font-size:16px">Tigran Sargsyan · AI for Product Managers · Armenian Code Academy</div>`},
+
+{sec:`RECAP · SESSION 7`, title:`LAST TIME, YOU <span class="g">BUILT IT</span>`,
+ body:`<div class="sub">Session 7: you vibe-coded a working prototype on your laptop.</div>
+   <ul class="checklist"><li>One core feature, running locally.</li><li>Mock data standing in for the real thing.</li><li>It passed your own judge from Session 6.</li></ul>
+   <div class="cap">One gap is left: it only runs for you. Today we close it.</div>`},
 
 {sec:`OPEN · THE LINE`, title:`THE LINE YOU <span class="g">CROSS TODAY</span>`, center:true,
  body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">"Works on my machine" becomes <span class="g">a URL anyone on earth can open.</span></div>
@@ -31,31 +36,38 @@
    <span style="font-size:clamp(28px,4.5vw,58px);color:var(--line);margin-left:14px">perfect</span></div>
    <div class="cap">Nobody remembers the prototype you polished forever. They remember the one you shipped. Done, live, and learning beats perfect and hidden.</div>`},
 
+{sec:`WHERE TODAY SITS`, title:`THE LAST PIECE OF THE <span class="g">ANATOMY</span>`,
+ body:`<div class="sub">All course you assembled the workspace. Two pieces make it real to the world:</div>
+   <div class="cards"><div class="card good"><div class="tag">Deployment</div><p>Put it on the internet at a public address. Today: Vercel.</p></div>
+   <div class="card good"><div class="tag">APIs</div><p>When AI runs inside your product, you own the model, the cost, and the guardrail.</p></div></div>
+   <div class="cap">You do not write API code. You make four calls: which model, what quality bar, what cost, what judge sits around it.</div>`},
+
 {sec:`POLISH & QA`, title:`POLISH & <span class="g">QA</span>`, center:true,
  body:`<div class="rule"></div><div class="sub">Make it safe to hand to a stranger. The last mile before live.</div>`},
 
 {sec:`POLISH & QA · the gap`, title:`THE LAST-MILE <span class="g">GAP</span>`,
- body:`<div class="sub">A demo survives <b style="color:#fff">you.</b> A live product must survive <b style="color:#fff">strangers</b> who click the wrong thing, on a phone, with a bad connection.</div>
+ body:`<div class="sub">A demo survives <b style="color:#fff">you.</b> A live product must survive <b style="color:#fff">a customer</b> who taps the wrong thing, on a phone, at a branch, on bad wifi.</div>
    <div class="lifecycle" style="margin-top:26px;font-size:clamp(14px,1.8vw,22px)"><span style="color:var(--green)">one happy path</span><span class="n">→</span><span>wrong button</span><span class="n">·</span><span>on a phone</span><span class="n">·</span><span>weird input</span><span class="n">·</span><span>bad wifi</span></div>`},
 
 {sec:`POLISH & QA · framework`, title:`THE 8-POINT <span class="g">QA CHECKLIST</span>`,
  body:`<div class="mono">Ship-ready in 8 checks:<ol class="steps2">
    <li>First click works cold, no setup</li>
    <li>Core action runs end-to-end</li>
-   <li>Empty + wrong input handled</li>
+   <li>Empty and wrong input handled</li>
    <li>Readable on a phone</li>
-   <li>No secrets in the code</li>
+   <li>No secrets or keys in the code</li>
    <li>No dead buttons or links</li>
-   <li>A clear title + one line of "what is this"</li>
+   <li>A clear title, plus one line of "what is this"</li>
    <li>Loads in a few seconds</li></ol></div>`},
 
 {sec:`POLISH & QA · guardrails`, title:`APPLY THE GUARDRAILS <span class="g">FROM DAY 6</span>`,
  body:`<div class="sub">If it uses AI, the "judge" ships too. Guardrails: validate input · handle the failure out loud · never show a raw error · keep it least-privilege.</div>
-   <img class="shot" src="../../assets/img/s8/graceful-error.png"><div class="shotcap">The prototype showing a graceful "Something went wrong. Please try again." message instead of a raw error or stack trace</div>`},
+   <div class="cards" style="margin-top:18px"><div class="card bad"><div class="tag">Raw crash</div><p>A stack trace or a red error dumped on the customer.</p></div>
+   <div class="card good"><div class="tag">Graceful</div><p>"Something went wrong. Please try again." Calm, plain, no internals.</p></div></div>`},
 
 {sec:`POLISH & QA · your turn`, title:`YOUR <span class="g">TURN</span>`, center:true,
  body:`<span class="turn">Your turn</span><div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub">Ship-ready in 3 tasks, then deploy. This session is the workshop.</div>`},
+   <div class="sub">Ship-ready in a few tasks, then deploy. This session is the workshop.</div>`},
 
 {sec:`POLISH & QA · task 1`, title:`TASK 1 · QA PASS WITH <span class="g">CLAUDE CODE</span>`,
  body:`<span class="turn">Task 1 · 12 min</span>
@@ -71,46 +83,40 @@
  body:`<div class="cards"><div class="card bad"><div class="tag">localhost</div><p>Only you, only while your laptop is on. Close it and it is gone.</p></div>
    <div class="card good"><div class="tag">Hosting</div><p>Your files on an always-on server, at a public address, for everyone.</p></div></div>`},
 
-{sec:`DEPLOY · why netlify`, title:`WHY <span class="g">NETLIFY</span>`,
- body:`<div class="sub">Free tier · deploys in about 30 seconds · gives you <span style="font-family:var(--m);color:var(--green)">your-app.netlify.app</span> · HTTPS automatic. Two paths: <b style="color:#fff">A) drag-and-drop</b> · <b style="color:#fff">B) Claude Code + CLI</b>.</div>
+{sec:`DEPLOY · why vercel`, title:`WHY <span class="g">VERCEL</span>`,
+ body:`<div class="sub">Free Hobby tier for demos · deploys in seconds · gives you <span style="font-family:var(--m);color:var(--green)">your-app.vercel.app</span> · HTTPS automatic · Claude Code drives it.</div>
    <div style="display:flex;align-items:center;justify-content:center;gap:22px;margin-top:26px;padding:40px;border:1px solid var(--line);border-radius:12px;background:#0e0e10">
-     <img src="../../assets/img/logos/netlify.svg" alt="Netlify" style="width:clamp(56px,8vw,88px);height:auto">
-     <span style="font-family:var(--h);font-weight:900;font-size:clamp(38px,6vw,72px);letter-spacing:-.02em;color:#fff">Netlify</span></div>`},
+     <img src="../../assets/img/logos/vercel.svg" alt="Vercel" style="width:clamp(48px,7vw,76px);height:auto">
+     <span style="font-family:var(--h);font-weight:900;font-size:clamp(38px,6vw,72px);letter-spacing:-.02em;color:#fff">Vercel</span></div>
+   <div class="src"><b>Source:</b> Vercel pricing and docs, 2026 · internal deploy routing decision, 2026</div>`},
 
-{sec:`DEPLOY · which path`, title:`WHICH PATH <span class="g">IS YOURS</span>`,
- body:`<div class="cards"><div class="card good"><div class="tag">Path A · Drag-and-drop</div><p>Plain HTML/CSS/JS or a built folder. No terminal.</p></div>
-   <div class="card good"><div class="tag">Path B · Claude Code + CLI</div><p>Anything with <span style="font-family:var(--m);color:var(--green)">npm run build</span> (Vite/React/etc).</p></div></div>
-   <div class="cap">Not sure? Ask Claude Code: "Does my project need a build step to deploy?"</div>`},
+{sec:`DEPLOY · live block`, title:`LIVE: WATCH ME <span class="g">SHIP IT</span>`,
+ body:`<div class="sub">I open our demo idea-scorer in Claude Code and deploy it to Vercel, start to finish. Watch, then you do the same with yours.</div>
+   <div class="mono" style="margin-top:16px">I type into Claude Code, in plain English:<ol class="steps2">
+   <li>"Install the Vercel CLI and log me in."</li>
+   <li>"Deploy a preview of this app." I open the preview link, click the one action.</li>
+   <li>"Ship it to production." I copy the <span class="c">.vercel.app</span> URL. It is live.</li></ol></div>`},
 
-{sec:`DEPLOY · task 2A`, title:`TASK 2A · <span class="g">DRAG-AND-DROP</span>`,
- body:`<span class="turn">Task 2A · 10 min</span>
-   <div style="display:grid;grid-template-columns:1.02fr .98fr;gap:30px;align-items:center;margin-top:2px">
-   <div class="mono" style="margin-top:0"><ol class="steps2">
-   <li>In Claude Code: "Build my site into a folder ready to host, and tell me the folder name."</li>
-   <li>Open <span class="c">app.netlify.com/drop</span> in your browser (sign up free, ~30 sec).</li>
-   <li>Drag that folder onto the drop zone.</li>
-   <li>Wait ~20 seconds and you get a live URL like <span class="c">sunny-otter-1234.netlify.app</span>.</li>
-   <li>Copy the URL. It is live.</li></ol></div>
-   <div><img class="shot" style="margin-top:0" src="../../assets/img/s8/netlify-drop.png"><div class="shotcap">Netlify Drop page, the drag-and-drop zone</div></div></div>`},
+{sec:`DEPLOY · the flow`, title:`THE VERCEL <span class="g">FLOW</span>`,
+ body:`<div class="cards"><div class="card good"><div class="tag">Path A · Claude Code + CLI</div><p>Everyone. <span style="font-family:var(--m);color:var(--green)">npx vercel</span> for a preview, then <span style="font-family:var(--m);color:var(--green)">vercel --prod</span>. Static or a build step, Vercel detects it.</p></div>
+   <div class="card good"><div class="tag">Path B · Connect Git</div><p>If you used git in Session 2. Push to GitHub, import on vercel.com, every push redeploys.</p></div></div>
+   <div class="cap">Not sure? Path A works for every project in this room. Ask Claude Code: "Does my app need a build step?"</div>`},
 
-{sec:`DEPLOY · task 2B`, title:`TASK 2B · CLAUDE CODE <span class="g">+ CLI</span>`,
- body:`<span class="turn">Task 2B · 12 min</span>
-   <div style="display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;margin-top:2px">
-   <div class="mono" style="margin-top:0">Tell Claude Code, in plain English:<ol class="steps2">
-   <li>"Install the Netlify CLI globally and start login." → <span class="c">npm i -g netlify-cli</span> then <span class="c">netlify login</span></li>
-   <li>"Build my app for production." → <span class="c">npm run build</span> (output usually <span class="c">dist/</span> or <span class="c">build/</span>)</li>
-   <li>"Deploy a draft I can preview." → <span class="c">netlify deploy</span></li>
-   <li>Check the draft link, then: "Deploy to production." → <span class="c">netlify deploy --prod</span></li>
-   <li>Copy the production URL it prints. It is live.</li></ol></div>
-   <div><img class="shot" style="margin-top:0" src="../../assets/img/s8/deploy-terminal.png"><div class="shotcap">VS Code terminal after netlify deploy --prod, the "Website URL" line</div></div></div>`},
+{sec:`DEPLOY · task 2`, title:`TASK 2 · DEPLOY <span class="g">YOUR CAPSTONE</span>`,
+ body:`<span class="turn">Task 2 · 12 min</span>
+   <div class="mono">Tell Claude Code, in plain English:<ol class="steps2">
+   <li>"Install the Vercel CLI and start login." → <span class="c">npm i -g vercel</span>, then <span class="c">vercel login</span> (authorize once in the browser).</li>
+   <li>"Deploy a preview of my app." → <span class="c">vercel</span> (zero config, it detects the setup).</li>
+   <li>Open the preview URL. Click your core action. Does it work live?</li>
+   <li>"Deploy to production." → <span class="c">vercel --prod</span>. Copy the URL it prints. It is live.</li></ol></div>`},
 
-{sec:`DEPLOY · the moment`, title:`YOU HAVE <span class="g">A URL</span>`,
- body:`<div class="sub">This is the moment. You now own a public link. Send it to someone. Right now.</div>
-   <img class="shot" src="../../assets/img/s8/deploy-success.png"><div class="shotcap">Netlify "Deploy successful" / site overview with the live URL highlighted</div>`},
+{sec:`DEPLOY · the moment`, title:`YOU HAVE <span class="g">A URL</span>`, center:true,
+ body:`<div style="font-family:var(--h);font-weight:900;line-height:.92;letter-spacing:-.02em;margin:6px 0">
+   <span style="font-size:clamp(20px,3vw,34px);color:var(--muted)">https://</span><span class="g" style="font-size:clamp(34px,7vw,86px)">your-app.vercel.app</span></div>
+   <div class="sub">This is the moment. You own a public link. Send it to someone. Right now.</div>`},
 
 {sec:`DEPLOY · name it`, title:`NAME <span class="g">IT</span>`,
- body:`<div class="sub">Make the link yours: Netlify → Site settings → <b style="color:#fff">Change site name</b> → <span style="font-family:var(--m);color:var(--green)">your-app.netlify.app</span> (free). Optional: buy a domain later and point it here. Not required today.</div>
-   <img class="shot" src="../../assets/img/s8/change-name.png"><div class="shotcap">Netlify "Change site name" field</div>`},
+ body:`<div class="sub">Make the link yours: on <b style="color:#fff">vercel.com</b> open the project, then Settings → Domains → rename to <span style="font-family:var(--m);color:var(--green)">your-app.vercel.app</span>. Free. Buying a real domain and pointing it here is optional, and not needed today.</div>`},
 
 {sec:`DEPLOY · task 3`, title:`TASK 3 · SMOKE-TEST <span class="g">ON YOUR PHONE</span>`,
  body:`<span class="turn">Task 3 · 5 min</span>
@@ -118,7 +124,7 @@
    <li>Rename your site to something readable.</li>
    <li>Open the URL on your phone, not your laptop.</li>
    <li>Do the core action there, start to finish.</li>
-   <li>Anything broken → one tight Claude Code fix → redeploy (re-drag, or <span class="c">netlify deploy --prod</span>).</li></ol></div>`},
+   <li>Anything broken → one tight Claude Code fix → redeploy with <span class="c">vercel --prod</span>.</li></ol></div>`},
 
 {sec:`BREAK`, title:`<span class="g">BREAK</span> · 8 MIN`, center:true,
  body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div><div class="sub">You are LIVE. Back at <b style="color:#fff">[time]</b>.</div>`},
@@ -127,15 +133,18 @@
  body:`<div class="rule"></div><div class="sub">A live product with no feedback is a screenshot. Make it tell you what is happening.</div>`},
 
 {sec:`MAKE IT LEARN · analytics`, title:`THE ONLY 3 NUMBERS <span class="g">YOU NEED</span>`,
- body:`<div class="sub">Don't drown in dashboards. Track <b style="color:var(--green)">3</b>: <b style="color:#fff">1</b> Did anyone come? (visits) · <b style="color:#fff">2</b> Did they do the ONE thing? (key action) · <b style="color:#fff">3</b> Where did they drop? (last step before leaving)</div>
-   <img class="shot" src="../../assets/img/s8/analytics.png"><div class="shotcap">A lightweight analytics dashboard (e.g. GoatCounter) showing visits + one key-action count</div>`},
+ body:`<div class="rows">
+   <div class="row"><span class="a">1 · Did anyone come?</span><span class="arw">→</span><span class="b">visits</span></div>
+   <div class="row"><span class="a">2 · Did they do the ONE thing?</span><span class="arw">→</span><span class="b">the key action, say "ran an eligibility check"</span></div>
+   <div class="row"><span class="a">3 · Where did they drop?</span><span class="arw">→</span><span class="b">the last step before they left</span></div></div>
+   <div class="cap">That is a funnel. It tells you what to fix next. Everything else is noise until you have users.</div>`},
 
 {sec:`MAKE IT LEARN · task 4`, title:`TASK 4 · ADD <span class="g">ANALYTICS</span>`,
  body:`<span class="turn">Task 4 · 6 min</span>
    <div class="mono">Pick one, ask Claude Code to wire it:<ol class="steps2">
-   <li>Easiest: a free, cookieless snippet (e.g. GoatCounter free tier) added to your page &lt;head&gt;.</li>
-   <li>Or: log the key action to the browser console / a simple counter so you can watch it live.</li>
-   <li>Confirm a visit + one key action shows up.</li></ol></div>`},
+   <li>Easiest on Vercel: turn on <b style="color:var(--green)">Vercel Web Analytics</b> in the project dashboard, then let Claude Code add the tag it gives you. Free, privacy-friendly.</li>
+   <li>Zero setup: log the key action to the browser console or a simple counter so you can watch it live.</li>
+   <li>Confirm a visit and one key action show up.</li></ol></div>`},
 
 {sec:`MAKE IT LEARN · feedback loop`, title:`ONE QUESTION, <span class="g">ONE CHANNEL</span>`,
  body:`<div class="sub">The best feedback loop is <b style="color:#fff">small</b>: one honest question · one frictionless channel · you actually read it.</div>
@@ -143,10 +152,10 @@
 
 {sec:`MAKE IT LEARN · task 5`, title:`TASK 5 · CLOSE <span class="g">THE LOOP</span>`,
  body:`<span class="turn">Task 5 · 6 min</span>
-   <div class="mono">Ask Claude Code to add ONE:<ol class="steps2">
-   <li>Netlify Forms: a tiny form with <span class="c">data-netlify="true"</span> so replies land in your Netlify dashboard (free, native).</li>
-   <li>Or: a "Give feedback" button → <span class="c">mailto:</span> you, or a link to a free 3-field form (Tally/Google Form).</li>
-   <li>Redeploy. Submit one test response yourself.</li></ol></div>`},
+   <div class="mono">Ask Claude Code to add ONE (Vercel has no built-in forms):<ol class="steps2">
+   <li>A "Give feedback" button that opens a free 3-field form (Tally or Google Form).</li>
+   <li>Or a button with a <span class="c">mailto:</span> link straight to your inbox.</li>
+   <li>Redeploy with <span class="c">vercel --prod</span>. Submit one test response yourself.</li></ol></div>`},
 
 {sec:`LAUNCH & DEMO`, title:`<span class="g">LAUNCH</span>`, center:true,
  body:`<div class="rule"></div><div class="sub">Put it in front of people. A live thing nobody sees isn't launched.</div>`},
@@ -191,7 +200,7 @@
      <div style="font-family:var(--h);font-weight:900;color:var(--green);font-size:clamp(36px,5vw,60px);line-height:1">&rsaquo;</div>
      <div style="text-align:center">
        <div style="width:clamp(260px,30vw,330px);border:2px solid var(--green);border-radius:12px;background:#0e0e10;box-shadow:0 0 34px rgba(208,245,57,.26);padding:14px 16px;display:flex;flex-direction:column;gap:10px">
-         <div style="display:flex;align-items:center;gap:8px"><span style="width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)"></span><span style="font-family:var(--m);font-size:12px;color:var(--muted)">your-app.netlify.app</span><span style="margin-left:auto;font-family:var(--m);font-size:10px;letter-spacing:.16em;color:var(--green)">LIVE</span></div>
+         <div style="display:flex;align-items:center;gap:8px"><span style="width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)"></span><span style="font-family:var(--m);font-size:12px;color:var(--muted)">your-app.vercel.app</span><span style="margin-left:auto;font-family:var(--m);font-size:10px;letter-spacing:.16em;color:var(--green)">LIVE</span></div>
          <div style="height:13px;width:72%;background:#242426;border-radius:3px"></div>
          <div style="height:13px;width:92%;background:#242426;border-radius:3px"></div>
          <div style="height:34px;width:128px;background:var(--green);border-radius:8px;margin-top:6px"></div>
@@ -214,7 +223,7 @@
    <li><span class="n">5</span><span>Communication + visual design</span></li>
    <li><span class="n">6</span><span>Build the judge (evals + agents)</span></li>
    <li><span class="n">7</span><span>Vibe-code a prototype</span></li>
-   <li><span class="n">8</span><span class="g">Ship it live</span></li></ul>`},
+   <li><span class="n">8</span><span class="g">Ship it live on Vercel</span></li></ul>`},
 
 {sec:`COURSE WRAP · payoff`, title:`THE CUBE, <span class="g">LIT</span>`, center:true,
  body:`<div class="cubebox"><div class="cube lit"><div class="f top"></div><div class="f left"></div><div class="f front"></div></div></div>
@@ -223,25 +232,29 @@
 {sec:`COURSE WRAP · reframe`, title:`WHAT YOU <span class="g">ARE NOW</span>`,
  body:`<div class="sub" style="font-size:clamp(20px,2.2vw,28px)">You are not "a PM who uses ChatGPT." You are an <span class="g">AI-native PM</span>: a personal AI system · sharp judgment · and the ability to <span class="g">build and ship</span>.</div>`},
 
-{sec:`COURSE WRAP · what next`, title:`WHERE TO <span class="g">GO NEXT</span>`,
- body:`<div class="sub">Keep the muscle alive:</div>
-   <div class="blocks" style="margin-top:16px">
-   <div class="block"><div class="bl">Build</div><p>Ship v1.1, then the next idea.</p></div>
-   <div class="block"><div class="bl">System</div><p>Add one prompt/automation/agent a week. It compounds.</p></div>
-   <div class="block"><div class="bl">Current</div><p>One AI newsletter, 5 min a day.</p></div>
-   <div class="block"><div class="bl">Community</div><p>Stay in the cohort. Share what you ship.</p></div></div>`},
+{sec:`MILESTONE`, title:`ONE THING TO <span class="g">LEAVE WITH</span>`, center:true,
+ body:`<div class="num" style="font-size:clamp(38px,7vw,88px)">A LIVE URL</div>
+   <div class="cap">A working product on the internet, at an address you can send anyone. That is today's milestone. You have it now.</div>`},
 
-{sec:`AFTER THE COURSE`, title:`YOUR FIRST <span class="g">WEEK OUT</span>`,
- body:`<ul class="checklist">
-   <li>Share your live URL publicly (LinkedIn / cohort channel).</li>
-   <li>Get 5 real users → read every "one thing to fix" → ship v1.1.</li>
-   <li>Add one thing to your AI system (a prompt, an automation, an agent).</li>
-   <li>Pick your next build. Start scoping it.</li></ul>`},
+{sec:`HOMEWORK`, title:`<span class="g">ONE</span> TASK BEFORE YOU MOVE ON`,
+ body:`<div class="sub">Share your live link and collect your first feedback.</div>
+   <div class="mono">One task:<ol class="steps2">
+   <li>Send your URL to 5 people: a teammate, a real user, the cohort channel.</li>
+   <li>Ask each one question: "What is the one thing you would fix?"</li>
+   <li>Write down what they say. Do not fix anything yet.</li></ol></div>`},
+
+{sec:`AFTER THE COURSE · what next`, title:`KEEP THE <span class="g">MUSCLE ALIVE</span>`,
+ body:`<div class="sub">Not homework, a habit:</div>
+   <div class="blocks" style="margin-top:16px">
+   <div class="block"><div class="bl">Build</div><p>Ship v1.1 from the feedback, then the next idea.</p></div>
+   <div class="block"><div class="bl">System</div><p>Add one prompt, automation, or agent a week. It compounds.</p></div>
+   <div class="block"><div class="bl">Current</div><p>One AI newsletter, 5 minutes a day.</p></div>
+   <div class="block"><div class="bl">Community</div><p>Stay in the cohort. Share what you ship.</p></div></div>`},
 
 {sec:`AFTER THE COURSE · close`, title:`GO <span class="g">BUILD</span>`, center:true,
  body:`<div class="cubebox"><div class="cube lit"><div class="f top"></div><div class="f left"></div><div class="f front"></div></div></div>
    <div class="sub" style="color:#fff">You shipped. Now go do it again, <span class="g">bigger.</span></div>
-   <div class="sub" style="font-size:16px">Thank you. 🟩</div>`}
+   <div class="sub" style="font-size:16px">Thank you.</div>`}
 
 ];</script>
 <script src="../../assets/deck.js"></script></body></html>

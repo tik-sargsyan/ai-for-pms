@@ -103,3 +103,13 @@ ol.steps2 li{margin:4px 0}
 .notes .vis{margin-top:12px;font-size:13px;color:var(--muted)}
 .notes .vis b{color:var(--green);text-transform:uppercase;letter-spacing:.08em}
 @media (max-width:640px){.blocks,.cards{grid-template-columns:1fr}.logo{font-size:20px}}
+
+/* PDF export: one slide per page. Screen view is untouched. */
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .logo,.progress,.nav,.counter,.hint,.notes,.by{display:none!important}
+  .deck{position:static!important}
+  .slide{position:relative!important;inset:auto!important;opacity:1!important;visibility:visible!important;transform:none!important;width:1280px!important;height:720px!important;box-sizing:border-box;overflow:hidden;break-after:page;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .slide:last-child{break-after:auto;page-break-after:avoid}
+}
