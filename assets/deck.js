@@ -1,16 +1,26 @@
 /* ACA X deck engine - renders window.SLIDES into a keyboard-navigable deck.
    Each page defines: window.SLIDES = [ {sec,title,center?,body,note,vis}, ... ] */
 (function(){
-  const SLIDES = window.SLIDES || [];
+  // {module:'id', scope:'lite'|'full'} entries expand to that module's slides (see modules/module.js)
+  const MODS = window.MODULES || {}, SLIDES = [];
+  (window.SLIDES || []).forEach(s=>{
+    if(!s || !s.module){ SLIDES.push(s); return; }
+    const m=MODS[s.module];
+    if(!m){ console.warn('module not loaded: '+s.module); return; }
+    const pick=(m.scopes&&m.scopes[s.scope||'full'])||m.slides.map((_,k)=>k);
+    pick.forEach(k=>SLIDES.push(Object.assign({}, m.slides[k], {_mod:m.id})));
+  });
+  window.SLIDES = SLIDES;
   const deck = document.getElementById('deck');
   if(!document.querySelector('.by')){var by=document.createElement('div');by.className='by';by.textContent='Tigran Sargsyan';document.body.appendChild(by);}
   SLIDES.forEach(s=>{
     const el=document.createElement('section');
-    el.className='slide'+(s.center?' center':'');
+    el.className='slide'+(s.center?' center':'')+(s.cls?' '+s.cls:'')+(s._mod?' m-'+s._mod:'');
     el.innerHTML=`<div class="wrap"><div class="kicker">${s.sec||''}</div>`+
       `<h1 class="title">${s.title||''}</h1>`+
       `<div class="body">${s.body||''}</div></div>`;
     deck.appendChild(el);
+    if(typeof s.init==='function'){ try{ s.init(el); }catch(e){ console.error(s._mod||'slide', e); } }
   });
   const slides=[...deck.querySelectorAll('.slide')];
   const totEl=document.getElementById('tot'); if(totEl) totEl.textContent=slides.length;
