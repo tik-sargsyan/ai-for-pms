@@ -5,28 +5,28 @@ MOD({
   .m-permission-modes .pm{display:grid;grid-template-columns:1.1fr 1fr;gap:4vw;align-items:center}
   .m-permission-modes .pm-st{height:min(50vh,380px)}
   .m-permission-modes .pm-st svg{width:100%;height:100%;overflow:visible}
-  .m-permission-modes .stp{fill:var(--surface);stroke:#3a3a3e;stroke-width:2;cursor:pointer;transition:fill .3s ease,stroke .3s ease}
+  .m-permission-modes .stp{fill:var(--surface);stroke:var(--dim);stroke-width:2;cursor:pointer;transition:fill .3s ease,stroke .3s ease}
   .m-permission-modes .stp.on{fill:var(--green-a);stroke:var(--green)}
-  .m-permission-modes .stp.w.on{fill:rgba(255,107,61,.12);stroke:var(--warn)}
+  .m-permission-modes .stp.w.on{fill:color-mix(in srgb,var(--warn) 12%,transparent);stroke:var(--warn)}
   .m-permission-modes .sl{font-family:var(--m);font-size:15px;fill:var(--muted);pointer-events:none}
-  .m-permission-modes .sl.on{fill:#fff}
+  .m-permission-modes .sl.on{fill:var(--fg)}
   .m-permission-modes .pin{fill:var(--green);transition:transform .5s cubic-bezier(.3,1.4,.4,1)}
   .m-permission-modes .pin.w{fill:var(--warn)}
   .m-permission-modes .pm-k{font-family:var(--m);font-size:clamp(24px,2.6vw,34px);color:var(--green)}
   .m-permission-modes .pm-k.w{color:var(--warn)}
   .m-permission-modes .pm-row{margin-top:18px}
   .m-permission-modes .pm-row .h{font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:14px;color:var(--muted);margin-bottom:6px}
-  .m-permission-modes .pm-row .v{font-size:19px;line-height:1.35;color:#fff;min-height:52px}
+  .m-permission-modes .pm-row .v{font-size:19px;line-height:1.35;color:var(--fg);min-height:52px}
   .m-permission-modes .meter{height:14px;border-radius:7px}
   .m-permission-modes .meter b{transition:width .6s cubic-bezier(.2,.8,.2,1)}
   .m-permission-modes .lanes{position:relative;height:min(46vh,340px)}
   .m-permission-modes .lanes svg{width:100%;height:100%;overflow:visible}
   .m-permission-modes .ln{font-family:var(--h);font-weight:800;text-transform:uppercase;font-size:18px;letter-spacing:.1em;fill:var(--muted)}
-  .m-permission-modes .bx{fill:var(--surface);stroke:#3a3a3e;stroke-width:2}
+  .m-permission-modes .bx{fill:var(--surface);stroke:var(--dim);stroke-width:2}
   .m-permission-modes .bx.g{stroke:var(--green)}
   .m-permission-modes .bm{font-family:var(--m);font-size:15px;fill:var(--green)}
-  .m-permission-modes .bt{font-family:var(--b);font-size:16px;fill:#fff}
-  .m-permission-modes .ar{fill:none;stroke:#5a5a60;stroke-width:2}
+  .m-permission-modes .bt{font-family:var(--b);font-size:16px;fill:var(--fg)}
+  .m-permission-modes .ar{fill:none;stroke:var(--subtle);stroke-width:2}
   .m-permission-modes .warnline{margin-top:10px;border-left:4px solid var(--warn);padding:10px 16px;background:var(--surface);border-radius:8px;font-size:17px}
   .m-permission-modes .warnline b{color:var(--warn);font-family:var(--m);font-weight:400}
   `,
@@ -55,8 +55,8 @@ MOD({
      });
      const pin=VIZ.s('circle',{cx:0,cy:0,r:11,class:'pin'},svg);
      const ax=VIZ.s('text',{x:0,y:16,class:'svg-t'},svg); ax.textContent='more autonomy';
-     VIZ.s('path',{d:'M130 11 H190',stroke:'#3a3a3e','stroke-width':2},svg);
-     VIZ.s('path',{d:'M190 11 l-8 -5 v10 z',fill:'#3a3a3e'},svg);
+     VIZ.s('path',{d:'M130 11 H190',stroke:'var(--dim)','stroke-width':2},svg);
+     VIZ.s('path',{d:'M190 11 l-8 -5 v10 z',fill:'var(--dim)'},svg);
      ax.setAttribute('x',0); ax.setAttribute('y',16);
      const key=el.querySelector('.pm-k'), who=el.querySelector('[data-k=who]'), use=el.querySelector('[data-k=use]'), bar=el.querySelector('.meter b'), rng=el.querySelector('input'), out=el.querySelector('output');
      function set(k){
@@ -77,7 +77,7 @@ MOD({
      <div class="warnline a-fade" style="--i:8"><b>bypassPermissions</b> &nbsp;belongs in a sandbox only. Not on your laptop, not on shared drives.</div>`,
    init(el){
      const svg=el.querySelector('svg');
-     [['CLAUDE',75],['YOU',235]].forEach(([t,y])=>{ VIZ.s('line',{x1:0,y1:y+70,x2:1100,y2:y+70,stroke:'#1f1f22','stroke-width':2},svg); const l=VIZ.s('text',{x:0,y:y+8,class:'ln'},svg); l.textContent=t; });
+     [['CLAUDE',75],['YOU',235]].forEach(([t,y])=>{ VIZ.s('line',{x1:0,y1:y+70,x2:1100,y2:y+70,stroke:'var(--line)','stroke-width':2},svg); const l=VIZ.s('text',{x:0,y:y+8,class:'ln'},svg); l.textContent=t; });
      const B=[
        {x:110,y:20,m:'plan',t:['Reads PRD and files.','Writes a plan.'],g:1},
        {x:370,y:180,m:'you',t:['Read, fix and','approve the plan.']},
@@ -86,7 +86,7 @@ MOD({
      B.forEach((b,k)=>{
        if(k){ const p=B[k-1], x1=p.x+220, y1=p.y+55, x2=b.x, y2=b.y+55;
          VIZ.s('path',{d:`M${x1} ${y1} C${x1+30} ${y1} ${x2-30} ${y2} ${x2-8} ${y2}`,class:'ar a-draw',style:`--len:300;--i:${k*2}`},svg);
-         VIZ.s('path',{d:`M${x2} ${y2} l-10 -6 v12 z`,fill:'#5a5a60',class:'a-fade',style:`--i:${k*2}`},svg); }
+         VIZ.s('path',{d:`M${x2} ${y2} l-10 -6 v12 z`,fill:'var(--subtle)',class:'a-fade',style:`--i:${k*2}`},svg); }
        const g=VIZ.s('g',{class:'a-fade',style:`--i:${k*2}`},svg);
        VIZ.s('rect',{x:b.x,y:b.y,width:215,height:110,rx:12,class:'bx'+(b.g?' g':'')},g);
        const m=VIZ.s('text',{x:b.x+18,y:b.y+32,class:'bm'},g); m.textContent=b.m==='you'?'':b.m;

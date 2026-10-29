@@ -9,11 +9,11 @@
 .apptour .main{display:grid;grid-template-rows:auto 1fr auto;gap:10px;padding:0;border:0;background:none}
 .apptour .chat{border-style:dashed}
 .askbox,.diffbox{border:1px solid var(--line);border-left:4px solid var(--green);border-radius:12px;background:var(--surface);padding:18px 22px;max-width:620px;font-family:var(--m)}
-.askbox .ak{color:var(--muted);font-size:14px}.askbox .aw{color:#fff;font-size:22px;margin:6px 0}.askbox .ad{color:var(--muted);font-size:14px}
+.askbox .ak{color:var(--muted);font-size:14px}.askbox .aw{color:var(--fg);font-size:22px;margin:6px 0}.askbox .ad{color:var(--muted);font-size:14px}
 .askbox .abtn{display:flex;gap:10px;margin-top:14px}.askbox .abtn span{padding:6px 16px;border-radius:8px;font-size:15px;border:1px solid var(--line)}
-.askbox .abtn .y{background:var(--green);color:#000;border-color:var(--green)}
+.askbox .abtn .y{background:var(--green);color:var(--on-accent);border-color:var(--green)}
 .diffbox .df{color:var(--muted);font-size:14px;margin-bottom:8px}.diffbox .dl{font-size:18px;padding:3px 8px;border-radius:4px}
-.diffbox .o{color:var(--warn);background:rgba(255,107,61,.08)}.diffbox .g{color:var(--green);background:rgba(208,245,57,.08)}
+.diffbox .o{color:var(--warn);background:color-mix(in srgb,var(--warn) 8%,transparent)}.diffbox .g{color:var(--green);background:color-mix(in srgb,var(--green) 8%,transparent)}
 </style></head><body>
 <a class="logo" href="../../index.html">ACA<sup>x</sup></a>
 <div class="progress" id="prog"></div><div class="deck" id="deck"></div>
@@ -54,7 +54,7 @@ window.SLIDES = [
 
 {sec:"SESSION 2 · OPEN", title:`WHAT YOU <span class="g">BUILD TONIGHT</span>`, center:true,
  body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub" style="color:#fff">One thing, in two parts: a <b style="color:var(--green)">working AI environment</b> on your machine, and <b style="color:var(--green)">your first skill</b> running inside it.</div>
+   <div class="sub" style="color:var(--fg)">One thing, in two parts: a <b style="color:var(--green)">working AI environment</b> on your machine, and <b style="color:var(--green)">your first skill</b> running inside it.</div>
    <div class="sub">Not a demo. Yours. It carries into every session after this.</div>`},
 
 {sec:"SESSION 2 · OPEN", title:`SETUP <span class="g">STATUS CHECK</span>`,
@@ -136,7 +136,7 @@ window.SLIDES = [
 {module:'effort-levels', scope:'lite'},
 
 {sec:"CLAUDE.MD + CONTEXT", title:`A NEW HIRE WITH <span class="g">NO ONBOARDING</span>`, center:true,
- body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">A blank Claude Code is a sharp new hire on day one.</div>
+ body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:var(--fg)">A blank Claude Code is a sharp new hire on day one.</div>
    <div class="sub">It knows a lot in general, and nothing about your bank, your product, or your rules. The fix is one file.</div>`},
 
 {sec:"CLAUDE.MD + CONTEXT", title:`CLAUDE.md · THE <span class="g">RULES</span>`,
@@ -160,7 +160,7 @@ window.SLIDES = [
 
 {sec:"WHERE IT ALL LIVES", title:`WHERE DOES IT ALL <span class="g">LIVE?</span>`, center:true,
  body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub" style="color:#fff">You will make skills, rules, and hooks.</div>
+   <div class="sub" style="color:var(--fg)">You will make skills, rules, and hooks.</div>
    <div class="sub">Each one lives in one of two places. Put it in the wrong one and it either follows you everywhere or nowhere.</div>`},
 
 {module:'claude-md-stack', scope:'lite'},
@@ -178,7 +178,7 @@ window.SLIDES = [
    <div class="sub">Back in ~8 min. If your setup fought you, grab me now and we fix it.</div>`},
 
 {sec:"YOUR FIRST SKILL", title:`YOU KEEP RETYPING THE <span class="g">SAME PROMPT</span>`, center:true,
- body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">Every week, the same long prompt to score a backlog idea.</div>
+ body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:var(--fg)">Every week, the same long prompt to score a backlog idea.</div>
    <div class="sub">A skill saves that prompt once, then runs it on command. Time to build one.</div>`},
 
 {module:'automation-roi', scope:'lite'},
@@ -224,11 +224,11 @@ window.SLIDES = [
 
 {sec:"RECAP &amp; HOMEWORK", title:`TONIGHT'S <span class="g">MILESTONE</span>`, center:true,
  body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub" style="color:#fff">A working AI environment on your machine, and your first skill running inside it.</div>
+   <div class="sub" style="color:var(--fg)">A working AI environment on your machine, and your first skill running inside it.</div>
    <div class="sub">You are now set up the exact way I am. Every session after this builds on it.</div>`},
 
 {sec:"RECAP &amp; HOMEWORK · capstone thread", title:`THIS IS YOUR <span class="g">CAPSTONE STACK</span>`,
- body:`<div class="sub">The environment you set up tonight is the one you ship your capstone on <b style="color:#fff">(Sessions 7-8)</b>. Your skills grow every session.</div>
+ body:`<div class="sub">The environment you set up tonight is the one you ship your capstone on <b style="color:var(--fg)">(Sessions 7-8)</b>. Your skills grow every session.</div>
    <div class="twobars" style="height:22vh;align-items:flex-end">
    <div class="bar" style="height:42%"></div>
    <div class="bar" style="height:70%"></div>
@@ -245,7 +245,7 @@ window.SLIDES = [
 
 {sec:"RECAP &amp; HOMEWORK · close", title:`NEXT · FROM <span class="g">RESEARCH TO SPEC</span>`, center:true,
  body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub" style="color:#fff">You have the workspace and your first skill. Next we turn real research into a PRD and stories.</div>
+   <div class="sub" style="color:var(--fg)">You have the workspace and your first skill. Next we turn real research into a PRD and stories.</div>
    <div class="cubebox"><div class="cube"><div class="f top"></div><div class="f left"></div><div class="f front"></div></div></div>`},
 ];
 </script>

@@ -4,18 +4,18 @@ MOD({
   css:`
   .m-model-picker .mp{height:min(54vh,400px)}
   .m-model-picker .mp svg{width:100%;height:100%;overflow:visible}
-  .m-model-picker .ed{fill:none;stroke:#2c2c30;stroke-width:3;transition:stroke .35s ease}
+  .m-model-picker .ed{fill:none;stroke:var(--line-2);stroke-width:3;transition:stroke .35s ease}
   .m-model-picker .ed.on{stroke:var(--green)}
   .m-model-picker .el{font-family:var(--m);font-size:15px;fill:var(--muted)}
   .m-model-picker .el.on{fill:var(--green)}
-  .m-model-picker .nd rect{fill:var(--surface);stroke:#3a3a3e;stroke-width:2;transition:stroke .35s ease,fill .35s ease}
+  .m-model-picker .nd rect{fill:var(--surface);stroke:var(--dim);stroke-width:2;transition:stroke .35s ease,fill .35s ease}
   .m-model-picker .nd.on rect{stroke:var(--green)}
   .m-model-picker .nd.end.on rect{fill:var(--green)}
-  .m-model-picker .nd.end.on text{fill:#000}
-  .m-model-picker .nq{font-family:var(--b);font-size:17px;fill:#fff}
-  .m-model-picker .nk{font-family:var(--h);font-weight:800;font-size:26px;text-transform:uppercase;letter-spacing:.03em;fill:#fff}
+  .m-model-picker .nd.end.on text{fill:var(--on-accent)}
+  .m-model-picker .nq{font-family:var(--b);font-size:17px;fill:var(--fg)}
+  .m-model-picker .nk{font-family:var(--h);font-weight:800;font-size:26px;text-transform:uppercase;letter-spacing:.03em;fill:var(--fg)}
   .m-model-picker .ns{font-family:var(--b);font-size:14px;fill:var(--muted)}
-  .m-model-picker .dot{fill:var(--green);filter:drop-shadow(0 0 6px rgba(208,245,57,.9))}
+  .m-model-picker .dot{fill:var(--green);filter:drop-shadow(0 0 6px color-mix(in srgb,var(--green) 90%,transparent))}
   .m-model-picker .ctl{flex-wrap:wrap;margin-top:6px}
   .m-model-picker .ctl button.on{border-color:var(--green);color:var(--green)}
   `,

@@ -1,6 +1,6 @@
 /* ACA X visual modules - shared viz primitives on top of deck.css.
    Palette stays the deck's: black, white, muted grey, neon green. --warn is for risk only. */
-:root{ --warn:#ff6b3d; --dim:#3a3a3e; --faint:#1a1a1d; --green-a:rgba(208,245,57,.14) }
+/* Colors come from the theme tokens in assets/deck.css. Never hardcode a color here or in m/*.js. */
 
 /* A viz slide: smaller title, the visual gets the room */
 .slide.viz{padding:5vh 6vw}
@@ -14,21 +14,21 @@
 .split .stage{height:58vh}
 
 /* Text bits used around a visual */
-.lead{font-size:clamp(18px,1.9vw,26px);line-height:1.35;color:#fff;max-width:760px}
+.lead{font-size:clamp(18px,1.9vw,26px);line-height:1.35;color:var(--fg);max-width:760px}
 .lead .g,.g{color:var(--green)}
 .lead .w,.w{color:var(--warn)}
 .note-s{font-size:14px;color:var(--muted);line-height:1.45}
 .legend{display:flex;flex-wrap:wrap;gap:18px;font-size:14px;color:var(--muted);margin-top:12px}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:-1px;background:var(--dim)}
-.legend i.g{background:var(--green)} .legend i.w{background:var(--warn)} .legend i.l{background:#fff}
+.legend i.g{background:var(--green)} .legend i.w{background:var(--warn)} .legend i.l{background:var(--fg)}
 .stat{font-family:var(--h);font-weight:900;color:var(--green);font-size:clamp(56px,8vw,120px);line-height:.9;letter-spacing:-.02em}
 .stat-cap{color:var(--muted);font-size:clamp(14px,1.4vw,18px);margin-top:8px;max-width:420px;line-height:1.4}
-.stat-cap b{color:#fff}
+.stat-cap b{color:var(--fg)}
 
 /* SVG text and strokes */
 .svg-t{font-family:var(--b);fill:var(--muted);font-size:14px}
-.svg-h{font-family:var(--h);font-weight:800;fill:#fff;text-transform:uppercase;letter-spacing:.04em}
-.svg-m{font-family:var(--m);fill:#e9e9ee;font-size:13px}
+.svg-h{font-family:var(--h);font-weight:800;fill:var(--fg);text-transform:uppercase;letter-spacing:.04em}
+.svg-m{font-family:var(--m);fill:var(--fg-2);font-size:13px}
 .svg-g{fill:var(--green)} .svg-w{fill:var(--warn)}
 .stroke-l{stroke:var(--line)} .stroke-g{stroke:var(--green)}
 
@@ -49,12 +49,12 @@
 .tile{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--surface)}
 .tile .k{font-family:var(--h);font-weight:800;text-transform:uppercase;font-size:18px;letter-spacing:.03em}
 .tile p{color:var(--muted);font-size:14px;line-height:1.4;margin-top:6px}
-.tile.on{border-color:var(--green);box-shadow:0 0 0 1px rgba(208,245,57,.25)}
+.tile.on{border-color:var(--green);box-shadow:0 0 0 1px color-mix(in srgb,var(--green) 25%,transparent)}
 
 /* Controls for interactive modules (keep them small, the presenter drives them) */
 .ctl{display:flex;align-items:center;gap:14px;font-family:var(--m);font-size:13px;color:var(--muted);margin-top:12px}
 .ctl input[type=range]{accent-color:var(--green);width:220px}
-.ctl button{background:var(--surface);border:1px solid var(--line);color:#fff;border-radius:8px;padding:6px 12px;font-family:var(--m);font-size:13px;cursor:pointer}
+.ctl button{background:var(--surface);border:1px solid var(--line);color:var(--fg);border-radius:8px;padding:6px 12px;font-family:var(--m);font-size:13px;cursor:pointer}
 .ctl button:hover{border-color:var(--green);color:var(--green)}
 .ctl output{color:var(--green);min-width:40px}
 

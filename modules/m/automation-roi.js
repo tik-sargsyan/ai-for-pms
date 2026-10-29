@@ -7,18 +7,18 @@ MOD({
   .m-automation-roi .ar-h{font-family:var(--m);font-size:14px;color:var(--muted);text-align:center;padding:4px 0 8px}
   .m-automation-roi .ar-r{font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:19px;display:flex;flex-direction:column;justify-content:center}
   .m-automation-roi .ar-r small{font-family:var(--m);font-weight:400;font-size:13px;color:var(--muted);text-transform:none;letter-spacing:0}
-  .m-automation-roi .ar-c{height:clamp(80px,13vh,104px);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--h);font-weight:800;font-size:clamp(22px,2.4vw,32px);color:#fff;cursor:default;border:2px solid transparent;transition:border-color .2s}
+  .m-automation-roi .ar-c{height:clamp(80px,13vh,104px);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--h);font-weight:800;font-size:clamp(22px,2.4vw,32px);color:var(--fg);cursor:default;border:2px solid transparent;transition:border-color .2s}
   .m-automation-roi .ar-c small{font-family:var(--m);font-weight:400;font-size:13px;opacity:.75}
-  .m-automation-roi .ar-c.dk{color:#0b0b0c}
-  .m-automation-roi .ar-c.sw{border-color:#fff}
+  .m-automation-roi .ar-c.dk{color:var(--surface)}
+  .m-automation-roi .ar-c.sw{border-color:var(--fg)}
   .m-automation-roi .ar-c:hover,.m-automation-roi .ar-c.sel{border-color:var(--green);outline:2px solid var(--green);outline-offset:2px}
   .m-automation-roi .ar-x{font-family:var(--m);font-size:13px;color:var(--muted);text-align:center;margin-top:8px;grid-column:2/-1}
   .m-automation-roi .ar-f{border:1px solid var(--line);border-left:4px solid var(--green);border-radius:10px;background:var(--surface);padding:16px 18px}
   .m-automation-roi .ar-f .t{font-family:var(--m);font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .m-automation-roi .ar-f .eq{font-family:var(--m);font-size:16px;color:#fff;margin-top:8px;line-height:1.5}
+  .m-automation-roi .ar-f .eq{font-family:var(--m);font-size:16px;color:var(--fg);margin-top:8px;line-height:1.5}
   .m-automation-roi .ar-f .eq b{color:var(--green);font-weight:600}
   .m-automation-roi .ar-sw{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--muted);margin-top:14px}
-  .m-automation-roi .ar-sw i{width:18px;height:18px;border:2px solid #fff;border-radius:4px}
+  .m-automation-roi .ar-sw i{width:18px;height:18px;border:2px solid var(--fg);border-radius:4px}
   `,
   slides:[
   {sec:'YOUR AI WORKSPACE', cls:'viz', title:`AUTOMATE THE <span class="g">TOP RIGHT</span> FIRST`,
@@ -37,7 +37,7 @@ MOD({
        html+=`<div class="ar-r">${f[0]}<small>${f[2]} a year</small></div>`;
        Mn.forEach(m=>{
          const h=f[1]*m/60, a=Math.log10(h+1)/max, al=(0.06+a*0.94).toFixed(2);
-         html+=`<div class="ar-c a-pop${a>.55?' dk':''}${h>=50?' sw':''}" style="--i:${i++};background:rgba(208,245,57,${al})" data-f="${f[0]}" data-r="${f[1]}" data-m="${m}">${fmt(h)}<small>h / yr</small></div>`;
+         html+=`<div class="ar-c a-pop${a>.55?' dk':''}${h>=50?' sw':''}" style="--i:${i++};background:color-mix(in srgb,var(--green) ${(al)*100}%,transparent)" data-f="${f[0]}" data-r="${f[1]}" data-m="${m}">${fmt(h)}<small>h / yr</small></div>`;
        });
      });
      html+='<div class="ar-x">minutes per run</div>';

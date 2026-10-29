@@ -4,31 +4,31 @@ MOD({
   css:`
   .m-context-window svg{width:100%;display:block;overflow:visible}
   .m-context-window .cw svg{height:50vh}
-  .m-context-window .win{fill:none;stroke:#fff;stroke-width:2.5}
+  .m-context-window .win{fill:none;stroke:var(--fg);stroke-width:2.5}
   .m-context-window .win.full{stroke:var(--warn)}
   .m-context-window .it{transition:transform .6s cubic-bezier(.3,1.1,.4,1),opacity .4s}
-  .m-context-window .it rect{fill:var(--surface);stroke:#55555b;stroke-width:1.5}
-  .m-context-window .it text{font-family:var(--b);font-size:15px;fill:#fff}
+  .m-context-window .it rect{fill:var(--surface);stroke:var(--subtle);stroke-width:1.5}
+  .m-context-window .it text{font-family:var(--b);font-size:15px;fill:var(--fg)}
   .m-context-window .it .sm{font-family:var(--m);font-size:12.5px;fill:var(--muted)}
-  .m-context-window .it.pin rect{stroke:#fff}
+  .m-context-window .it.pin rect{stroke:var(--fg)}
   .m-context-window .it.q rect{fill:var(--green);stroke:var(--green)}
-  .m-context-window .it.q text{fill:#000;font-weight:600}
-  .m-context-window .it.q .sm{fill:#333}
+  .m-context-window .it.q text{fill:var(--on-accent);font-weight:600}
+  .m-context-window .it.q .sm{fill:var(--dim)}
   .m-context-window .it.out rect{stroke:var(--warn);stroke-dasharray:5 4;fill:transparent}
   .m-context-window .it.out text{fill:var(--warn)}
-  .m-context-window .cap{font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:16px;fill:#fff}
+  .m-context-window .cap{font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:16px;fill:var(--fg)}
   .m-context-window .cap.w{fill:var(--warn)}
   .m-context-window .cap.m{fill:var(--muted)}
   .m-context-window .meter-t{font-family:var(--m);font-size:14px;fill:var(--muted)}
   .m-context-window .ctl{margin-top:4px}
   .m-context-window .lm{display:grid;grid-template-columns:1.5fr 1fr;gap:3.5vw;align-items:center}
   .m-context-window .lm svg{height:50vh}
-  .m-context-window .ax{stroke:#55555b;stroke-width:2}
+  .m-context-window .ax{stroke:var(--subtle);stroke-width:2}
   .m-context-window .crv{fill:none;stroke:var(--green);stroke-width:5;stroke-linecap:round}
   .m-context-window .lab{font-family:var(--m);font-size:14px;fill:var(--muted)}
-  .m-context-window .axl{font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:15px;fill:#fff}
+  .m-context-window .axl{font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:15px;fill:var(--fg)}
   .m-context-window .src{font-size:14px;color:var(--muted);text-transform:none;letter-spacing:0}
-  .m-context-window .src b{color:#fff}
+  .m-context-window .src b{color:var(--fg)}
   `,
   slides:[
   {sec:'HOW AI WORKS', cls:'viz', title:`THE MODEL'S <span class="g">DESK</span> HAS A FIXED SIZE`,
@@ -81,7 +81,7 @@ MOD({
        <div class="src" style="margin-top:22px"><b>Source:</b> Liu et al. 2023, "Lost in the Middle". Curve illustrative.</div></div></div>`,
    init(el){
      const svg=el.querySelector('svg'), X0=70, X1=620, Y0=30, Y1=320;
-     VIZ.s('rect',{x:240,y:Y0,width:210,height:Y1-Y0,fill:'rgba(255,107,61,.10)'},svg);
+     VIZ.s('rect',{x:240,y:Y0,width:210,height:Y1-Y0,fill:'color-mix(in srgb,var(--warn) 10%,transparent)'},svg);
      VIZ.s('line',{x1:X0,x2:X1,y1:Y1,y2:Y1,class:'ax'},svg); VIZ.s('line',{x1:X0,x2:X0,y1:Y0,y2:Y1,class:'ax'},svg);
      let d=''; for(let i=0;i<=50;i++){ const t=i/50, x=X0+10+t*(X1-X0-20), y=70+200*Math.pow(Math.sin(Math.PI*t),1.6)*(1-.15*t); d+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1); }
      VIZ.s('path',{d,class:'crv a-draw',pathLength:1000},svg);

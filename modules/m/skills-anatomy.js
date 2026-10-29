@@ -3,18 +3,18 @@ MOD({
   scopes:{lite:[0], full:[0,1]},
   css:`
   .m-skills-anatomy .sk{display:grid;grid-template-columns:1fr 1.25fr;gap:3vw;align-items:center}
-  .m-skills-anatomy .tree{font-family:var(--m);font-size:18px;line-height:2;color:#e9e9ee;border:1px solid var(--line);border-radius:14px;padding:18px 22px;background:var(--surface)}
-  .m-skills-anatomy .tree .d{color:#fff;font-weight:600}
-  .m-skills-anatomy .tree .t{color:#5a5a60}
+  .m-skills-anatomy .tree{font-family:var(--m);font-size:18px;line-height:2;color:var(--fg-2);border:1px solid var(--line);border-radius:14px;padding:18px 22px;background:var(--surface)}
+  .m-skills-anatomy .tree .d{color:var(--fg);font-weight:600}
+  .m-skills-anatomy .tree .t{color:var(--subtle)}
   .m-skills-anatomy .tree .g{color:var(--green)}
   .m-skills-anatomy .tree em{font-style:normal;font-family:var(--b);font-size:14px;color:var(--muted);margin-left:10px}
-  .m-skills-anatomy .md{position:relative;font-family:var(--m);font-size:15px;line-height:1.6;color:#e9e9ee;border:2px solid var(--green);border-radius:14px;padding:16px 20px;background:#000}
+  .m-skills-anatomy .md{position:relative;font-family:var(--m);font-size:15px;line-height:1.6;color:var(--fg-2);border:2px solid var(--green);border-radius:14px;padding:16px 20px;background:var(--bg)}
   .m-skills-anatomy .md .fm{color:var(--muted)}
   .m-skills-anatomy .md .key{color:var(--green)}
   .m-skills-anatomy .md .hl{background:var(--green-a);border-radius:4px;padding:1px 2px}
-  .m-skills-anatomy .md .h{color:#fff;font-weight:600}
-  .m-skills-anatomy .tag{position:absolute;right:-12px;font-family:var(--h);font-weight:800;text-transform:uppercase;font-size:14px;letter-spacing:.08em;color:#000;background:var(--green);border-radius:999px;padding:4px 12px;transform:translateX(30%)}
-  .m-skills-anatomy .tag.l{background:#fff}
+  .m-skills-anatomy .md .h{color:var(--fg);font-weight:600}
+  .m-skills-anatomy .tag{position:absolute;right:-12px;font-family:var(--h);font-weight:800;text-transform:uppercase;font-size:14px;letter-spacing:.08em;color:var(--on-accent);background:var(--green);border-radius:999px;padding:4px 12px;transform:translateX(30%)}
+  .m-skills-anatomy .tag.l{background:var(--fg)}
   .m-skills-anatomy .fl{display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;align-items:stretch;margin-top:16px}
   .m-skills-anatomy .fl .ar{display:flex;align-items:center;justify-content:center}
   .m-skills-anatomy .fl .ar:after{content:'';border:9px solid transparent;border-left:14px solid var(--green);margin-left:10px}
@@ -24,14 +24,14 @@ MOD({
   .m-skills-anatomy .st .s{color:var(--muted);font-size:14px;margin:2px 0 10px}
   .m-skills-anatomy .sl{display:flex;flex-direction:column;gap:6px}
   .m-skills-anatomy .sl div{font-family:var(--m);font-size:14px;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
-  .m-skills-anatomy .sl div.on{color:#000;background:var(--green);border-color:var(--green)}
-  .m-skills-anatomy .doc{font-family:var(--m);font-size:14px;line-height:1.55;color:#e9e9ee;border:1px solid var(--green);border-radius:8px;padding:10px 12px;background:#000}
+  .m-skills-anatomy .sl div.on{color:var(--on-accent);background:var(--green);border-color:var(--green)}
+  .m-skills-anatomy .doc{font-family:var(--m);font-size:14px;line-height:1.55;color:var(--fg-2);border:1px solid var(--green);border-radius:8px;padding:10px 12px;background:var(--bg)}
   .m-skills-anatomy .doc .key{color:var(--green)}
   .m-skills-anatomy .run{display:flex;flex-direction:column;gap:8px}
-  .m-skills-anatomy .run div{font-size:15px;color:#fff;display:flex;gap:10px;align-items:center}
+  .m-skills-anatomy .run div{font-size:15px;color:var(--fg);display:flex;gap:10px;align-items:center}
   .m-skills-anatomy .run i{font-style:normal;font-family:var(--m);color:var(--green);font-size:14px;width:18px}
-  .m-skills-anatomy .out{margin-top:6px;font-family:var(--m);font-size:15px;color:#000;background:var(--green);border-radius:8px;padding:8px 12px;display:inline-block}
-  .m-skills-anatomy .ask{font-family:var(--m);font-size:15px;color:#e9e9ee;border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--surface)}
+  .m-skills-anatomy .out{margin-top:6px;font-family:var(--m);font-size:15px;color:var(--on-accent);background:var(--green);border-radius:8px;padding:8px 12px;display:inline-block}
+  .m-skills-anatomy .ask{font-family:var(--m);font-size:15px;color:var(--fg-2);border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--surface)}
   .m-skills-anatomy .ask b{color:var(--green);font-weight:600}
   `,
   slides:[

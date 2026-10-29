@@ -9,13 +9,13 @@ const AR=(d,c,i,len)=>`<path d="${d}" class="ar ${c||''} a-draw" style="--i:${i|
 const DEFS=()=>(SV++,`<defs>${['n','g','w'].map(c=>`<marker id="${ID}-${SV}-${c}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" class="mk ${c}"/></marker>`).join('')}</defs>`);
 const BASE=`${P} svg.dg{width:100%;height:auto;display:block;overflow:visible}
 ${P} .bx{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
-${P} .bx.g{stroke:var(--green);fill:rgba(208,245,57,.08)} ${P} .bx.w{stroke:var(--warn);fill:rgba(255,107,61,.08)} ${P} .bx.d{stroke-dasharray:5 5}
-${P} .ar{fill:none;stroke:#5a5a60;stroke-width:2} ${P} .ar.g{stroke:var(--green)} ${P} .ar.w{stroke:var(--warn)}
-${P} .mk{fill:#5a5a60} ${P} .mk.g{fill:var(--green)} ${P} .mk.w{fill:var(--warn)}
-${P} .bt{font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:18px;fill:#fff}
+${P} .bx.g{stroke:var(--green);fill:color-mix(in srgb,var(--green) 8%,transparent)} ${P} .bx.w{stroke:var(--warn);fill:color-mix(in srgb,var(--warn) 8%,transparent)} ${P} .bx.d{stroke-dasharray:5 5}
+${P} .ar{fill:none;stroke:var(--subtle);stroke-width:2} ${P} .ar.g{stroke:var(--green)} ${P} .ar.w{stroke:var(--warn)}
+${P} .mk{fill:var(--subtle)} ${P} .mk.g{fill:var(--green)} ${P} .mk.w{fill:var(--warn)}
+${P} .bt{font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:18px;fill:var(--fg)}
 ${P} .bt.g{fill:var(--green)} ${P} .bt.w{fill:var(--warn)} ${P} .bt.m{fill:var(--muted)}
-${P} .bs{font-family:var(--b);font-size:14px;fill:var(--muted)} ${P} .bs.l{fill:#e9e9ee} ${P} .bs.g{fill:var(--green)} ${P} .bs.w{fill:var(--warn)}
-${P} .bm{font-family:var(--m);font-size:14px;fill:#e9e9ee}
+${P} .bs{font-family:var(--b);font-size:14px;fill:var(--muted)} ${P} .bs.l{fill:var(--fg-2)} ${P} .bs.g{fill:var(--green)} ${P} .bs.w{fill:var(--warn)}
+${P} .bm{font-family:var(--m);font-size:14px;fill:var(--fg-2)}
 ${P} .a-pop{transform-box:fill-box;transform-origin:center}
 ${P} .lead{font-size:clamp(18px,1.7vw,24px)}`;
 const steps=[['GOAL','Weekly metrics update, ready by Monday'],['PLAN','Pick 4 metrics, compare to last week, draft'],['TOOL','query_dashboard(last 7 days)'],['TOOL','read_doc(last week\'s update)'],['CHECK','Totals match the dashboard? Yes'],['DONE','Draft is in your doc. You review it.']];
@@ -43,7 +43,7 @@ MOD({
   scopes:{lite:[0], full:[0,1]},
   css:BASE+`
   ${P} .bm.k{fill:var(--green);font-weight:600}
-  ${P} .dotg{fill:var(--green)} ${P} .doto{fill:#000;stroke:var(--green);stroke-width:2}
+  ${P} .dotg{fill:var(--green)} ${P} .doto{fill:var(--bg);stroke:var(--green);stroke-width:2}
   ${P} .cv-loop{display:grid;grid-template-columns:1.1fr 1fr;gap:4vw;align-items:center}
   ${P} .cv-loop svg{max-height:56vh}
   ${P} .cv-orbit{transform-origin:300px 210px}
@@ -52,7 +52,7 @@ MOD({
   @media (prefers-reduced-motion:reduce){.slide.active${P} .cv-orbit{animation:none}}
   ${P} .cv-stop{border-left:4px solid var(--green);background:var(--surface);border-radius:8px;padding:12px 16px;margin-top:14px;font-size:17px;line-height:1.4}
   ${P} .cv-stop b{font-family:var(--h);text-transform:uppercase;letter-spacing:.04em;color:var(--green)}
-  ${P} .cv-stop.n{border-left-color:#fff} ${P} .cv-stop.n b{color:#fff}`,
+  ${P} .cv-stop.n{border-left-color:var(--fg)} ${P} .cv-stop.n b{color:var(--fg)}`,
   slides:[
   {sec:'AI AGENTS', cls:'viz', title:`ANSWERING VS <span class="g">DOING</span>`,
    body:`${s0}<div class="lead a-fade" style="--i:9;margin-top:16px;max-width:none">Same task. A chatbot gives you <b>instructions</b>. An agent gives you <span class="g">the finished work, checked.</span></div>`},

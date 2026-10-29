@@ -4,18 +4,18 @@ MOD({
   css:`
   .m-hooks .tl{height:min(52vh,390px)}
   .m-hooks .tl svg{width:100%;height:100%;overflow:visible}
-  .m-hooks .rail{stroke:#2c2c30;stroke-width:4}
+  .m-hooks .rail{stroke:var(--line-2);stroke-width:4}
   .m-hooks .prog{stroke:var(--green);stroke-width:4}
-  .m-hooks .ev{fill:#000;stroke:#fff;stroke-width:3}
+  .m-hooks .ev{fill:var(--bg);stroke:var(--fg);stroke-width:3}
   .m-hooks .ev.on{fill:var(--green);stroke:var(--green)}
-  .m-hooks .ek{font-family:var(--h);font-weight:800;text-transform:uppercase;font-size:19px;letter-spacing:.03em;fill:#fff}
+  .m-hooks .ek{font-family:var(--h);font-weight:800;text-transform:uppercase;font-size:19px;letter-spacing:.03em;fill:var(--fg)}
   .m-hooks .em{font-family:var(--m);font-size:14px;fill:var(--green)}
-  .m-hooks .card rect{fill:var(--surface);stroke:#3a3a3e;stroke-width:2}
+  .m-hooks .card rect{fill:var(--surface);stroke:var(--dim);stroke-width:2}
   .m-hooks .card.on rect{stroke:var(--green)}
-  .m-hooks .ct{font-family:var(--b);font-size:16px;fill:#fff}
+  .m-hooks .ct{font-family:var(--b);font-size:16px;fill:var(--fg)}
   .m-hooks .cc{font-family:var(--m);font-size:14px;fill:var(--muted)}
   .m-hooks .cw{font-family:var(--m);font-size:14px;fill:var(--warn)}
-  .m-hooks .stem{stroke:#3a3a3e;stroke-width:2;stroke-dasharray:4 5}
+  .m-hooks .stem{stroke:var(--dim);stroke-width:2;stroke-dasharray:4 5}
   .m-hooks .vs{display:flex;flex-direction:column;gap:22px}
   .m-hooks .vr{display:grid;grid-template-columns:340px 1fr 110px;gap:24px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:18px 22px;background:var(--surface)}
   .m-hooks .vr.g{border-color:var(--green)}

@@ -1,0 +1,13 @@
+/* Brand theme template. Copy to assets/themes/<brand>.css, set the values, then open any deck
+   or module with ?theme=<brand>. Every grey, line, glow and tint derives from these tokens. */
+:root{
+  --bg:#000000;         /* slide background */
+  --fg:#ffffff;         /* main text and strokes */
+  --accent:#d0f539;     /* the one highlight color: key ideas, active states */
+  --risk:#ff6b3d;       /* risk and warnings only */
+  --on-accent:#000000;  /* text placed on an accent or light chip */
+  /* Fonts (optional). Add an @import for web fonts at the top of this file.
+  --h:'Barlow',system-ui,sans-serif;  headings
+  --b:'Inter',system-ui,sans-serif;   body
+  --m:'JetBrains Mono',monospace;     code and numbers */
+}

@@ -1,6 +1,13 @@
 /* ACA X deck engine - renders window.SLIDES into a keyboard-navigable deck.
    Each page defines: window.SLIDES = [ {sec,title,center?,body,note,vis}, ... ] */
 (function(){
+  // ?theme=<name> loads assets/themes/<name>.css after every other stylesheet (see the tokens in deck.css)
+  const theme = new URLSearchParams(location.search).get('theme');
+  if (theme && /^[\w-]+$/.test(theme)) {
+    const l = document.createElement('link'); l.rel = 'stylesheet';
+    l.href = new URL('themes/' + theme + '.css', document.currentScript.src).href;
+    document.head.appendChild(l);
+  }
   // {module:'id', scope:'lite'|'full'} entries expand to that module's slides (see modules/module.js)
   const MODS = window.MODULES || {}, SLIDES = [];
   (window.SLIDES || []).forEach(s=>{

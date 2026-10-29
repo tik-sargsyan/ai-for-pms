@@ -4,7 +4,7 @@ MOD({
   css:`
   .m-environments .ev{display:grid;grid-template-columns:1fr 150px 1.45fr;align-items:center;gap:0}
   .m-environments .col{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--surface)}
-  .m-environments .col.work{border-color:rgba(208,245,57,.45)}
+  .m-environments .col.work{border-color:color-mix(in srgb,var(--green) 45%,transparent)}
   .m-environments .ch{font-family:var(--h);font-weight:800;text-transform:uppercase;font-size:24px;letter-spacing:.04em}
   .m-environments .col.work .ch{color:var(--green)}
   .m-environments .cs{color:var(--muted);font-size:15px;margin:2px 0 12px}
@@ -13,13 +13,13 @@ MOD({
   .m-environments .chips{display:flex;flex-wrap:wrap;gap:8px}
   .m-environments .chip{padding:5px 12px}
   .m-environments .chip.us{border-color:var(--green);color:var(--green)}
-  .m-environments .badge{font-family:var(--m);font-size:13px;font-weight:400;letter-spacing:0;text-transform:none;color:#000;background:var(--green);border-radius:999px;padding:2px 9px}
+  .m-environments .badge{font-family:var(--m);font-size:13px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--on-accent);background:var(--green);border-radius:999px;padding:2px 9px}
   .m-environments .core{position:relative;height:100%;display:flex;align-items:center;justify-content:center}
   .m-environments .core:before{content:'';position:absolute;left:0;right:0;top:50%;height:2px;background:var(--green);opacity:.5}
-  .m-environments .orb{position:relative;width:112px;height:112px;border-radius:50%;border:2px solid var(--green);background:#000;box-shadow:0 0 40px rgba(208,245,57,.25);display:flex;align-items:center;justify-content:center;font-family:var(--h);font-weight:900;text-transform:uppercase;font-size:20px;letter-spacing:.04em}
+  .m-environments .orb{position:relative;width:112px;height:112px;border-radius:50%;border:2px solid var(--green);background:var(--bg);box-shadow:0 0 40px color-mix(in srgb,var(--green) 25%,transparent);display:flex;align-items:center;justify-content:center;font-family:var(--h);font-weight:900;text-transform:uppercase;font-size:20px;letter-spacing:.04em}
   .slide.active.m-environments .orb{animation:m-pop .7s cubic-bezier(.3,1.4,.4,1) both .1s}
   .m-environments .foot{display:flex;justify-content:space-between;margin-top:14px;font-size:15px;color:var(--muted)}
-  .m-environments .foot b{color:#fff;font-weight:600}
+  .m-environments .foot b{color:var(--fg);font-weight:600}
   `,
   slides:[
   {sec:'CLAUDE TODAY', cls:'viz', title:`ONE BRAIN, <span class="g">MANY DOORS</span>`,

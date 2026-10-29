@@ -5,28 +5,28 @@ MOD({
   .m-agent-loop .al{display:grid;grid-template-columns:1.2fr 1fr;gap:3vw;align-items:center}
   .m-agent-loop .al-c{height:min(56vh,420px)}
   .m-agent-loop .al-c svg{width:100%;height:100%;overflow:visible}
-  .m-agent-loop .ring{fill:none;stroke:#2c2c30;stroke-width:3}
-  .m-agent-loop .nd{fill:var(--surface);stroke:#fff;stroke-width:2}
+  .m-agent-loop .ring{fill:none;stroke:var(--line-2);stroke-width:3}
+  .m-agent-loop .nd{fill:var(--surface);stroke:var(--fg);stroke-width:2}
   .m-agent-loop .nd.g{stroke:var(--green)}
-  .m-agent-loop .nk{font-family:var(--h);font-weight:800;text-transform:uppercase;font-size:20px;letter-spacing:.03em;fill:#fff}
+  .m-agent-loop .nk{font-family:var(--h);font-weight:800;text-transform:uppercase;font-size:20px;letter-spacing:.03em;fill:var(--fg)}
   .m-agent-loop .nn{font-family:var(--m);font-size:15px;fill:var(--green)}
   .m-agent-loop .orbit{transform-origin:260px 210px}
   .slide.active.m-agent-loop .orbit{animation:al-spin 6s linear infinite}
   @keyframes al-spin{to{transform:rotate(360deg)}}
-  .m-agent-loop .dot{fill:var(--green);filter:drop-shadow(0 0 8px rgba(208,245,57,.9))}
-  .m-agent-loop .human{fill:#000;stroke:#fff;stroke-width:2;stroke-dasharray:5 5}
+  .m-agent-loop .dot{fill:var(--green);filter:drop-shadow(0 0 8px color-mix(in srgb,var(--green) 90%,transparent))}
+  .m-agent-loop .human{fill:var(--bg);stroke:var(--fg);stroke-width:2;stroke-dasharray:5 5}
   .m-agent-loop .side .rung{grid-template-columns:120px 1fr;padding:12px 16px}
   .m-agent-loop .side .rung .k{font-size:17px}
   .m-agent-loop .side .rung .k.g{color:var(--green)}
   .m-agent-loop .tr{display:grid;grid-template-columns:90px repeat(4,1fr);gap:12px;align-items:stretch}
   .m-agent-loop .tr .h{font-family:var(--h);font-weight:800;text-transform:uppercase;font-size:15px;letter-spacing:.08em;color:var(--muted);padding:0 4px}
   .m-agent-loop .tr .lap{font-family:var(--h);font-weight:900;font-size:32px;color:var(--green);display:flex;align-items:center}
-  .m-agent-loop .tr .c{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:14px 14px;font-size:17px;line-height:1.35;color:#fff}
+  .m-agent-loop .tr .c{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:14px 14px;font-size:17px;line-height:1.35;color:var(--fg)}
   .m-agent-loop .tr .c small{display:block;font-family:var(--m);font-size:13px;color:var(--muted);margin-top:4px}
-  .m-agent-loop .tr .c.x{border-color:#3a3a3e;color:var(--muted);border-style:dashed}
+  .m-agent-loop .tr .c.x{border-color:var(--dim);color:var(--muted);border-style:dashed}
   .m-agent-loop .tr .c.ok{border-color:var(--green)}
-  .m-agent-loop .tr .c.you{border-color:#fff}
-  .m-agent-loop .task{font-family:var(--m);font-size:15px;color:#e9e9ee;border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--surface);margin-bottom:14px}
+  .m-agent-loop .tr .c.you{border-color:var(--fg)}
+  .m-agent-loop .task{font-family:var(--m);font-size:15px;color:var(--fg-2);border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--surface);margin-bottom:14px}
   .m-agent-loop .task b{color:var(--green);font-weight:600}
   `,
   slides:[
@@ -37,7 +37,7 @@ MOD({
        <div class="rung a-fade" style="--i:2"><div class="k">2 Plan</div><div class="d">Decides the next small step.</div></div>
        <div class="rung a-fade" style="--i:3"><div class="k">3 Act</div><div class="d">Uses a tool: edit a file, run a search, call Jira.</div></div>
        <div class="rung a-fade" style="--i:4"><div class="k">4 Check</div><div class="d">Looks at the result. Done? If not, go again.</div></div>
-       <div class="rung a-fade" style="--i:5;border-color:#fff"><div class="k g">You</div><div class="d">Approve the plan or a risky step. Stop it anytime.</div></div></div></div>`,
+       <div class="rung a-fade" style="--i:5;border-color:var(--fg)"><div class="k g">You</div><div class="d">Approve the plan or a risky step. Stop it anytime.</div></div></div></div>`,
    init(el){
      const svg=el.querySelector('svg'), cx=260, cy=210, R=150;
      VIZ.s('circle',{cx,cy,r:R,class:'ring'},svg);
@@ -46,7 +46,7 @@ MOD({
      const N=[['Gather',-90],['Plan',0],['Act',90],['Check',180]];
      // arrow heads along the ring, between nodes
      [-45,45,135,225].forEach(a=>{ const r=a*Math.PI/180, x=cx+R*Math.cos(r), y=cy+R*Math.sin(r);
-       VIZ.s('path',{d:'M-7 -7 L5 0 L-7 7',fill:'none',stroke:'#5a5a60','stroke-width':3,transform:`translate(${x} ${y}) rotate(${a+90})`},svg); });
+       VIZ.s('path',{d:'M-7 -7 L5 0 L-7 7',fill:'none',stroke:'var(--subtle)','stroke-width':3,transform:`translate(${x} ${y}) rotate(${a+90})`},svg); });
      const orbit=VIZ.s('g',{class:'orbit'},svg);
      VIZ.s('circle',{cx:cx+R,cy,r:9,class:'dot'},orbit);
      N.forEach(([n,a],k)=>{ const r=a*Math.PI/180, x=cx+R*Math.cos(r), y=cy+R*Math.sin(r);
@@ -56,7 +56,7 @@ MOD({
        const m=VIZ.s('text',{x,y:y+20,'text-anchor':'middle',class:'nn'},g); m.textContent=k+1; });
      // human checkpoint between plan (right) and act (bottom)
      const hx=cx+R*0.71+70, hy=cy+R*0.71+40;
-     VIZ.s('line',{x1:cx+R*0.71,y1:cy+R*0.71,x2:hx-30,y2:hy-20,stroke:'#fff','stroke-width':2,'stroke-dasharray':'4 5'},svg);
+     VIZ.s('line',{x1:cx+R*0.71,y1:cy+R*0.71,x2:hx-30,y2:hy-20,stroke:'var(--fg)','stroke-width':2,'stroke-dasharray':'4 5'},svg);
      VIZ.s('circle',{cx:hx,cy:hy,r:34,class:'human'},svg);
      const ht=VIZ.s('text',{x:hx,y:hy+7,'text-anchor':'middle',class:'nk'},svg); ht.textContent='You';
      // exit to done from check (left)

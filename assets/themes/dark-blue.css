@@ -1,0 +1,4 @@
+/* Dark theme with a blue accent, for a quick brand swap demo. Use with ?theme=dark-blue */
+:root{
+  --bg:#0b1020; --fg:#f4f6ff; --accent:#4cc2ff; --risk:#ff8a4c; --on-accent:#06101e;
+}

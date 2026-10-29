@@ -1,0 +1,4 @@
+/* Light theme: white slides, near-black text, blue accent. Use with ?theme=light */
+:root{
+  --bg:#ffffff; --fg:#111113; --accent:#1f5eff; --risk:#e5484d; --on-accent:#ffffff;
+}

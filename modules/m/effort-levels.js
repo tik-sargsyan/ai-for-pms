@@ -34,14 +34,14 @@ MOD({
        {k:'xhigh',  v:[80,74,74], w:'Tricky bugs, messy data, careful reviews.'},
        {k:'max',    v:[100,100,100], w:'Hard design calls. Use it on purpose.'}];
      const svg=el.querySelector('svg'), cx=170, cy=170, R=130;
-     VIZ.s('path',{d:`M${cx-R} ${cy} A${R} ${R} 0 0 1 ${cx+R} ${cy}`,fill:'none',stroke:'#242426','stroke-width':18,'stroke-linecap':'round'},svg);
+     VIZ.s('path',{d:`M${cx-R} ${cy} A${R} ${R} 0 0 1 ${cx+R} ${cy}`,fill:'none',stroke:'var(--line)','stroke-width':18,'stroke-linecap':'round'},svg);
      const arc=VIZ.s('path',{d:`M${cx-R} ${cy} A${R} ${R} 0 0 1 ${cx+R} ${cy}`,fill:'none',stroke:'var(--green)','stroke-width':18,'stroke-linecap':'round',pathLength:100},svg);
      const lbls=L.map((l,k)=>{
        const a=Math.PI*(1-k/4), x=cx+(R+38)*Math.cos(a), y=cy-(R+38)*Math.sin(a);
        const t=VIZ.s('text',{x,y:y+6,'text-anchor':'middle',class:'ef-lbl'},svg); t.textContent=l.k;
        t.addEventListener('click',()=>set(k)); return t; });
      const nd=VIZ.s('g',{class:'ef-needle'},svg);
-     VIZ.s('line',{x1:cx,y1:cy,x2:cx,y2:cy-R+22,stroke:'#fff','stroke-width':5,'stroke-linecap':'round'},nd);
+     VIZ.s('line',{x1:cx,y1:cy,x2:cx,y2:cy-R+22,stroke:'var(--fg)','stroke-width':5,'stroke-linecap':'round'},nd);
      VIZ.s('circle',{cx,cy,r:12,fill:'var(--green)'},nd);
      const bars=el.querySelectorAll('[data-m]'), when=el.querySelector('.ef-when'), rng=el.querySelector('input'), out=el.querySelector('output');
      function set(k){
