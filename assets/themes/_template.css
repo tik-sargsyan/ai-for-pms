@@ -1,5 +1,6 @@
 /* Brand theme template. Copy to assets/themes/<brand>.css, set the values, then open any deck
-   or module with ?theme=<brand>. Every grey, line, glow and tint derives from these tokens. */
+   or module with ?theme=<brand>. deck.js first loads _derive.css, so every grey, line, glow
+   and tint derives from these five tokens. Without ?theme the exact ACA colors apply. */
 :root{
   --bg:#000000;         /* slide background */
   --fg:#ffffff;         /* main text and strokes */

@@ -1,6 +1,6 @@
 /* ACA X visual modules - shared viz primitives on top of deck.css.
    Palette stays the deck's: black, white, muted grey, neon green. --warn is for risk only. */
-/* Colors come from the theme tokens in assets/deck.css. Never hardcode a color here or in m/*.js. */
+/* Colors come from the theme tokens in deck.css. */
 
 /* A viz slide: smaller title, the visual gets the room */
 .slide.viz{padding:5vh 6vw}

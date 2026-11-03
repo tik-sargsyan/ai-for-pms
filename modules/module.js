@@ -6,7 +6,7 @@
      id:'world-dots', title:'Who builds with AI', cluster:'foundations',
      fits:[1], minutes:3,                    // sessions it fits, talk time for the full scope
      scopes:{lite:[0], full:[0,1]},          // slide indexes per scope (full = all when omitted)
-     verify:['claim to check before class'], // shown in review mode, never on the slide
+     verify: a list of claims to check before class, shown in review mode, never on the slide
      css:`...`,                              // injected once, prefix every rule with .m-<id>
      slides:[{sec,title,body,note,vis,cls,center,init(el){}}]
    });

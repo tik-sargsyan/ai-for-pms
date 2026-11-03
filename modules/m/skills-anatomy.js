@@ -58,7 +58,7 @@ MOD({
   {sec:'CLAUDE CODE', cls:'viz', title:`TRIGGER, <span class="g">LOAD, RUN</span>`,
    body:`<div class="ask a-fade" style="--i:0"><b>you</b> Turn these 12 interview notes into a PRD for the savings feature.</div>
      <div class="fl">
-       <div class="st a-fade" style="--i:1"><div class="k"><b>1</b>Trigger</div><div class="s">Only names and descriptions sit in context. Cheap.</div>
+       <div class="st a-fade" style="--i:1"><div class="k"><b>1</b>Trigger</div><div class="s">Only names and descriptions sit in its memory. Cheap.</div>
          <div class="sl"><div>exec-update</div><div class="on">prd-writer</div><div>interview-synth</div><div>roadmap-review</div><div>release-notes</div></div></div>
        <div class="ar a-fade" style="--i:2"></div>
        <div class="st a-fade" style="--i:3"><div class="k"><b>2</b>Load</div><div class="s">The match pulls in the full SKILL.md.</div>

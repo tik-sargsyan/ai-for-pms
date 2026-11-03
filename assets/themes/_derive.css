@@ -1,0 +1,39 @@
+/* Loaded only when a deck or module opens with ?theme=<name>.
+   Rebuilds every grey from the five base tokens, so a theme sets just those five.
+   Each grey keeps the same lightness step it has in the default ACA palette. */
+:root{
+  --fg-2:color-mix(in srgb,var(--fg) 92.0%,var(--bg));
+  --muted:color-mix(in srgb,var(--fg) 54.9%,var(--bg));
+  --subtle:color-mix(in srgb,var(--fg) 36.1%,var(--bg));
+  --dim:color-mix(in srgb,var(--fg) 23.3%,var(--bg));
+  --line-2:color-mix(in srgb,var(--fg) 17.5%,var(--bg));
+  --line:color-mix(in srgb,var(--fg) 14.4%,var(--bg));
+  --faint:color-mix(in srgb,var(--fg) 10.6%,var(--bg));
+  --surface:color-mix(in srgb,var(--fg) 5.8%,var(--bg));
+  --c-cfcfd4:color-mix(in srgb,var(--fg) 81.8%,var(--bg));
+  --c-ffb79f:color-mix(in srgb,var(--risk) 50%,var(--fg));
+  --c-cfd6a8:color-mix(in srgb,var(--accent) 35%,var(--fg-2));
+  --c-b9b9be:color-mix(in srgb,var(--fg) 73.2%,var(--bg));
+  --c-9a9aa0:color-mix(in srgb,var(--fg) 61.2%,var(--bg));
+  --c-77777d:color-mix(in srgb,var(--fg) 47.5%,var(--bg));
+  --c-6a6a70:color-mix(in srgb,var(--fg) 42.4%,var(--bg));
+  --c-55555b:color-mix(in srgb,var(--fg) 34.1%,var(--bg));
+  --c-4a4a50:color-mix(in srgb,var(--fg) 29.8%,var(--bg));
+  --c-333333:color-mix(in srgb,var(--fg) 20.0%,var(--bg));
+  --c-2f2f33:color-mix(in srgb,var(--fg) 19.0%,var(--bg));
+  --c-2c2c30:color-mix(in srgb,var(--fg) 17.8%,var(--bg));
+  --c-2a2a2e:color-mix(in srgb,var(--fg) 17.0%,var(--bg));
+  --c-26262a:color-mix(in srgb,var(--fg) 15.4%,var(--bg));
+  --c-232327:color-mix(in srgb,var(--fg) 14.2%,var(--bg));
+  --c-1f1f22:color-mix(in srgb,var(--fg) 12.5%,var(--bg));
+  --c-1d1d20:color-mix(in srgb,var(--fg) 11.8%,var(--bg));
+  --c-1c1c1f:color-mix(in srgb,var(--fg) 11.4%,var(--bg));
+  --c-1b1b1e:color-mix(in srgb,var(--fg) 11.0%,var(--bg));
+  --c-1a1e0c:color-mix(in srgb,var(--accent) 10%,var(--bg));
+  --c-151517:color-mix(in srgb,var(--fg) 8.5%,var(--bg));
+  --c-141416:color-mix(in srgb,var(--fg) 8.1%,var(--bg));
+  --c-121214:color-mix(in srgb,var(--fg) 7.3%,var(--bg));
+  --c-0c0c0d:color-mix(in srgb,var(--fg) 4.8%,var(--bg));
+  --c-0b0b0c:color-mix(in srgb,var(--fg) 4.4%,var(--bg));
+  --c-080809:color-mix(in srgb,var(--fg) 3.3%,var(--bg));
+}
