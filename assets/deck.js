@@ -18,7 +18,7 @@
     const m=MODS[s.module];
     if(!m){ console.warn('module not loaded: '+s.module); return; }
     const pick=(m.scopes&&m.scopes[s.scope||'full'])||m.slides.map((_,k)=>k);
-    pick.forEach(k=>SLIDES.push(Object.assign({}, m.slides[k], {_mod:m.id})));
+    pick.forEach(k=>SLIDES.push(Object.assign({}, m.slides[k], {_mod:m.id}, s.sec?{sec:s.sec}:{})));  // entry sec overrides the library kicker
   });
   window.SLIDES = SLIDES;
   const deck = document.getElementById('deck');
