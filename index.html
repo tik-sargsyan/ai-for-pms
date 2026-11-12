@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#000;--surface:#0e0e10;--line:#242426;--green:#d0f539;--white:#fff;--muted:#8a8a90;
+:root{--ink:#000;--surface:#0e0e10;--line:#242426;--green:#d0f539;--white:#fff;--muted:#ffffff;
   --h:'Barlow',system-ui,sans-serif;--b:'Inter',system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--ink);color:var(--white);font-family:var(--b);line-height:1.5}
@@ -16,11 +16,17 @@ a{color:inherit;text-decoration:none}
 .wrap{max-width:1120px;margin:0 auto;padding:0 6vw}
 .logo{font-family:var(--h);font-weight:800;font-size:26px;padding:26px 6vw 0}
 .logo sup{color:var(--green);font-size:.6em}
-header{padding:9vh 0 6vh}
+header{padding:7vh 0 6vh}
 .kick{font-family:var(--h);font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-size:14px}
-h1{font-family:var(--h);font-weight:900;text-transform:uppercase;font-size:clamp(44px,8vw,104px);line-height:.94;letter-spacing:-.02em;margin:14px 0}
+h1{font-family:var(--h);font-weight:900;text-transform:uppercase;font-size:clamp(38px,5.6vw,72px);line-height:.94;letter-spacing:-.02em;margin:12px 0}
 h1 .g{color:var(--green)}
-.lead{color:var(--muted);font-size:clamp(17px,2vw,22px);max-width:640px}
+.lead{color:var(--muted);font-size:clamp(15px,1.6vw,18px);max-width:620px;line-height:1.5}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:32px;margin-bottom:28px}
+.hero-t{flex:1;min-width:0}
+.me{flex:none;display:flex;flex-direction:column;align-items:center;gap:12px}
+.me img{width:clamp(130px,15vw,190px);height:clamp(130px,15vw,190px);border-radius:50%;object-fit:cover;border:3px solid var(--green);box-shadow:0 0 0 8px color-mix(in srgb,var(--green) 12%,transparent)}
+.me b{font-family:var(--h);font-weight:900;text-transform:uppercase;font-size:clamp(17px,1.8vw,22px);color:var(--green);letter-spacing:.02em}
+@media (max-width:640px){.hero{flex-direction:column;align-items:flex-start;gap:18px}.me{align-self:flex-end;gap:10px}.me img{width:110px;height:110px;box-shadow:0 0 0 5px color-mix(in srgb,var(--green) 12%,transparent)}}
 .bar{width:200px;height:14px;background:var(--green);border-radius:3px;margin-top:34px}
 .sec{font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:14px;color:var(--muted);margin:5vh 0 18px}
 /* featured webinar */
@@ -42,9 +48,9 @@ h1 .g{color:var(--green)}
 .card .t{font-family:var(--h);font-weight:800;text-transform:uppercase;font-size:22px;line-height:1.05;margin:8px 0 10px;max-width:82%}
 .card .m{color:var(--muted);font-size:15px}
 .card .a{margin-top:14px;font-size:13px;color:var(--muted)}
-.card .a b{color:#cfcfd4;font-weight:600}
-footer{color:var(--line);font-size:13px;padding:8vh 0 6vh;border-top:1px solid var(--line);margin-top:6vh}
-footer b{color:var(--muted)}
+.card .a b{color:#fff;font-weight:600}
+footer{color:var(--muted);font-size:14px;line-height:1.7;padding:6vh 0 6vh;border-top:1px solid var(--line);margin-top:6vh}
+footer b{color:var(--green)}
 @media(max-width:720px){.grid{grid-template-columns:1fr}}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:8px}
 .steps .st{border:1px solid var(--line);border-top:3px solid var(--fg-2,#c9c9cf);border-radius:12px;padding:16px 18px;background:var(--surface,#0f0f11)}
@@ -82,9 +88,13 @@ footer b{color:var(--muted)}
 <div class="logo">ACA<sup>x</sup></div>
 <div class="wrap">
   <header>
-    <div class="kick">Armenian Code Academy</div>
-    <h1>AI for<br><span class="g">Product Managers</span></h1>
-    <div class="lead">Walk in using AI. Walk out building agents and products. Eight sessions: one of theory, seven half concepts and half hands-on.</div>
+    <div class="hero">
+      <div class="hero-t">
+        <h1>AI for <span class="g">PM<span style="text-transform:none">s</span></span></h1>
+        <div class="lead">Walk in using AI. Walk out building agents and products.</div>
+      </div>
+      <div class="me"><img src="assets/img/tigran-2026.jpg" alt="Tigran Sargsyan"><b>Tigran Sargsyan</b></div>
+    </div>
     <div class="hub-cv"><svg class="cv-svg" viewBox="0 0 990 262" role="img" aria-label="A rising path of eight session dots, lighting up one by one, that forks at the end into two goals: agents and products.">
        <path id="cv-p" d="M70,200 L170,193 L270,180 L370,161 L470,139 L570,112 L670,83 L770,50" class="cv-path"/>
        <path d="M70,200 L170,193 L270,180 L370,161 L470,139 L570,112 L670,83 L770,50" class="cv-glow"/>
@@ -97,15 +107,7 @@ footer b{color:var(--muted)}
     <div class="bar"></div>
   </header>
 
-  <div class="sec">The program · 4 steps</div>
-  <div class="steps">
-    <div class="st"><div class="sn">S1 · S2</div><div class="stt">How AI works and setup</div><div class="sm">The foundations, then Claude Code, CLAUDE.md and prompting that works.</div></div>
-    <div class="st"><div class="sn">S3 · S4</div><div class="stt">Skills, connectors and tools</div><div class="sm">Your best prompts become skills. Your work tools plug in.</div></div>
-    <div class="st"><div class="sn">S5 · S6</div><div class="stt">Agents and automations</div><div class="sm">Personal and work agents, a judge for quality, teams that run on a schedule.</div></div>
-    <div class="st fin"><div class="sn">S7 · S8</div><div class="stt">Live products and prototypes</div><div class="sm">Build it, ship it to a public link, demo it.</div></div>
-  </div>
-
-  <div class="sec">The Toolbox</div>
+  <div class="sec">The Toolbox · Resources</div>
   <a class="feature" href="./toolbox/">
     <span class="badge">Toolbox</span>
     <div class="t">Skills, connectors, MCP and plugins</div>
