@@ -4,14 +4,14 @@ MOD({
   css:`
   .m-model-picker .mp{height:min(54vh,400px)}
   .m-model-picker .mp svg{width:100%;height:100%;overflow:visible}
-  .m-model-picker .ed{fill:none;stroke:var(--line-2);stroke-width:3;transition:stroke .35s ease}
+  .m-model-picker .ed{fill:none;stroke:var(--c-2c2c30);stroke-width:3;transition:stroke .35s ease}
   .m-model-picker .ed.on{stroke:var(--green)}
   .m-model-picker .el{font-family:var(--m);font-size:15px;fill:var(--muted)}
   .m-model-picker .el.on{fill:var(--green)}
   .m-model-picker .nd rect{fill:var(--surface);stroke:var(--dim);stroke-width:2;transition:stroke .35s ease,fill .35s ease}
   .m-model-picker .nd.on rect{stroke:var(--green)}
   .m-model-picker .nd.end.on rect{fill:var(--green)}
-  .m-model-picker .nd.end.on text{fill:var(--on-accent)}
+  .m-model-picker .nd.end.on text{fill:var(--bg)}
   .m-model-picker .nq{font-family:var(--b);font-size:17px;fill:var(--fg)}
   .m-model-picker .nk{font-family:var(--h);font-weight:800;font-size:26px;text-transform:uppercase;letter-spacing:.03em;fill:var(--fg)}
   .m-model-picker .ns{font-family:var(--b);font-size:14px;fill:var(--muted)}
@@ -21,7 +21,7 @@ MOD({
   `,
   slides:[
   {sec:'CLAUDE TODAY', cls:'viz', title:`WHICH MODEL FOR <span class="g">WHICH JOB?</span>`,
-   body:`<div class="mp"><svg viewBox="0 0 1100 400" role="img" aria-label="Decision tree. High volume and simple goes to Haiku. Otherwise, hard reasoning or long agentic work goes to Opus. Everything else goes to Sonnet."></svg></div>
+   body:`<div class="mp"><svg viewBox="0 0 1100 400" role="img" aria-label="Decision tree. High volume and simple goes to Haiku. Otherwise, hard reasoning or long agent work goes to Opus. Everything else goes to Sonnet."></svg></div>
      <div class="ctl" aria-label="Example tasks"></div>`,
    init(el){
      const svg=el.querySelector('svg'), ctl=el.querySelector('.ctl');
@@ -41,7 +41,7 @@ MOD({
      const N={
        start:node('start',0,170,165,60,[{t:'New task',c:'nk'}]),
        q1:node('q1',220,140,270,120,[{t:'High volume,',c:'nq'},{t:'simple, repeatable?',c:'nq'},{t:'e.g. tag 5,000 tickets',c:'ns'}]),
-       q2:node('q2',580,200,280,120,[{t:'Hard reasoning or',c:'nq'},{t:'long agentic work?',c:'nq'},{t:'e.g. multi-step migration',c:'ns'}]),
+       q2:node('q2',580,200,280,120,[{t:'Hard reasoning or',c:'nq'},{t:'long agent work?',c:'nq'},{t:'e.g. multi-step migration',c:'ns'}]),
        h:node('h',680,25,240,90,[{t:'Haiku',c:'nk'},{t:'fast, cheap, at scale',c:'ns'}],1),
        s:node('s',920,170,170,90,[{t:'Sonnet',c:'nk'},{t:'everyday work',c:'ns'}],1),
        o:node('o',920,300,170,90,[{t:'Opus',c:'nk'},{t:'or Fable: check',c:'ns'}],1)

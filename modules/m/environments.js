@@ -33,6 +33,6 @@ MOD({
        <div class="grp"><div class="gk">Cloud sessions</div><div class="chips"><span class="chip">runs in the cloud, not on your laptop</span></div></div>
        <div class="grp"><div class="gk">API and Agent SDK</div><div class="chips"><span class="chip">build Claude into your own product</span></div></div></div>
      </div>
-     <div class="foot a-fade" style="--i:5"><span><b>Cheap and fast.</b> Most of your daily work.</span><span><b>Powerful and token-hungry.</b> Use it on purpose.</span></div>`}
+     <div class="foot a-fade" style="--i:5"><span><b>Cheap and fast.</b> Most of your daily work.</span><span><b>Powerful, but costs more.</b> Use it on purpose.</span></div>`}
   ]
 });

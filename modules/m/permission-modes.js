@@ -44,7 +44,7 @@ MOD({
        {k:'default', who:'You approve each edit and each command.', r:25, use:'Your first weeks. Any task you have not done before.'},
        {k:'acceptEdits', who:'Claude edits files. Commands still ask you.', r:50, use:'You approved the plan and the files are in git.'},
        {k:'auto', who:'Claude, inside safety rules and classifiers.', r:72, use:'A long, well-scoped job you trust. Check the result.'},
-       {k:'bypassPermissions', who:'Nobody. There are no prompts.', r:100, use:'Only in a throwaway sandbox. Never on real files.', w:1}];
+       {k:'bypassPermissions', who:'Nobody. There are no prompts.', r:100, use:'Only in a throwaway test space. Never on real files.', w:1}];
      const svg=el.querySelector('svg'), sw=104, sh=62;
      const steps=M.map((m,k)=>{
        const x=k*sw, y=380-(k+1)*sh, r=VIZ.s('rect',{x,y,width:sw-6,height:(k+1)*sh,rx:8,class:'stp'+(m.w?' w':'')},svg);
@@ -74,10 +74,10 @@ MOD({
    }},
   {sec:'CLAUDE CODE', cls:'viz', title:`PLAN FIRST, <span class="g">THEN LET GO</span>`,
    body:`<div class="lanes"><svg viewBox="0 0 1100 330" role="img" aria-label="Two swim lanes, Claude and You. Plan mode, you approve, accept edits, you review."></svg></div>
-     <div class="warnline a-fade" style="--i:8"><b>bypassPermissions</b> &nbsp;belongs in a sandbox only. Not on your laptop, not on shared drives.</div>`,
+     <div class="warnline a-fade" style="--i:8"><b>bypassPermissions</b> &nbsp;belongs in a sandbox (a throwaway test space) only. Not on your laptop, not on shared drives.</div>`,
    init(el){
      const svg=el.querySelector('svg');
-     [['CLAUDE',75],['YOU',235]].forEach(([t,y])=>{ VIZ.s('line',{x1:0,y1:y+70,x2:1100,y2:y+70,stroke:'var(--line)','stroke-width':2},svg); const l=VIZ.s('text',{x:0,y:y+8,class:'ln'},svg); l.textContent=t; });
+     [['CLAUDE',75],['YOU',235]].forEach(([t,y])=>{ VIZ.s('line',{x1:0,y1:y+70,x2:1100,y2:y+70,stroke:'var(--c-1f1f22)','stroke-width':2},svg); const l=VIZ.s('text',{x:0,y:y+8,class:'ln'},svg); l.textContent=t; });
      const B=[
        {x:110,y:20,m:'plan',t:['Reads PRD and files.','Writes a plan.'],g:1},
        {x:370,y:180,m:'you',t:['Read, fix and','approve the plan.']},

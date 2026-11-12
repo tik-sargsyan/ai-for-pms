@@ -7,13 +7,13 @@ MOD({
   .m-context-window .win{fill:none;stroke:var(--fg);stroke-width:2.5}
   .m-context-window .win.full{stroke:var(--warn)}
   .m-context-window .it{transition:transform .6s cubic-bezier(.3,1.1,.4,1),opacity .4s}
-  .m-context-window .it rect{fill:var(--surface);stroke:var(--subtle);stroke-width:1.5}
+  .m-context-window .it rect{fill:var(--surface);stroke:var(--c-55555b);stroke-width:1.5}
   .m-context-window .it text{font-family:var(--b);font-size:15px;fill:var(--fg)}
   .m-context-window .it .sm{font-family:var(--m);font-size:12.5px;fill:var(--muted)}
   .m-context-window .it.pin rect{stroke:var(--fg)}
   .m-context-window .it.q rect{fill:var(--green);stroke:var(--green)}
-  .m-context-window .it.q text{fill:var(--on-accent);font-weight:600}
-  .m-context-window .it.q .sm{fill:var(--dim)}
+  .m-context-window .it.q text{fill:var(--bg);font-weight:600}
+  .m-context-window .it.q .sm{fill:var(--c-333333)}
   .m-context-window .it.out rect{stroke:var(--warn);stroke-dasharray:5 4;fill:transparent}
   .m-context-window .it.out text{fill:var(--warn)}
   .m-context-window .cap{font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:16px;fill:var(--fg)}
@@ -23,7 +23,7 @@ MOD({
   .m-context-window .ctl{margin-top:4px}
   .m-context-window .lm{display:grid;grid-template-columns:1.5fr 1fr;gap:3.5vw;align-items:center}
   .m-context-window .lm svg{height:50vh}
-  .m-context-window .ax{stroke:var(--subtle);stroke-width:2}
+  .m-context-window .ax{stroke:var(--c-55555b);stroke-width:2}
   .m-context-window .crv{fill:none;stroke:var(--green);stroke-width:5;stroke-linecap:round}
   .m-context-window .lab{font-family:var(--m);font-size:14px;fill:var(--muted)}
   .m-context-window .axl{font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:15px;fill:var(--fg)}
@@ -33,7 +33,7 @@ MOD({
   slides:[
   {sec:'HOW AI WORKS', cls:'viz', title:`THE MODEL'S <span class="g">DESK</span> HAS A FIXED SIZE`,
    body:`<div class="cw"><svg viewBox="0 0 1100 360" role="img" aria-label="A strip fills with system prompt, files, chat turns and your question. When full, the oldest chat turns fall out."></svg></div>
-     <div class="ctl"><button type="button">replay</button><span>Everything the model "sees" right now must fit on the desk. Size is measured in tokens.</span></div>`,
+     <div class="ctl"><button type="button">replay</button><span>Everything the model "sees" must fit on the desk. Size is counted in tokens: word pieces.</span></div>`,
    init(el){
      const svg=el.querySelector('svg'), X=40, Y=110, W=1020, H=96, G=8, cap=W-2*G;
      VIZ.s('text',{x:X,y:Y-22,class:'cap'},svg).textContent='Context window';

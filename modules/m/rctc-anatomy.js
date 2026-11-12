@@ -1,5 +1,5 @@
 MOD({
-  id:'rctc-anatomy', title:'R·C·T·C, taken apart', cluster:'pm', fits:[1,3], minutes:4,
+  id:'rctc-anatomy', title:'G·C·O·C, taken apart: the 2026 prompt', cluster:'pm', fits:[1,3], minutes:4,
   scopes:{lite:[0], full:[0]},
   css:`
   .m-rctc-anatomy .ra{display:grid;grid-template-columns:1.55fr 1fr;gap:3.5vw;align-items:start}
@@ -25,18 +25,18 @@ MOD({
   .m-rctc-anatomy .ctl .chip{cursor:pointer}
   `,
   slides:[
-  {sec:'PROMPTING · R·C·T·C', cls:'viz', title:`ONE PROMPT, <span class="g">FOUR PARTS</span>`,
+  {sec:'PROMPTING · G·C·O·C', cls:'viz', title:`ONE PROMPT, <span class="g">FOUR PARTS</span>`,
    body:`<div class="ra"><div><div class="ra-p">
-       <div class="ra-row a-fade" style="--i:0" data-k="0"><div class="ra-tx">You are a senior B2B product manager.</div><div class="ra-cl">Role<small>sets depth and vocabulary</small></div></div>
-       <div class="ra-row a-fade" style="--i:1" data-k="1"><div class="ra-tx">We shipped single sign-on to enterprise users last week. The audience is the exec team. Tone: confident but honest.</div><div class="ra-cl">Context<small>what it cannot know</small></div></div>
-       <div class="ra-row a-fade" style="--i:2" data-k="2"><div class="ra-tx">Write a 5-bullet update, under 120 words. Flag one risk.</div><div class="ra-cl">Task<small>one ask, exact shape</small></div></div>
-       <div class="ra-row a-fade" style="--i:3" data-k="3"><div class="ra-tx">Then list anything vague or unverifiable.</div><div class="ra-cl">Critique<small>it checks itself</small></div></div></div>
-       <div class="ctl"><span>toggle a part:</span><span class="chip on" data-t="0">R</span><span class="chip on" data-t="1">C</span><span class="chip on" data-t="2">T</span><span class="chip on" data-t="3">C</span><button type="button" class="ra-all">all on</button></div></div>
+       <div class="ra-row a-fade" style="--i:0" data-k="0"><div class="ra-tx">Write the launch update for the exec team, so they can decide on the EU rollout.</div><div class="ra-cl">Goal<small>what done looks like</small></div></div>
+       <div class="ra-row a-fade" style="--i:1" data-k="1"><div class="ra-tx">We shipped single sign-on to enterprise users last week. 18% adopted it in 7 days. Execs worry about churn, so lead with that.</div><div class="ra-cl">Context + why<small>what it cannot know</small></div></div>
+       <div class="ra-row a-fade" style="--i:2" data-k="2"><div class="ra-tx">5 bullets, under 120 words. Flag one risk.</div><div class="ra-cl">Output<small>the exact shape</small></div></div>
+       <div class="ra-row a-fade" style="--i:3" data-k="3"><div class="ra-tx">If a number is missing or you are not sure, say so. Do not guess.</div><div class="ra-cl">Check<small>it flags what it doubts</small></div></div></div>
+       <div class="ctl"><span>toggle a part:</span><span class="chip on" data-t="0">G</span><span class="chip on" data-t="1">C</span><span class="chip on" data-t="2">O</span><span class="chip on" data-t="3">C</span><button type="button" class="ra-all">all on</button></div></div>
      <div><div class="note-s">Output quality (illustrative)</div><div class="ra-q">100%</div><div class="ra-bar"><b style="width:100%"></b></div>
        <div class="ra-out"></div></div></div>`,
    init(el){
-     const W=[15,40,30,15];
-     const T=[['Senior PM voice and depth',0],['Facts about this launch',1],['Written for the exec team',1],['5 bullets, under 120 words',2],['One risk flagged',2],['Weak spots listed for you',3]];
+     const W=[25,40,20,15];
+     const T=[['Aimed at a real decision',0],['Facts about this launch',1],['Leads with what execs care about',1],['5 bullets, under 120 words',2],['One risk flagged',2],['Says what it is unsure of',3]];
      const rows=[...el.querySelectorAll('.ra-row')], chips=[...el.querySelectorAll('[data-t]')];
      const q=el.querySelector('.ra-q'), bar=el.querySelector('.ra-bar'), out=el.querySelector('.ra-out');
      out.innerHTML=T.map(t=>`<div data-p="${t[1]}"><i></i>${t[0]}</div>`).join('');

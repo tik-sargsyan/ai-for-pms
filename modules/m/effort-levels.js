@@ -63,7 +63,7 @@ MOD({
      <div class="tile a-fade" style="--i:1"><div class="k">Medium</div><p>Summarise a doc. Draft a short update.</p></div>
      <div class="tile a-fade on" style="--i:2"><div class="k">High</div><p>Write a PRD. Change several files. Your default for real work.</p></div>
      <div class="tile a-fade" style="--i:3"><div class="k">Xhigh</div><p>Debug a hard bug. Reconcile messy data.</p></div>
-     <div class="tile a-fade" style="--i:4"><div class="k">Max</div><p>Architecture calls. Hard research. Rare and on purpose.</p></div></div>
+     <div class="tile a-fade" style="--i:4"><div class="k">Max</div><p>Big design calls. Hard research. Rare and on purpose.</p></div></div>
      <div class="lead a-fade" style="--i:6;margin-top:30px">Higher effort is <span class="g">not smarter by default.</span> It is slower and costs more. <span class="w">Pick, do not max.</span></div>`}
   ]
 });

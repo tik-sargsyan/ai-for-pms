@@ -4,7 +4,7 @@ MOD({
   css:`
   .m-hooks .tl{height:min(52vh,390px)}
   .m-hooks .tl svg{width:100%;height:100%;overflow:visible}
-  .m-hooks .rail{stroke:var(--line-2);stroke-width:4}
+  .m-hooks .rail{stroke:var(--c-2c2c30);stroke-width:4}
   .m-hooks .prog{stroke:var(--green);stroke-width:4}
   .m-hooks .ev{fill:var(--bg);stroke:var(--fg);stroke-width:3}
   .m-hooks .ev.on{fill:var(--green);stroke:var(--green)}
@@ -52,7 +52,7 @@ MOD({
        const c=VIZ.s('text',{x:x-105,y:y+196,class:e.w?'cw':'cc'},g); c.textContent=e.c;
      });
      const r=VIZ.s('text',{x:550,y:y+290,'text-anchor':'middle',class:'svg-t',style:'font-size:17px'},svg);
-     r.textContent='Hooks are code. They run every time, deterministically.';
+     r.textContent='A hook is code. It runs every time, no exceptions.';
      let raf;
      VIZ.onShow(el,()=>{
        cancelAnimationFrame(raf); if(VIZ.reduced) return;

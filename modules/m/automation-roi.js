@@ -9,7 +9,7 @@ MOD({
   .m-automation-roi .ar-r small{font-family:var(--m);font-weight:400;font-size:13px;color:var(--muted);text-transform:none;letter-spacing:0}
   .m-automation-roi .ar-c{height:clamp(80px,13vh,104px);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--h);font-weight:800;font-size:clamp(22px,2.4vw,32px);color:var(--fg);cursor:default;border:2px solid transparent;transition:border-color .2s}
   .m-automation-roi .ar-c small{font-family:var(--m);font-weight:400;font-size:13px;opacity:.75}
-  .m-automation-roi .ar-c.dk{color:var(--surface)}
+  .m-automation-roi .ar-c.dk{color:var(--on-accent)}
   .m-automation-roi .ar-c.sw{border-color:var(--fg)}
   .m-automation-roi .ar-c:hover,.m-automation-roi .ar-c.sel{border-color:var(--green);outline:2px solid var(--green);outline-offset:2px}
   .m-automation-roi .ar-x{font-family:var(--m);font-size:13px;color:var(--muted);text-align:center;margin-top:8px;grid-column:2/-1}
@@ -37,7 +37,7 @@ MOD({
        html+=`<div class="ar-r">${f[0]}<small>${f[2]} a year</small></div>`;
        Mn.forEach(m=>{
          const h=f[1]*m/60, a=Math.log10(h+1)/max, al=(0.06+a*0.94).toFixed(2);
-         html+=`<div class="ar-c a-pop${a>.55?' dk':''}${h>=50?' sw':''}" style="--i:${i++};background:color-mix(in srgb,var(--green) ${(al)*100}%,transparent)" data-f="${f[0]}" data-r="${f[1]}" data-m="${m}">${fmt(h)}<small>h / yr</small></div>`;
+         html+=`<div class="ar-c a-pop${a>.7?' dk':''}${h>=50?' sw':''}" style="--i:${i++};background:color-mix(in srgb,var(--green) ${(al)*100}%,transparent)" data-f="${f[0]}" data-r="${f[1]}" data-m="${m}">${fmt(h)}<small>h / yr</small></div>`;
        });
      });
      html+='<div class="ar-x">minutes per run</div>';

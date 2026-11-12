@@ -5,7 +5,7 @@ MOD({
   .m-agent-loop .al{display:grid;grid-template-columns:1.2fr 1fr;gap:3vw;align-items:center}
   .m-agent-loop .al-c{height:min(56vh,420px)}
   .m-agent-loop .al-c svg{width:100%;height:100%;overflow:visible}
-  .m-agent-loop .ring{fill:none;stroke:var(--line-2);stroke-width:3}
+  .m-agent-loop .ring{fill:none;stroke:var(--c-2c2c30);stroke-width:3}
   .m-agent-loop .nd{fill:var(--surface);stroke:var(--fg);stroke-width:2}
   .m-agent-loop .nd.g{stroke:var(--green)}
   .m-agent-loop .nk{font-family:var(--h);font-weight:800;text-transform:uppercase;font-size:20px;letter-spacing:.03em;fill:var(--fg)}

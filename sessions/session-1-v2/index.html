@@ -1,0 +1,255 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ACA X · Session 1 v2 · AI Foundations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/deck.css?v=c3"><link rel="stylesheet" href="../../modules/module.css?v=c3"><style>
+.turing{display:flex;gap:16px;justify-content:center;align-items:center;margin:22px 0;flex-wrap:wrap}
+.turing .pl{border:2px solid var(--line);border-radius:14px;padding:14px 20px;min-width:150px;background:var(--surface)}
+.turing .pl.b{border-color:var(--accent)}
+.turing .pk{font:700 11px var(--h);letter-spacing:.16em;color:var(--muted)}
+.turing .pl.b .pk{color:var(--accent)}
+.turing .pt{margin-top:6px;color:var(--fg)}
+.turing .q{font:900 42px var(--h);color:var(--accent)}
+.hw{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:10px}
+.hw .s{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:14px 18px;background:var(--surface)}
+.hw .s b{display:block;font-family:var(--h);text-transform:uppercase;letter-spacing:.04em;color:var(--accent);font-size:17px;margin-bottom:4px}
+.hw .s span{color:var(--muted);font-size:15px;line-height:1.4}
+.hw .s .c{font-family:var(--m);color:var(--fg)}
+.hw .s.w{border-left-color:var(--risk)} .hw .s.w b{color:var(--risk)}
+.edge{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.edge div{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--surface);font-size:15px;color:var(--muted)}
+.edge div b{display:block;font-family:var(--h);text-transform:uppercase;letter-spacing:.06em;font-size:15px;margin-bottom:4px}
+.edge .ok b{color:var(--accent)} .edge .mid b{color:var(--fg)} .edge .no b{color:var(--risk)}
+.slide .cubebox{zoom:.5;margin-top:16px}
+.defbox{max-width:760px;margin:0 auto;text-align:left;border-left:3px solid var(--accent);padding:12px 18px;background:var(--surface);border-radius:0 12px 12px 0}
+.defbox .k{font:700 11px var(--h);letter-spacing:.16em;color:var(--accent);margin-bottom:6px}
+.defbox .t{color:var(--fg-2);font-size:18px}
+.boards{display:flex;gap:46px;justify-content:center;align-items:flex-start;margin:6px 0 16px;flex-wrap:wrap;text-align:center}
+.boards .bd{position:relative;width:150px;height:150px;border:2px solid var(--line-2);border-radius:8px;background-color:var(--surface)}
+.boards .chess{background-image:linear-gradient(45deg,var(--line-2) 25%,transparent 25%,transparent 75%,var(--line-2) 75%),linear-gradient(45deg,var(--line-2) 25%,transparent 25%,transparent 75%,var(--line-2) 75%);background-size:38px 38px;background-position:0 0,19px 19px}
+.boards .go{background-image:linear-gradient(var(--line-2) 1px,transparent 1px),linear-gradient(90deg,var(--line-2) 1px,transparent 1px);background-size:25px 25px}
+.boards .go i{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--fg)}
+.boards .go i.a{background:var(--accent)}
+.boards .nm{font:800 15px var(--h);color:var(--fg);margin-top:10px;letter-spacing:.06em}
+.tiers{display:flex;gap:16px;justify-content:center;align-items:flex-end;margin:8px 0 14px;flex-wrap:wrap;text-align:center}
+.tiers .tr{width:210px;border:2px solid var(--line-2);border-radius:12px;background:var(--surface);display:flex;flex-direction:column;justify-content:center;padding:0 16px;text-align:left}
+.tiers .tr b{font:800 15px var(--h);color:var(--fg)}
+.tiers .tr span{color:var(--muted);font-size:13px;margin-top:5px}
+.tiers .tr.now{border-color:var(--accent)} .tiers .tr.now b{color:var(--accent)} .tiers .tr.now span{color:var(--fg-2)}
+.tiers .tr.far{border-style:dashed} .tiers .tr.far b{color:var(--muted)}
+.tiers .here{font:800 12px var(--h);color:var(--accent);letter-spacing:.1em;margin-top:8px}
+.calc{display:flex;gap:44px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.calc .body{width:230px;border:2px solid var(--accent);border-radius:20px;padding:16px;background:var(--surface)}
+.calc .scr{border:1px solid var(--line);border-radius:10px;padding:10px 14px;text-align:right;margin-bottom:12px}
+.calc .scr small{display:block;font:12px var(--m);color:var(--muted)}
+.calc .scr b{font:700 30px var(--m);color:var(--accent)}
+.calc .keys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.calc .keys span{border:1px solid var(--line);border-radius:8px;padding:8px 0;text-align:center;font:16px var(--m);color:var(--fg-2)}
+.calc .keys span.op{color:var(--accent)} .calc .keys span.eq{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.calc .txt{max-width:420px;text-align:left}
+</style></head><body>
+<a class="logo" href="../../index.html">ACA<sup>x</sup></a>
+<div class="progress" id="prog"></div><div class="deck" id="deck"></div>
+<div class="nav"><button id="prev">‹</button><button id="next">›</button></div>
+<div class="counter"><b id="cur">1</b> / <span id="tot">36</span></div>
+<div class="hint">← → navigate · N notes · F fullscreen</div>
+<div class="notes" id="notes"><div class="nk">Speaker note</div><div class="nt" id="noteText"></div><div class="vis" id="visText"></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="../../modules/module.js?v=c3"></script>
+<script src="../../modules/m/ai-nesting.js?v=c3"></script>
+<script src="../../modules/m/homework.js?v=c3"></script>
+<script src="../../modules/m/get-to-know.js?v=c3"></script>
+<script src="../../modules/m/course-steps.js?v=c3"></script>
+<script src="../../modules/m/session-format.js?v=c3"></script>
+<script src="../../modules/m/adoption-curves.js?v=c3"></script>
+<script src="../../modules/m/agent-team.js?v=c3"></script>
+<script src="../../modules/m/ai-myths.js?v=c3"></script>
+<script src="../../modules/m/ai-heading.js?v=c3"></script>
+<script src="../../modules/m/ai-amplifier.js?v=c3"></script>
+<script src="../../modules/m/ai-evidence.js?v=c3"></script>
+<script src="../../modules/m/who-am-i.js?v=c3"></script>
+<script src="../../modules/m/course-cover.js?v=c3"></script>
+<script src="../../modules/m/s1-recap.js?v=c3"></script>
+<script src="../../modules/m/tokens.js?v=c3"></script>
+<script src="../../modules/m/next-token.js?v=c3"></script>
+<script src="../../modules/m/context-window.js?v=c3"></script>
+<script src="../../modules/m/claude-models.js?v=c3"></script>
+<script src="../../modules/m/hallucination-map.js?v=c3"></script>
+<script src="../../modules/m/jagged-frontier.js?v=c3"></script>
+<script src="../../modules/m/chatbot-vs-agent.js?v=c3"></script>
+<script src="../../modules/m/world-dots.js?v=c3"></script>
+<script src="../../modules/m/turing-test.js?v=c3"></script>
+<script src="../../modules/m/chinese-room.js?v=c3"></script>
+<script src="../../modules/m/ai-timeline.js?v=c3"></script>
+<script src="../../modules/m/embeddings.js?v=c3"></script>
+<script src="../../modules/m/rnn-vs-transformer.js?v=c3"></script>
+<script src="../../modules/m/attention.js?v=c3"></script>
+<script src="../../modules/m/random-number.js?v=c3"></script>
+<script src="../../modules/m/neuron.js?v=c3"></script>
+<script src="../../modules/m/network-weights.js?v=c3"></script>
+<script src="../../modules/m/params-scale.js?v=c3"></script>
+<script src="../../modules/m/gradient-descent.js?v=c3"></script>
+<script src="../../modules/m/training-stages.js?v=c3"></script>
+<script src="../../modules/m/scaling-laws.js?v=c3"></script>
+<script src="../../modules/m/reasoning-tokens.js?v=c3"></script>
+<script src="../../modules/m/memory-types.js?v=c3"></script>
+<script src="../../modules/m/multimodal.js?v=c3"></script>
+<script src="../../modules/m/moravec.js?v=c3"></script>
+<script src="../../modules/m/bias-mirror.js?v=c3"></script>
+<script src="../../modules/m/ani-agi-asi.js?v=c3"></script>
+<script src="../../modules/m/utopia-dystopia.js?v=c3"></script>
+<script src="../../modules/m/paperclip.js?v=c3"></script>
+<script src="../../modules/m/king-midas.js?v=c3"></script>
+<script>
+const UPARROW = `<svg viewBox="0 0 100 100" width="60" height="60" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M50 88V16M22 44 50 16 78 44"/></svg>`;
+const AST = `<svg class="aster" viewBox="0 0 100 100" fill="currentColor"><path d="M45 5h10v28l20-20 7 7-20 20h28v10H62l20 20-7 7-20-20v28H45V62L25 82l-7-7 20-20H10V45h28L18 25l7-7 20 20z"/></svg>`;
+
+window.SLIDES = [
+
+/* ───────── OPEN ───────── */
+{module:'course-cover', scope:'lite'},
+
+{module:'get-to-know', scope:'lite'},
+
+{module:'who-am-i', scope:'lite'},
+{module:'course-steps', scope:'lite'},
+{module:'session-format', scope:'lite'},
+
+{sec:"SESSION 1", title:`AI FOUNDATIONS: HOW AI <span class="g">REALLY</span> WORKS`, center:true,
+ body:`<div class="sub">Tonight: a clear picture of what AI is, where it came from, where it fails, and where it is heading.</div>
+   <div style="display:flex;justify-content:center;margin:22px 0 4px">${AST}</div>
+   <div class="tbar" style="margin-left:auto;margin-right:auto"></div>
+   <div class="sub" style="font-size:16px">Tigran Sargsyan · AI for Product Managers · Session 1</div>`},
+
+{module:'adoption-curves', scope:'lite'},
+
+{module:'world-dots', scope:'lite'},
+
+{module:'ai-evidence', scope:'lite'},
+{module:'ai-amplifier', scope:'lite', sec:"ONE IDEA FOR THE WHOLE COURSE"},
+/* ───────── WHAT AI IS ───────── */
+{sec:"WHAT AI REALLY IS", title:`WHAT IS AI, <span class="g">REALLY?</span>`, center:true,
+ body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div><div class="sub">A correct picture in your head. No maths needed.</div>`},
+
+{module:'turing-test', scope:'lite'},
+
+{module:'chinese-room', scope:'lite'},
+
+{module:'ai-timeline', scope:'lite'},
+
+{sec:"A SHORT HISTORY", title:`NOBODY CAN <span class="g">DEFINE IT</span>`,
+ body:`<div class="sub" style="color:var(--fg)">There is still <span class="g">no strict definition</span> of AI.</div>
+   <div class="cap" style="max-width:840px;margin:6px auto 18px">We have no strict definition of <b style="color:var(--fg)">human intelligence</b> either. Nobody can fully define thinking or understanding. So "artificial" intelligence has the same blur.</div>
+   <div class="defbox"><div class="k">THE WORKING DEFINITION</div>
+     <div class="t">A machine that does something we would call <b style="color:var(--accent)">intelligent</b> if a person did it.</div></div>
+   <div class="src"><b>The AI effect:</b> once it works, we stop calling it AI. Chess, spam filters, autocomplete and face unlock are all "just software" now.</div>`},
+
+{module:'ai-nesting', scope:'lite'},
+
+{sec:"WHAT AI REALLY IS", title:`AN LLM, IN <span class="g">ONE LINE</span>`, center:true,
+ body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:var(--fg)">LLM = large language model. A program that read a huge amount of text and learned to <span class="g">continue</span> it.</div>
+   <div class="sub">Claude, ChatGPT and Gemini are LLMs. Next: how it reads, and how it writes.</div>`},
+
+{module:'tokens', scope:'lite'},
+
+{module:'embeddings', scope:'lite'},
+
+{module:'rnn-vs-transformer', scope:'lite'},
+
+{module:'attention', scope:'lite'},
+
+{module:'next-token', scope:'lite'},
+
+{module:'random-number', scope:'lite'},
+
+{sec:"WHAT AI REALLY IS", title:`<span class="g">PLAUSIBLE,</span> NOT TRUE`, center:true,
+ body:`<div class="sub" style="font-size:clamp(22px,2.6vw,34px);color:var(--fg)">It writes what <span class="g">sounds</span> right.</div>
+   <div class="sub">Not always what <span class="g">is</span> right.</div>`},
+
+{module:'training-stages', scope:'lite'},
+
+{module:'neuron', scope:'lite'},
+
+{module:'network-weights', scope:'lite'},
+
+{module:'params-scale', scope:'lite'},
+
+{module:'gradient-descent', scope:'lite'},
+
+
+{module:'scaling-laws', scope:'lite'},
+
+{module:'reasoning-tokens', scope:'lite'},
+
+{module:'context-window', scope:'lite'},
+
+{module:'memory-types', scope:'lite'},
+
+{module:'claude-models', scope:'lite'},
+
+{module:'multimodal', scope:'lite'},
+
+{module:'agent-team', scope:'lite'},
+
+{sec:"WHERE IT BREAKS", title:`WHERE IT <span class="w">BREAKS</span>`, center:true,
+ body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div><div class="sub">Learn how it fails, so you catch it.</div>`},
+
+{module:'hallucination-map', scope:'lite'},
+
+{module:'jagged-frontier', scope:'lite'},
+
+{module:'moravec', scope:'lite'},
+
+{sec:"WHERE IT BREAKS", title:`TWO MORE <span class="w">TRAPS</span>`,
+ body:`<div class="rows">
+   <div class="row"><span class="a">Out of date</span><span class="arw">→</span><span class="b">It learned up to a <b>training cutoff</b> date. Ask for "the latest" and you may get last year, unless it can search the web.</span></div>
+   <div class="row"><span class="a">Eager to agree</span><span class="arw">→</span><span class="b">It mirrors its data and your prompt. A leading question gets a yes, in <b>fluent</b> prose.</span></div></div>
+   <div class="cap" style="max-width:820px;margin:14px auto 0">The danger is not that it is wrong. It is that it is wrong <b>and sounds sure.</b></div>`},
+
+{module:'bias-mirror', scope:'lite'},
+
+{sec:"WHERE IT BREAKS", title:`THIS IS WHY <span class="g">YOU MATTER</span>`, center:true,
+ body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
+   <div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:var(--fg)">Every blind spot needs a human with judgment.</div>
+   <div class="sub">AI does the volume. You give the verdict.</div>`},
+
+/* ───────── AGENTS + SAFETY ───────── */
+{module:'chatbot-vs-agent', scope:'lite'},
+
+{module:'ai-myths', scope:'lite'},
+{module:'ai-heading', scope:'lite'},
+{module:'utopia-dystopia', scope:'lite'},
+
+{module:'paperclip', scope:'lite'},
+
+{module:'king-midas', scope:'lite'},
+
+{module:'ani-agi-asi', scope:'lite'},
+
+{sec:"WHERE IT IS HEADING", title:`THE <span class="g">HUMAN-AI</span> RELATIONSHIP`,
+ body:`<div class="calc">
+     <div class="body"><div class="scr"><small>grunt work</small><b>= freed</b></div>
+       <div class="keys"><span>7</span><span>8</span><span>9</span><span class="op">÷</span><span>4</span><span>5</span><span>6</span><span class="op">×</span><span>1</span><span>2</span><span>3</span><span class="op">−</span><span>0</span><span>.</span><span class="op">+</span><span class="eq">=</span></div></div>
+     <div class="txt"><div class="sub" style="color:var(--fg);margin-top:0">The calculator did not kill maths. It <span class="g">freed</span> mathematicians to think bigger.</div>
+       <div class="sub">AI does the same for knowledge work. Your job moves up: less typing, more deciding.</div></div></div>`},
+
+{sec:"WHERE IT IS HEADING", title:`WHAT AN <span class="g">AI-NATIVE PM</span> LOOKS LIKE`, center:true,
+ body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:var(--fg)">Not "a PM who uses ChatGPT."</div>
+   <div class="sub">A PM with a personal AI system, sharp judgment, and the skill to <span class="g">build.</span></div>`},
+
+{sec:"SHARE", title:`QUICK <span class="g">ROUND</span>`, center:true,
+ body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:var(--fg)">Share one: the idea that surprised you most tonight, and one question you still have.</div>`},
+
+/* ───────── CLOSE ───────── */
+{module:'s1-recap', scope:'lite', sec:"RECAP + HOMEWORK"},
+{module:'homework', scope:'s1'},
+{sec:"CLOSE", title:`NEXT: CLAUDE CODE <span class="g">WORKSPACE</span>`, center:true,
+ body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
+   <div class="sub" style="color:var(--fg)">Session 2: how to prompt well (G·C·O·C), your data red lines, then Claude Code set up in the desktop app with your CLAUDE.md (a rules file Claude reads first).</div>
+   <div class="sub" style="color:var(--accent);font-weight:800;margin-top:12px">The one thing: come with Claude Pro or Max and the Code tab open.</div>
+   <div class="cubebox"><div class="cube"><div class="f top"></div><div class="f left"></div><div class="f front"></div></div></div>`}
+
+];
+</script>
+<script src="../../assets/deck.js?v=c3"></script></body></html>
