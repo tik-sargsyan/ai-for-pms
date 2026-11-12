@@ -1,255 +1,141 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ACA X · Session 7 - Capstone I: Build</title>
+<title>ACA X · Session 7 · Capstone I: Build the Product</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/deck.css"></head><body>
+<link rel="stylesheet" href="../../assets/deck.css?v=c3"><link rel="stylesheet" href="../../modules/module.css?v=c3"><style>
+.w{color:var(--risk)}
+.tb{width:100%;border-collapse:collapse;font-size:clamp(14px,1.4vw,18px);margin-top:6px}
+.tb th{font-family:var(--h);text-transform:uppercase;letter-spacing:.06em;font-size:13px;color:var(--muted);text-align:left;padding:8px 12px;border-bottom:1px solid var(--line)}
+.tb td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--fg)}
+.tb td:first-child{font-family:var(--m);color:var(--accent);white-space:nowrap}
+.tb td.m{color:var(--muted)}
+.tb .c{font-family:var(--m);color:var(--accent)}
+.flow{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap;margin-top:10px}
+.flow .st{flex:1 1 150px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--surface)}
+.flow .st b{display:block;font-family:var(--h);text-transform:uppercase;letter-spacing:.04em;color:var(--accent);font-size:17px}
+.flow .st span{display:block;color:var(--muted);font-size:14px;margin-top:4px;line-height:1.35}
+.flow .st.hot{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
+.flow .ar{align-self:center;color:var(--accent);font-family:var(--h);font-weight:800;font-size:22px}
+.mono ol.steps2 li{margin-bottom:4px}
+.mono.tight{font-size:clamp(14px,1.3vw,16px);line-height:1.5;padding:16px 20px}
+.pill{display:inline-block;font-family:var(--m);font-size:13px;padding:2px 8px;border-radius:6px;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent)}
+.pill.r{background:color-mix(in srgb,var(--risk) 14%,transparent);color:var(--risk)}
+.bigbox{border:1px solid var(--accent);border-radius:14px;padding:22px 26px;background:color-mix(in srgb,var(--accent) 6%,transparent);max-width:820px;margin:18px auto 0;text-align:left}
+.bigbox .k{font-family:var(--h);font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-size:13px}
+.bigbox .v{font-size:clamp(20px,2.3vw,30px);color:var(--fg);margin-top:6px;line-height:1.3}
+</style></head><body>
 <a class="logo" href="../../index.html">ACA<sup>x</sup></a>
 <div class="progress" id="prog"></div><div class="deck" id="deck"></div>
 <div class="nav"><button id="prev">‹</button><button id="next">›</button></div>
-<div class="counter"><b id="cur">1</b> / <span id="tot">35</span></div>
+<div class="counter"><b id="cur">1</b> / <span id="tot">36</span></div>
 <div class="hint">← → navigate · N notes · F fullscreen</div>
 <div class="notes" id="notes"><div class="nk">Speaker note</div><div class="nt" id="noteText"></div><div class="vis" id="visText"></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="../../modules/module.js?v=c3"></script>
+<script src="../../modules/m/s7-recap.js?v=c3"></script>
+<script src="../../modules/m/s6-recap.js?v=c3"></script>
+<script src="../../modules/m/homework.js?v=c3"></script>
+<script src="../../modules/m/vibe-coding-stack.js?v=c3"></script>
+<script src="../../modules/m/github-basics.js?v=c3"></script>
 <script>
 const AST = `<svg class="aster" viewBox="0 0 100 100" fill="currentColor"><path d="M45 5h10v28l20-20 7 7-20 20h28v10H62l20 20-7 7-20-20v28H45V62L25 82l-7-7 20-20H10V45h28L18 25l7-7 20 20z"/></svg>`;
 
 window.SLIDES = [
+{sec:"SESSION 7 · OPEN", title:`CAPSTONE I: <span class="g">BUILD THE PRODUCT</span>`, center:true,
+ body:`<div class="sub">Tonight your idea stops being a document. It becomes an app with a link.</div>
+   <div style="display:flex;justify-content:center;margin:22px 0 4px">${AST}</div>
+   <div class="tbar" style="margin-left:auto;margin-right:auto"></div>
+   <div class="sub" style="font-size:16px">Tigran Sargsyan · AI for Product Managers · Session 7</div>`},
 
-{sec:"SESSION 7 · CAPSTONE I", title:`VIBE-CODE A WORKING <span class="g">PROTOTYPE OR MVP</span>`, center:true,
- body:`<div class="sub">Today it stops being an idea and starts running.</div>
-   <div style="display:flex;justify-content:center;transform:scale(1.7);margin:34px 0">${AST}</div>
-   <div class="tbar" style="margin-left:auto;margin-right:auto"></div>`},
+{module:'s6-recap', scope:'open'},
 
-{sec:"OPEN & FRAME · the promise", title:`YOU WALK OUT WITH A PRODUCT THAT <span class="g">RUNS.</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">You walk in with an idea. One core feature. Local. Real.</div>`},
+{sec:"SESSION 7 · OPEN", title:`TONIGHT YOU <span class="g">BUILD</span>`,
+ body:`<div class="bigbox"><div class="k">Deliverable</div><div class="v">A working app with <b style="color:var(--accent)">one core feature</b>, running on your laptop, with the code saved on <b>GitHub</b>.</div></div>
+   <ul class="checklist" style="margin-top:18px"><li>A one-page PRD with 3 to 5 acceptance criteria</li><li>One core feature works, start to finish, on fake data</li><li>It runs on your laptop at a local link</li><li>The code lives in a private GitHub repo</li></ul>
+   <div class="cap">Session 8 puts it online. Tonight: working and saved.</div>`},
 
-{sec:"RECAP · SESSION 6", title:`LAST TIME: YOU BUILT A <span class="g">JUDGE</span>`, center:true,
- body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub" style="color:#fff">Session 6: you built a small agent and a judge that scores its output.</div>
-   <div class="sub">Today you build a product, then wrap that same judge around it.</div>`},
+{sec:"SCOPE LIKE A KNIFE", title:`FIND THE <span class="g">MAGIC MOMENT</span>`,
+ body:`<div class="cards"><div class="card good"><div class="tag">Build tonight</div><p>The one action where the user says "oh, nice." Paste an idea, see a score. Type a note, see it sorted.</p></div>
+   <div class="card bad"><div class="tag">Later</div><p>Login, settings, dashboards, payments, admin pages, dark mode, a second user type.</p></div></div>
+   <div class="cap">Can you say it in one sentence, and build it in about 60 minutes? If not, cut again.</div>`},
 
-{sec:"OPEN & FRAME · milestone", title:`DONE TODAY = <span class="g">3 THINGS</span>`,
- body:`<ul class="checklist"><li>It runs locally. You can click it.</li><li>One core feature works end to end.</li><li>It passes your own judge (from Session 6).</li></ul>
-   <div class="cap" style="margin-top:12px">Today's milestone: <b style="color:var(--green)">a working prototype or MVP</b> you can put in front of a user.</div>`},
-
-{sec:"OPEN & FRAME · two habits", title:`THE DAY IS <span class="g">TWO HABITS</span>`,
- body:`<div class="arc"><span class="st">Describe</span><span class="ar">→</span><span class="st">Generate</span><span class="ar">→</span><span class="st">Run</span><span class="ar">→</span><span class="st final">Fix</span></div>
-   <div class="cap"><b>R·C·T·C prompts:</b> Role · Context · Task · Critique. Keep every prompt small and iterative.</div>`},
-
-{sec:"RUTHLESS SCOPING", title:`SCOPE LIKE A <span class="g">KNIFE</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">Cut until it hurts, then cut once more.</div>`},
-
-{sec:"RUTHLESS SCOPING", title:`PROTOTYPE <span class="g">OR</span> MVP`,
- body:`<div class="cards"><div class="card"><div class="tag">Prototype</div><p>Proves the idea feels right. Can be faked underneath.</p></div><div class="card good"><div class="tag">MVP</div><p>The smallest version a real user could actually use.</p></div></div>
-   <div class="cap">Pick ONE today. Neither is a full product. Choose the smaller of your two instincts.</div>`},
-
-{sec:"RUTHLESS SCOPING", title:`EVERY PRODUCT HAS ONE <span class="g">MAGIC MOMENT</span>`,
- body:`<div class="sub">The single action where the user goes "oh, nice." Build only that. Everything else is later.</div>
-   <img class="shot" src="../../assets/img/s7/magic-moment.png"><div class="shotcap">A running local prototype at its magic moment: an idea pasted in, a score + verdict appearing below</div>`},
-
-{sec:"RUTHLESS SCOPING", title:`THE <span class="g">FOUR CUTS</span>`,
- body:`<div class="blocks">
-   <div class="block"><div class="bl">1 · Auth</div><p>Skip. Nobody logs in today.</p></div>
-   <div class="block"><div class="bl">2 · Real data</div><p>Mock it with fake JSON.</p></div>
-   <div class="block"><div class="bl">3 · Backend / DB</div><p>Skip. Keep it in the page.</p></div>
-   <div class="block"><div class="bl">4 · Polish</div><p>Last. Only if time.</p></div></div>`},
-
-{sec:"RUTHLESS SCOPING · story", title:`EVERYTHING I BUILT STARTED AS <span class="g">ONE FEATURE</span>`,
+{sec:"SCOPE LIKE A KNIFE", title:`THE <span class="g">FOUR CUTS</span>`,
  body:`<div class="rows">
-   <div class="row"><span class="a">One Thing (Arete)</span><span class="arw">→</span><span class="b">one <b>today's ONE thing</b> box</span></div>
-   <div class="row"><span class="a">Catan</span><span class="arw">→</span><span class="b">the board just <b>renders</b></span></div>
-   <div class="row"><span class="a">Book RAG</span><span class="arw">→</span><span class="b">ask one question, get <b>one answer</b></span></div></div>
-   <div class="cap">The rest came later. Big things are one small feature that survived. Your loan pre-check is the same: one input, one useful answer, first.</div>
-   <img class="shot" src="../../assets/img/catan.png"><div class="shotcap">Catan, a full game, vibe-coded. Version one was just the board rendering on screen.</div>`},
+   <div class="row"><span class="a">Login</span><span class="arw">&rarr;</span><span class="b">skip. Nobody signs in tonight.</span></div>
+   <div class="row"><span class="a">Real data</span><span class="arw">&rarr;</span><span class="b"><b>mock data</b>: a small file of fake, realistic examples</span></div>
+   <div class="row"><span class="a">Database</span><span class="arw">&rarr;</span><span class="b">skip. Keep data in a file in the project.</span></div>
+   <div class="row"><span class="a">AI inside the app</span><span class="arw">&rarr;</span><span class="b">Session 8. Fake the AI output tonight.</span></div></div>`},
 
-{sec:"RUTHLESS SCOPING · your turn", title:`TASK 1 · <span class="g">SCOPE TO ONE FEATURE</span>`,
- body:`<span class="turn">Your turn · 8 min</span>
-   <div class="mono">Fill this in a note:
-   <ol class="steps2">
-   <li>User + problem (one line each).</li>
-   <li>The ONE core feature (one sentence).</li>
-   <li>The magic moment (the exact click that delivers value).</li>
-   <li>Prototype or MVP? (circle one).</li>
-   <li>Cut list: what you are NOT building today.</li>
-   <li>Mock data: what fake data the feature needs.</li>
-   </ol></div>
-   <div class="cap">Finance starters: a loan-eligibility pre-check, a KYC document checklist, a transaction spend-categorizer, a branch wait-time estimator.</div>`},
+{module:'vibe-coding-stack', scope:'lite', sec:"YOUR BUILD STACK"},
 
-{sec:"RUTHLESS SCOPING · checkpoint", title:`CHECKPOINT <span class="g">✓</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">Can you build the CORE in about 70 minutes? If unsure, cut again. Half of a working feature beats all of a broken one.</div>`},
+{module:'github-basics', scope:'lite', sec:"SHIP A PREVIEW EARLY"},
 
-{sec:"BUILD STACK", title:`YOUR <span class="g">BUILD STACK</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">Three tools, that's it.</div>`},
+{sec:"YOUR BUILD STACK", title:`PLAN MODE <span class="g">FIRST</span>`,
+ body:`<div class="cards"><div class="card bad"><div class="tag">Without a plan</div><p>"Build my app." It guesses the stack, adds features you cut, and burns your tokens.</p></div>
+   <div class="card good"><div class="tag">Plan mode</div><p>It reads your PRD, proposes files and steps, and changes nothing until you approve.</p></div></div>
+   <div class="cap">You are the PM of this build. Read the plan like a spec review. Push back before a line is written.</div>`},
 
-{sec:"BUILD STACK", title:`THE <span class="g">STACK</span>`,
- body:`<div class="blocks">
-   <div class="block"><div class="bl">1 · VS Code</div><p>Where the files live. Your editor.</p></div>
-   <div class="block"><div class="bl">2 · Claude Code</div><p>The AI that writes and runs code, in the terminal.</p></div>
-   <div class="block"><div class="bl">3 · Browser</div><p>Where your app runs, locally.</p></div></div>`},
+{sec:"BUILD THE CORE", cls:"viz", title:`THE BUILD <span class="g">LOOP</span>`,
+ body:`<div class="flow">
+   <div class="st"><b>1 · Describe</b><span>One small next step. One feature per prompt.</span></div><div class="ar">&rarr;</div>
+   <div class="st"><b>2 · Build</b><span>Claude Code edits files. You approve.</span></div><div class="ar">&rarr;</div>
+   <div class="st"><b>3 · Run</b><span>Refresh the browser. Look with your eyes.</span></div><div class="ar">&rarr;</div>
+   <div class="st hot"><b>4 · Fix</b><span>Say what you SEE and what you WANT.</span></div></div>
+   <div class="rows" style="margin-top:18px">
+   <div class="row"><span class="a">Session slow or confused?</span><span class="arw">&rarr;</span><span class="b">start a new session. CLAUDE.md and PRD.md carry the context.</span></div></div>`},
 
-{sec:"BUILD STACK · screenshot", title:`THIS IS THE <span class="g">TARGET</span>`,
- body:`<div class="sub">Editor on the left, Claude Code terminal below, app in the browser.</div>
-   <img class="shot" src="../../assets/img/s7/three-tool.png"><div class="shotcap">VS Code with a project folder open + Claude Code running in the integrated terminal + a browser tab showing the app on localhost</div>`},
+{sec:"BUILD THE CORE", title:`LET YOUR <span class="g">JUDGE</span> CHECK IT`,
+ body:`<div class="sub" style="margin-top:0">Your S5 judge agent scores the app against your own acceptance criteria.</div>
+   <div class="mono tight" style="margin-top:16px"><span class="c">"Ask my judge agent to check the app against the acceptance criteria in PRD.md. For each one: pass or fail, and why. Then list the fails, most serious first."</span></div>
+   <div class="rows" style="margin-top:16px">
+   <div class="row"><span class="a">Fail</span><span class="arw">&rarr;</span><span class="b">that fail is your next prompt</span></div>
+   <div class="row"><span class="a">All pass</span><span class="arw">&rarr;</span><span class="b">you click it yourself, then commit and push</span></div></div>`},
 
-{sec:"BUILD STACK · live", title:`LIVE: WATCH ME <span class="g">SCAFFOLD ONE</span>`, center:true,
- body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub" style="color:#fff">Watch me now. Then you do the same with your idea.</div>
-   <div class="mono" style="max-width:760px;margin:14px auto 0;text-align:left">In VS Code plus Claude Code, I scaffold a loan pre-check:<ol class="steps2">
-     <li>New folder, open it in VS Code, open the terminal, type <span class="c">claude</span>.</li>
-     <li>Prompt: "Create one <span class="c">index.html</span>: a title 'Loan Pre-Check', one input for loan amount, one Check button. Nothing else yet."</li>
-     <li>Open it in the browser. A heading and a button appear. That is the skeleton.</li></ol></div>
-   <div class="cap">One tiny prompt, one file, one thing on screen. No feature yet. That is the target of your next 10 minutes.</div>`},
+{sec:"NOW BUILD · task", title:`THE BUILD <span class="g">PROMPT</span>`,
+ body:`<span class="turn">Your turn · 45 min</span>
+   <div class="cap" style="margin:0 0 10px">New folder <span class="c">capstone</span>, open it in the Code tab, switch to <b>Plan</b> mode. Paste this. Swap the highlighted <b>[brackets]</b> for your own idea.</div>
+   <div class="mono tight" style="font-size:clamp(13px,1.25vw,16px);line-height:1.5"><span class="c">"I want to build <b style="color:var(--fg);background:color-mix(in srgb,var(--accent) 25%,transparent);padding:0 4px;border-radius:4px">[a meeting-notes sorter]</b>. User: <b style="color:var(--fg);background:color-mix(in srgb,var(--accent) 25%,transparent);padding:0 4px;border-radius:4px">[a team lead]</b>. Problem: <b style="color:var(--fg);background:color-mix(in srgb,var(--accent) 25%,transparent);padding:0 4px;border-radius:4px">[action items get lost after meetings]</b>. Magic moment: <b style="color:var(--fg);background:color-mix(in srgb,var(--accent) 25%,transparent);padding:0 4px;border-radius:4px">[paste notes, see the action items sorted by owner]</b>.<br>
+   1. Use my PRD skill to write PRD.md, one page: user, problem, the ONE core feature, 3 to 5 acceptance criteria, and a NOT building list.<br>
+   2. Plan a Next.js web app for that feature only. Put 8 realistic fake examples in data/mock.json. No login, no database, no real customer data. If the feature needs AI, show a fixed example for now.<br>
+   3. Add to CLAUDE.md: this project, the PRD, and: never use real customer data.<br>
+   Show me the plan. Build nothing until I approve."</span></div>
+   <div class="cap" style="margin-top:10px">Read the plan. Cut what is not the magic moment. Approve. Then: <span class="c">"Start the dev server and give me the local link."</span> Then loop: what you SEE, what you WANT.</div>`},
 
-{sec:"BUILD STACK · your turn", title:`TASK 2 · <span class="g">STAND UP YOUR PROJECT</span>`,
+{sec:"NOW BUILD · task", title:`SAVE IT TO <span class="g">GITHUB</span>`,
  body:`<span class="turn">Your turn · 10 min</span>
-   <div class="mono">
-   <ol class="steps2">
-   <li>Make a folder: <span class="c">capstone-&lt;yourname&gt;</span>.</li>
-   <li>Open it in VS Code (File → Open Folder).</li>
-   <li>Open the terminal (View → Terminal).</li>
-   <li>Start Claude Code: type <span class="c">claude</span>.</li>
-   <li>First prompt (small): "Create a single-page app: one <span class="c">index.html</span> with a title and a heading that says [your app name]. Nothing else yet."</li>
-   <li>Run it: open <span class="c">index.html</span> in the browser (or ask Claude Code to serve it locally).</li>
-   </ol></div>`},
+   <div class="mono tight"><ol class="steps2">
+   <li><span class="c">"Set up git in this folder. Make sure .gitignore excludes node_modules and any .env files. Commit everything with the message: v1."</span></li>
+   <li><span class="c">"Install the GitHub CLI if it is missing. Log me in to GitHub with the web browser flow and show me the one-time code."</span> Open <span class="c">github.com/login/device</span>, paste the code, click <b>Authorize</b>.</li>
+   <li><span class="c">"Create a private repo named capstone under my personal account and push main."</span></li>
+   <li>Open it on github.com. Your files are there. After each fix: <span class="c">"Commit and push."</span></li></ol></div>
+   <div class="cap">Login stuck? Use <b>GitHub Desktop</b>: sign in, add this folder, click <b>Publish repository</b>.</div>`},
 
-{sec:"BUILD STACK", title:`PROMPT IT LIKE A <span class="g">SHARP JUNIOR DEV</span>`,
- body:`<div class="sub">Role + Context + Task + Critique. The same R·C·T·C, aimed at code.</div>
-   <ul class="checklist">
-   <li>One feature per prompt.</li>
-   <li>Ask for small edits to named files, never "rebuild everything."</li>
-   <li>Let it run and read its own errors.</li>
-   <li>Start a fresh chat when it gets slow.</li></ul>
-   <img class="shot" src="../../assets/img/s7/rctc-prompt.png"><div class="shotcap">A small R·C·T·C instruction typed at the Claude Code prompt in the terminal</div>`},
+{sec:"WHEN IT BREAKS", title:`WHEN IT <span class="g">BREAKS</span>`,
+ body:`<table class="tb">
+   <tr><td>blank page</td><td>Open the browser console (Cmd+Option+J on Mac, Ctrl+Shift+J on Windows). Paste the red error to Claude Code.</td></tr>
+   <tr><td>local link does not open</td><td>"Start the dev server again and give me the link." Keep that terminal open.</td></tr>
+   <tr><td>git push asks for a password</td><td>Ask Claude Code to log you in to GitHub with the web browser flow, then push again.</td></tr>
+   <tr><td>it built too much</td><td>"Undo everything not in PRD.md." Or rewind the session.</td></tr>
+   <tr><td>going in circles</td><td>New session. Say what you SEE and what you WANT.</td></tr></table>`},
 
-{sec:"BUILD STACK · checkpoint", title:`CHECKPOINT <span class="g">✓</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">Your app opens in the browser and shows your title. Not working? Keep the common-fixes slide handy.</div>`},
-
-{sec:"BREAK", title:`<span class="g">8-MINUTE</span> BREAK`, center:true,
- body:`<div class="rule"></div><div class="sub">Back in ~8 min. Leave your skeleton running. Don't close anything.</div>`},
-
-{sec:"BUILD THE CORE", title:`BUILD THE <span class="g">CORE</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">describe → generate → run → fix → repeat</div>`},
-
-{sec:"BUILD THE CORE", title:`THE <span class="g">LOOP</span>, IN DETAIL`,
- body:`<div class="blocks">
-   <div class="block"><div class="bl">1 · Describe</div><p>Tell Claude Code the ONE next small thing.</p></div>
-   <div class="block"><div class="bl">2 · Generate</div><p>It writes or edits the file.</p></div>
-   <div class="block"><div class="bl">3 · Run</div><p>Refresh the browser and actually look.</p></div>
-   <div class="block"><div class="bl">4 · Fix</div><p>Paste the error or say what's wrong, then loop.</p></div></div>
-   <div class="cap">Repeat until the magic moment works. One brick, place it, next brick.</div>`},
-
-{sec:"BUILD THE CORE", title:`FAKE IT BEFORE YOU <span class="g">MAKE IT</span>`,
- body:`<div class="sub">Mock data = fake data hard-coded in the page. A small JSON array is enough to build the whole feature. Real data is a Session-8 problem.</div>
-   <img class="shot" src="../../assets/img/s7/mock-data.png"><div class="shotcap">A small mock-data JSON array at the top of index.html in VS Code, about 8 fake items</div>`},
-
-{sec:"BUILD THE CORE · anatomy", title:`IF YOUR FEATURE USES AI, THAT'S AN <span class="g">API CALL</span>`,
- body:`<div class="sub">The anatomy bit for today: when AI lives inside your product, you reach the model through an API. Same brain as this app, now a part you ship.</div>
-   <div class="rows">
-   <div class="row"><span class="a">You do NOT</span><span class="arw">→</span><span class="b">write the model. It already exists.</span></div>
-   <div class="row"><span class="a">You DO decide</span><span class="arw">→</span><span class="b">which model, the quality bar, the cost and speed budget, and the guardrail around it.</span></div></div>
-   <div class="cap">Today you can fake the AI part with mock data. If you wire a real call, keep it one small step, and treat its output as a draft until your judge checks it.</div>`},
-
-{sec:"BUILD THE CORE · your turn", title:`TASK 3 · <span class="g">BUILD THE MAGIC MOMENT</span>`,
- body:`<span class="turn">Your turn · 18 min</span>
-   <div class="mono">
-   <ol class="steps2">
-   <li>Prompt (R·C·T·C, small): "You are my front-end dev. This is a single-page app for [user + problem]. Add ONLY the core feature: [the one interaction]. Keep it all in <span class="c">index.html</span>. Flag anything risky before you build."</li>
-   <li>RUN it. Look in the browser.</li>
-   <li>Iterate in small prompts: "the button does nothing, wire it up," "show the result below the input."</li>
-   <li>Loop until the magic moment works once, end to end.</li>
-   </ol></div>`},
-
-{sec:"BUILD THE CORE · your turn", title:`TASK 4 · <span class="g">WIRE MOCK DATA + THE FLOW</span>`,
- body:`<span class="turn">Your turn · 12 min</span>
-   <div class="mono">
-   <ol class="steps2">
-   <li>"Add a mock data array of about 8 realistic [items] at the top of the file."</li>
-   <li>"Make the feature read from that array instead of the hard-coded example."</li>
-   <li>Walk the ONE path a user takes, start to finish. Fix only what breaks on that path.</li>
-   </ol></div>`},
-
-{sec:"BUILD THE CORE · troubleshooting", title:`STUCK? <span class="g">COMMON FIXES</span>`,
- body:`<div class="rows">
-   <div class="row"><span class="a">Blank page</span><span class="arw">→</span><span class="b">open the console (F12), paste the <b>red error</b> to Claude Code</span></div>
-   <div class="row"><span class="a">Won't run</span><span class="arw">→</span><span class="b">give it the <b>exact</b> command + message</span></div>
-   <div class="row"><span class="a">It over-built</span><span class="arw">→</span><span class="b">"undo the extra, keep only [feature]"</span></div>
-   <div class="row"><span class="a">Slow / looping</span><span class="arw">→</span><span class="b"><b>fresh chat</b>, paste the current file</span></div>
-   <div class="row"><span class="a">Lost</span><span class="arw">→</span><span class="b">describe what you <b>SEE</b> vs what you <b>WANT</b></span></div></div>
-   <img class="shot" src="../../assets/img/s7/console-error.png"><div class="shotcap">A browser console (F12) red error, ready to paste back into Claude Code</div>`},
-
-{sec:"BUILD THE CORE · checkpoint", title:`CHECKPOINT <span class="g">✓</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">Your ONE feature works end to end, on mock data. If yes, you have a prototype. Now make it hold up.</div>`},
-
-{sec:"MAKE IT HOLD UP", title:`MAKE IT <span class="g">HOLD UP</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">The judge + guardrails, from Session 6.</div>`},
-
-{sec:"MAKE IT HOLD UP", title:`YOUR CHECKLIST <span class="g">IS YOUR JUDGE</span>`,
- body:`<div class="sub">Your judge = a tiny checklist your product must pass.</div>
-   <ul class="checklist">
-   <li>Empty input handled.</li>
-   <li>Bad input handled.</li>
-   <li>The magic moment works 3× in a row.</li>
-   <li>Nothing crashes.</li></ul>
-   <div class="cap">Write it. Run it. Fix the fails. Every fail becomes your next prompt.</div>
-   <img class="shot" src="../../assets/img/s7/judge-checklist.png"><div class="shotcap">The judge as a 4 to 5 item checklist written as a code comment at the top of the file</div>`},
-
-{sec:"MAKE IT HOLD UP", title:`<span class="g">GUARDRAILS</span>`,
- body:`<div class="sub">Guardrails = what happens when things go wrong.</div>
-   <ul class="checklist">
-   <li>Empty state: nothing entered yet.</li>
-   <li>Error state: bad input.</li>
-   <li>Loading state: if it has to wait.</li>
-   <li>If AI is IN your product: ground or verify. Never show a raw guess as fact.</li></ul>
-   <img class="shot" src="../../assets/img/s7/empty-error-state.png"><div class="shotcap">The prototype showing a friendly empty state and a clear error message on bad input</div>`},
-
-{sec:"MAKE IT HOLD UP · your turn", title:`TASK 5 · <span class="g">JUDGE IT + GUARD IT</span>`,
- body:`<span class="turn">Your turn · 10 min</span>
-   <div class="mono">
-   <ol class="steps2">
-   <li>Write your 4-5 check judge (in a comment or a note).</li>
-   <li>Run every check by hand, like a clumsy user. Note the fails.</li>
-   <li>Prompt small fixes: "handle empty input with a friendly message," "if input is invalid, show a clear error, don't crash."</li>
-   <li>Add at least 2 guardrails. Re-run the judge.</li>
-   </ol></div>`},
-
-{sec:"MAKE IT HOLD UP · checkpoint", title:`CHECKPOINT <span class="g">✓</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">Your product passes your own judge + has 2 or more guardrails. It no longer breaks when poked.</div>`},
-
-{sec:"IN FRONT OF A HUMAN · your turn", title:`TASK 6 · <span class="g">PUT IT IN FRONT OF A HUMAN</span>`,
+{sec:"HAND IT TO A HUMAN", title:`HAND IT TO A <span class="g">HUMAN</span>`,
  body:`<span class="turn">Your turn · 5 min</span>
-   <div class="mono">
-   <ol class="steps2">
-   <li>Turn to your neighbor. Hand them your laptop.</li>
-   <li>Say ONE sentence about what it does, then stay silent. Watch them use it.</li>
-   <li>Write down the FIRST thing that confused them. Don't fix it now.</li>
-   </ol></div>
-   <img class="shot" src="../../assets/img/s7/two-people.png"><div class="shotcap">Two people at a laptop, one handing it over to try, candid, neon-green screen glow</div>`},
+   <div class="mono tight"><ol class="steps2">
+   <li>Turn your laptop to your neighbor. Your app is open at the local link.</li>
+   <li>Say one sentence about what it does. Then stay silent.</li>
+   <li>Write down the first thing that confused them. Do not fix it now.</li>
+   <li><span class="c">"Add to PRD.md under Feedback: [what confused them]."</span></li></ol></div>`},
 
-{sec:"IN FRONT OF A HUMAN", title:`LOCK IN <span class="g">TODAY'S WIN</span>`,
- body:`<div class="sub">Before you close the laptop, protect the win.</div>
-   <ul class="checklist">
-   <li>Save the folder (and commit if you set up git in Session 2).</li>
-   <li>Note what works, your one confusion fix, and what's still mocked.</li>
-   <li>Next session = deploy this exact thing live.</li></ul>
-   <img class="shot" src="../../assets/img/s7/git-commit.png"><div class="shotcap">A "capstone day 1" git commit in the Claude Code terminal</div>`},
+{module:'s7-recap', scope:'lite', sec:"RECAP"},
 
-{sec:"RECAP & NEXT", title:`THE THREE THAT <span class="g">MATTER</span>`,
- body:`<ul class="recaplist">
-   <li><span class="n">1</span><span>Scope to ONE feature. Cut until it hurts.</span></li>
-   <li><span class="n">2</span><span>Build in the loop, small prompts: describe → run → fix.</span></li>
-   <li><span class="n">3</span><span>A judge + guardrails turn a demo into a product.</span></li></ul>`},
+{module:'homework', scope:'s7'},
 
-{sec:"RECAP & NEXT · homework", title:`<span class="g">HOMEWORK</span> · ITERATE TWO FEATURES`,
- body:`<div class="sub">One task before Session 8. Keep it token-light.</div>
-   <ul class="checklist">
-   <li>Improve or add exactly <b>two</b> small features on your prototype. No more.</li>
-   <li>Small prompts, one feature at a time. Run your judge after each.</li></ul>
-   <div class="cap">Setup for next time (not homework): create a free <b>Vercel</b> account and bring the folder running. Session 8 we ship it live.</div>`},
-
-{sec:"RECAP & NEXT", title:`NEXT: <span class="g">SHIP IT LIVE</span>`, center:true,
+{sec:"NEXT", title:`NEXT · CAPSTONE II: <span class="g">SHIP IT LIVE</span>`, center:true,
  body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub">Capstone II. You leave Session 8 with a public URL you can text to anyone.</div>
-   <div style="display:flex;justify-content:center;transform:scale(1.7);margin-top:30px">${AST}</div>`}
+   <div class="sub" style="color:var(--fg)">Session 8: put it online with Vercel, add live data from a free open API, check it with your judge, and demo day.</div>
+   <div class="cubebox"><div class="cube"><div class="f top"></div><div class="f left"></div><div class="f front"></div></div></div>`},
 
 ];
 </script>
-<script src="../../assets/deck.js"></script></body></html>
+<script src="../../assets/deck.js?v=c3"></script></body></html>
