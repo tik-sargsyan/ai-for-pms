@@ -1,307 +1,192 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ACA X · Session 5 - Communicating & Design</title>
+<title>ACA X · Session 5 · Agents Fundamentals</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/deck.css"></head><body>
+<link rel="stylesheet" href="../../assets/deck.css?v=c3"><link rel="stylesheet" href="../../modules/module.css?v=c3"><style>
+.fileprev{font-family:var(--m);white-space:pre;font-size:clamp(13px,1.3vw,16px);line-height:1.55;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:16px 20px;color:var(--fg);max-width:760px;overflow:hidden}
+.fileprev .k{color:var(--accent)}.fileprev .d{color:var(--muted)}
+.ucg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+.uc{border:1px solid var(--line);border-radius:12px;padding:14px 18px;background:var(--surface)}
+.uc .t{font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);font-size:17px}
+.uc .l{font-size:14px;color:var(--muted);line-height:1.45;margin-top:4px}.uc .l b{color:var(--fg);font-weight:600}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:10px}
+table.sc{border-collapse:collapse;font-size:clamp(14px,1.4vw,17px);margin-top:10px;width:100%;max-width:820px}
+table.sc th{font-family:var(--h);text-transform:uppercase;letter-spacing:.06em;font-size:13px;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.sc td{padding:8px 10px;border-bottom:1px solid var(--line);color:var(--fg)}
+table.sc td.g{color:var(--accent);font-weight:600}table.sc td.w{color:var(--risk);font-weight:600}
+.slide .cubebox{zoom:.5;margin-top:16px}
+</style></head><body>
 <a class="logo" href="../../index.html">ACA<sup>x</sup></a>
 <div class="progress" id="prog"></div><div class="deck" id="deck"></div>
 <div class="nav"><button id="prev">‹</button><button id="next">›</button></div>
-<div class="counter"><b id="cur">1</b> / <span id="tot">42</span></div>
+<div class="counter"><b id="cur">1</b> / <span id="tot">36</span></div>
 <div class="hint">← → navigate · N notes · F fullscreen</div>
 <div class="notes" id="notes"><div class="nk">Speaker note</div><div class="nt" id="noteText"></div><div class="vis" id="visText"></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="../../modules/module.js?v=c3"></script>
+<script src="../../modules/m/agent-loop.js?v=c3"></script>
+<script src="../../modules/m/agent-ideas.js?v=c3"></script>
+<script src="../../modules/m/s5-recap.js?v=c3"></script>
+<script src="../../modules/m/s4-recap.js?v=c3"></script>
+<script src="../../modules/m/homework.js?v=c3"></script>
+<script src="../../modules/m/autonomy-levels.js?v=c3"></script>
+<script src="../../modules/m/delegate-matrix.js?v=c3"></script>
+<script src="../../modules/m/subagents.js?v=c3"></script>
+<script src="../../modules/m/agent-failure-modes.js?v=c3"></script>
+<script src="../../modules/m/llm-judge.js?v=c3"></script>
+<script src="../../modules/m/eval-flywheel.js?v=c3"></script>
+<script src="../../modules/m/human-in-loop.js?v=c3"></script>
 <script>
 const AST = `<svg class="aster" viewBox="0 0 100 100" fill="currentColor"><path d="M45 5h10v28l20-20 7 7-20 20h28v10H62l20 20-7 7-20-20v28H45V62L25 82l-7-7 20-20H10V45h28L18 25l7-7 20 20z"/></svg>`;
-const SEG = `background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:8px;padding:11px 18px;font-family:var(--h);font-weight:800;letter-spacing:.02em`;
-const FLOWBOX = `border:1px solid var(--line);border-left:4px solid var(--green);border-radius:10px;padding:14px 20px;background:var(--surface);font-family:var(--h);font-weight:800;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(14px,1.5vw,18px)`;
-const FLOWARR = `color:var(--green);font-family:var(--h);font-weight:800;font-size:24px`;
-const STRIKE = `text-decoration:line-through;text-decoration-color:var(--green);text-decoration-thickness:2px`;
 
 window.SLIDES = [
-
-{sec:"SESSION 5 · OPEN & FRAME", title:`COMMUNICATING & <span class="g">PRESENTING</span>`, center:true,
- body:`<div class="sub">Session 5 · Communicating & Presenting: Stakeholders + Visual Design</div>
+{sec:"SESSION 5 · OPEN", title:`FROM ASKING TO <span class="g">DELEGATING</span>`, center:true,
+ body:`<div class="sub">Agents fundamentals. Tonight you hire your first AI helper, and a second one that checks its work.</div>
+   <div style="display:flex;justify-content:center;margin:22px 0 4px">${AST}</div>
    <div class="tbar" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub" style="font-size:clamp(18px,2.2vw,28px);color:#fff">Great work that no one understands did not happen.</div>`},
+   <div class="sub" style="font-size:16px">Tigran Sargsyan · AI for Product Managers · Session 5</div>`},
 
-{sec:"RECAP · SESSION 4", title:`LAST TIME: A DECISION <span class="g">FROM DATA</span>`,
- body:`<div class="sub">Session 4: you pointed Claude at a read-only data source, asked a real question, verified the answer, then made the call. No SQL.</div>
-   <div class="rows" style="margin-top:20px">
-     <div class="row"><span class="a">Session 4</span><span class="arw">→</span><span class="b">You found the answer and decided.</span></div>
-     <div class="row"><span class="a">Today</span><span class="arw">→</span><span class="b">You make people act on it.</span></div></div>`},
-
-{sec:"OPEN & FRAME · the stakes", title:`WHERE GOOD <span class="g">WORK DIES</span>`, center:true,
- body:`<div class="sub" style="font-size:clamp(20px,2.4vw,30px);color:#fff">Most good PM work dies in the inbox. Not because it was wrong. Because it was <span class="g">unread, unclear, or off-key.</span></div>`},
-
-{sec:"OPEN & FRAME · calibrate", title:`CALIBRATE <span class="g">THE ROOM</span>`,
- body:`<div class="sub">One word in chat: the last time an update of yours got ignored, why?</div>`},
-
-{sec:"OPEN & FRAME · the belief", title:`THE <span class="g">THROUGH-LINE</span>`,
- body:`<div class="sub" style="color:#fff">AI makes everyone fast. <span class="g">Taste and your own voice</span> are what still stand out. Don't let it flatten you into generic.</div>
-   <div style="display:flex;gap:16px;align-items:center;margin-top:28px">
-     <span style="width:14px;height:14px;border-radius:50%;background:#2c2c2e;display:inline-block"></span>
-     <span style="width:14px;height:14px;border-radius:50%;background:#2c2c2e;display:inline-block"></span>
-     <span style="width:14px;height:14px;border-radius:50%;background:#2c2c2e;display:inline-block"></span>
-     <span style="width:24px;height:24px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 20px rgba(208,245,57,.7)"></span>
-     <span style="width:14px;height:14px;border-radius:50%;background:#2c2c2e;display:inline-block"></span>
-     <span style="width:14px;height:14px;border-radius:50%;background:#2c2c2e;display:inline-block"></span>
-     <span style="width:14px;height:14px;border-radius:50%;background:#2c2c2e;display:inline-block"></span></div>`},
-
-{sec:"ONE TRUTH, THREE AUDIENCES", title:`SAME TRUTH, <span class="g">THREE AUDIENCES</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">Tailor the message, keep the facts.</div>`},
-
-{sec:"ONE TRUTH, THREE AUDIENCES", title:`WHAT EACH AUDIENCE <span class="g">ACTUALLY WANTS</span>`,
- body:`<div class="cards" style="grid-template-columns:repeat(3,1fr)">
-   <div class="card"><div class="tag" style="color:var(--green)">Exec</div><p>The decision, the impact, the risk. Lead with the answer.</p></div>
-   <div class="card"><div class="tag" style="color:var(--green)">Team</div><p>The priority, the why, what's next for them.</p></div>
-   <div class="card"><div class="tag" style="color:var(--green)">Cross-functional</div><p>Dependencies, timeline, what you need from them.</p></div></div>`},
-
-{sec:"ONE TRUTH, THREE AUDIENCES", title:`BLUF: LEAD WITH <span class="g">THE ANSWER</span>`,
- body:`<div class="sub">BLUF, Bottom Line Up Front. Execs read the first two lines, then decide whether to read more. Put the verdict there.</div>
-   <div style="margin-top:20px;display:flex;flex-direction:column;gap:8px;max-width:660px">
-     <div style="height:48px;background:var(--green);border-radius:6px;display:flex;align-items:center;padding-left:18px;color:var(--ink);font-family:var(--h);font-weight:900;letter-spacing:.02em">THE ANSWER</div>
-     <div style="height:42px;width:76%;background:var(--surface);border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;padding-left:18px;color:var(--muted)">Why, in 3 lines</div>
-     <div style="height:38px;width:54%;background:var(--surface);border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;padding-left:18px;color:var(--muted)">Detail for whoever wants it</div>
-     <div style="height:34px;width:32%;background:var(--surface);border:1px solid var(--line);border-radius:6px"></div></div>`},
-
-{sec:"ONE TRUTH, THREE AUDIENCES", title:`THE GENERIC-AI TONE <span class="g">(THE TELLS)</span>`,
- body:`<div class="sub">AI has a smell. Strip it.</div>
-   <ul style="list-style:none;margin-top:18px;font-size:clamp(17px,1.8vw,23px);line-height:1.85;color:var(--muted)">
-   <li style="${STRIKE}">"In today's fast-paced world"</li>
-   <li style="${STRIKE}">"delve"</li>
-   <li style="${STRIKE}">"moreover / furthermore"</li>
-   <li style="${STRIKE}">"leverage / utilize"</li>
-   <li style="${STRIKE}">endless hedging</li>
-   <li style="${STRIKE}">bullet soup with no verdict</li>
-   <li style="${STRIKE}">fake enthusiasm</li></ul>`},
-
-{sec:"ONE TRUTH, THREE AUDIENCES", title:`KEEP <span class="g">YOUR VOICE</span>`,
- body:`<div style="position:absolute;top:11vh;right:8vw;opacity:.85">${AST}</div>
-   <div class="blocks" style="max-width:940px">
-   <div class="block"><div class="bl">1 · Sample</div><p>Feed it a sample of your real writing.</p></div>
-   <div class="block"><div class="bl">2 · Anti-patterns</div><p>Name the words you never use.</p></div>
-   <div class="block"><div class="bl">3 · Own the ends</div><p>Let it draft, then you rewrite the first and last line by hand.</p></div>
-   <div class="block"><div class="bl">4 · Critique</div><p>"Flag anything that sounds like generic AI."</p></div></div>`},
-
-{sec:"ONE TRUTH, THREE AUDIENCES · your turn", title:`DE-SLOP, <span class="g">IN YOUR VOICE</span>`,
- body:`<span class="turn">Warm-up · 4 min</span>
-   <div class="mono"><ol class="steps2">
-   <li>Paste this AI-generic line: <span class="c">"In today's fast-paced environment, we are excited to leverage our learnings to delve into next steps and drive impactful outcomes moving forward."</span></li>
-   <li>Prompt: "Rewrite in plain, direct English. No filler, no hype, one clear point. Sound like a busy senior PM."</li>
-   <li>Now edit ONE word by hand so it sounds like you.</li></ol></div>`},
-
-{sec:"ONE TRUTH, THREE AUDIENCES", title:`SAME DATA, <span class="g">THREE LAYERS</span>`,
- body:`<div class="sub">One data set becomes a 4-line exec email and a full designed PDF. The exec never opens the PDF. The analyst never reads only 4 lines.</div>
-   <img class="shot" src="../../assets/img/s5/report-email.png"><div class="shotcap">A monthly social report PDF next to its 4-line delivery email.</div>`},
-
-{sec:"UPDATE → NARRATIVE → EXEC DOC", title:`MAKE THEM CARE IN <span class="g">30 SECONDS</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">Structure beats length.</div>`},
-
-{sec:"UPDATE → NARRATIVE → EXEC DOC", title:`THE NARRATIVE <span class="g">SPINE</span>`,
- body:`<div class="sub">Two spines that always work.</div>
-   <div style="display:flex;gap:36px;flex-wrap:wrap;margin-top:18px;align-items:flex-start">
-   <div style="display:flex;flex-direction:column;gap:8px;min-width:280px">
-     <div style="${SEG}">S · Situation</div>
-     <div style="${SEG}">C · Complication</div>
-     <div style="${SEG}">Q · Question</div>
-     <div style="${SEG}">A · Answer</div></div>
-   <div class="block" style="align-self:flex-start;max-width:360px"><div class="bl">What · So what · Now what</div><p>The fact, why it matters, the action. Both spines end on the action.</p></div></div>`},
-
-{sec:"UPDATE → NARRATIVE → EXEC DOC", title:`THE EXEC UPDATE <span class="g">TEMPLATE</span>`,
- body:`<div class="card good" style="max-width:860px">
-   <div class="tag">Exec update · under 150 words</div>
-   <div style="display:flex;flex-direction:column">
-   <div style="display:flex;gap:16px;padding:11px 0;border-top:1px solid var(--line)"><b style="color:var(--green);min-width:160px;font-family:var(--h);text-transform:uppercase;letter-spacing:.04em">Status</b><span>On track / At risk / Off track.</span></div>
-   <div style="display:flex;gap:16px;padding:11px 0;border-top:1px solid var(--line)"><b style="color:var(--green);min-width:160px;font-family:var(--h);text-transform:uppercase;letter-spacing:.04em">TL;DR</b><span>The answer, 2 sentences.</span></div>
-   <div style="display:flex;gap:16px;padding:11px 0;border-top:1px solid var(--line)"><b style="color:var(--green);min-width:160px;font-family:var(--h);text-transform:uppercase;letter-spacing:.04em">Decision needed</b><span>Or "FYI, no action."</span></div>
-   <div style="display:flex;gap:16px;padding:11px 0;border-top:1px solid var(--line)"><b style="color:var(--green);min-width:160px;font-family:var(--h);text-transform:uppercase;letter-spacing:.04em">Risk</b><span>One, plus what you're doing about it.</span></div>
-   <div style="display:flex;gap:16px;padding:11px 0;border-top:1px solid var(--line)"><b style="color:var(--green);min-width:160px;font-family:var(--h);text-transform:uppercase;letter-spacing:.04em">The ask</b><span>One clear thing.</span></div></div></div>`},
-
-{sec:"UPDATE → NARRATIVE → EXEC DOC", title:`HEADLINE = <span class="g">THE TAKEAWAY</span>`,
- body:`<div class="sub">If you present it: one idea per slide. The headline IS the takeaway, not the topic.</div>
-   <div class="cards">
-   <div class="card good"><div class="tag">✓ Takeaway</div><p>"Card activation up 6 pts after the new mobile KYC flow (illustrative)."</p></div>
-   <div class="card bad"><div class="tag">✕ Topic</div><p>"Activation Metrics."</p></div></div>`},
-
-{sec:"UPDATE → NARRATIVE → EXEC DOC", title:`YOUR <span class="g">TURN</span>`, center:true,
- body:`<span class="turn">Part 1</span>
-   <div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub">Turn a real update into an exec message, in your voice.</div>`},
-
-{sec:"UPDATE → NARRATIVE → EXEC DOC · your turn", title:`YOUR TAILORED <span class="g">EXEC UPDATE</span>`,
- body:`<span class="turn">Task 1 · 8 min</span>
-   <div class="mono"><ol class="steps2">
-   <li>Paste your <span class="c">raw update</span> (messy is fine: what happened, what's stuck, what's next).</li>
-   <li>Add a <span class="c">voice sample</span> (3-5 sentences you actually wrote before) + 3 words you never use.</li>
-   <li>Prompt <span class="c">R·C·T·C:</span> Role = sharp comms partner · Context = audience is my bank's leadership team + my voice sample + raw update · Task = the exec template, under 150 words · Critique = "flag any sentence that sounds like generic AI."</li>
-   <li>Rewrite the <span class="c">first and last line yourself.</span> That's your artifact.</li></ol></div>`},
-
-{sec:"UPDATE → NARRATIVE → EXEC DOC", title:`READ THE <span class="g">TL;DR</span>`,
- body:`<div class="sub">Share one: read your status line and TL;DR only.</div>`},
-
-{sec:"BREAK", title:`<span class="g">BREAK</span>`, center:true,
+{module:'s4-recap', scope:'open'},
+{sec:"SESSION 5 · OPEN", title:`TONIGHT YOU <span class="g">BUILD</span>`, center:true,
  body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub">8 minutes. Back at <b style="color:#fff">[time]</b>.</div>`},
+   <div class="two" style="max-width:820px;margin-left:auto;margin-right:auto;text-align:left">
+   <div class="uc"><div class="t">1 · A custom agent</div><div class="l">A helper with one job, its own instructions and only the tools it needs. <b>Discovery, Jira triage, competitor research or PRD review.</b></div></div>
+   <div class="uc"><div class="t">2 · A judge agent</div><div class="l">A helper that scores one of your skills' output against a rubric and says <b>PASS or FAIL, and why.</b></div></div></div>
+   <div class="sub" style="margin-left:auto;margin-right:auto">Both are plain files in your folder. Both are yours to keep.</div>`},
 
-{sec:"DESIGN POLISHED VISUALS WITH AI", title:`NOW MAKE IT <span class="g">LOOK GOOD</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">Taste is a skill, and it's learnable.</div>`},
+{sec:"WHAT AN AGENT IS", title:`AN AGENT IS <span class="g">FOUR THINGS</span>`,
+ body:`<div class="blocks">
+   <div class="block"><div class="bl">1 · A model</div><p>The brain. Claude reads, plans and writes.</p></div>
+   <div class="block"><div class="bl">2 · Tools</div><p>Hands. Read files, search the web, call Jira through a connector.</p></div>
+   <div class="block"><div class="bl">3 · A loop</div><p>It acts, looks at the result, and decides the next step. Again and again.</p></div>
+   <div class="block"><div class="bl">4 · A goal</div><p>A clear job and a clear "done". Without it, the loop has no end.</p></div></div>`},
 
-{sec:"DESIGN POLISHED VISUALS WITH AI · the belief", title:`TASTE IS THE <span class="g">DIFFERENTIATOR</span>`,
- body:`<div class="sub" style="color:#fff">Everyone can now generate a slide. Almost no one edits it down to something that looks <span class="g">decided</span>. That gap is your advantage.</div>
-   <div style="position:relative;height:22vh;max-width:760px;margin-top:14px">
-     <span style="position:absolute;left:5%;top:22%;width:16px;height:16px;background:#2a2a2c;border-radius:3px"></span>
-     <span style="position:absolute;left:28%;top:72%;width:12px;height:12px;background:#2a2a2c;border-radius:3px"></span>
-     <span style="position:absolute;left:54%;top:14%;width:18px;height:18px;background:#2a2a2c;border-radius:3px"></span>
-     <span style="position:absolute;left:82%;top:58%;width:14px;height:14px;background:#2a2a2c;border-radius:3px"></span>
-     <span style="position:absolute;left:44%;top:44%;width:44px;height:44px;background:var(--green);border-radius:7px;box-shadow:0 0 28px rgba(208,245,57,.6)"></span></div>`},
+{module:'agent-loop', scope:'lite', sec:"WHAT AN AGENT IS"},
 
-{sec:"DESIGN POLISHED VISUALS WITH AI", title:`THE DESIGN DNA <span class="g">(STEAL MINE)</span>`,
- body:`<div class="lifecycle" style="font-size:clamp(15px,2vw,26px)"><span>Minimal</span><span class="n">·</span><span>Bold</span><span class="n">·</span><span>High-contrast</span><span class="n">·</span><span>ONE accent</span><span class="n">·</span><span>Tech + premium</span></div>
-   <div class="cap">System fonts. White cards. Generous whitespace. One idea per view.</div>
-   <img class="shot" src="../../assets/img/resource-pack-preview.png" style="max-height:40vh"><div class="shotcap">A designed one-pager PDF: black + neon header, white cards, one accent. Same DNA as this deck.</div>`},
+{module:'autonomy-levels', scope:'lite', sec:"WHAT AN AGENT IS"},
 
-{sec:"DESIGN POLISHED VISUALS WITH AI", title:`THE AI-VISUAL <span class="g">SLOP TO AVOID</span>`,
- body:`<div class="sub">Reflex-reject list:</div>
-   <ul style="list-style:none;margin-top:18px;font-size:clamp(17px,1.8vw,23px);line-height:1.85;color:var(--muted)">
-   <li style="${STRIKE}">rainbow palettes</li>
-   <li style="${STRIKE}">purple-cyan gradients</li>
-   <li style="${STRIKE}">everything centered</li>
-   <li style="${STRIKE}">drop shadows everywhere</li>
-   <li style="${STRIKE}">clip-art icons</li>
-   <li style="${STRIKE}">emoji bullets</li>
-   <li style="${STRIKE}">cramped, uneven spacing</li></ul>`},
+{module:'delegate-matrix', scope:'lite', sec:"WHAT AN AGENT IS"},
 
-{sec:"DESIGN POLISHED VISUALS WITH AI", title:`ON-BRAND IMAGERY <span class="g">WITH AI</span>`,
- body:`<ul class="checklist">
-   <li>Picsart or nanobanana: prepend one house-style line to every prompt so all images match.</li>
-   <li>Keep it abstract, not clip-art.</li>
-   <li>For exec one-pagers: usually no image. Restraint reads as premium.</li></ul>
-   <img class="shot" src="../../assets/img/s5/image-gallery.png"><div class="shotcap">On-brand images from Picsart / nanobanana: one prepended house-style line keeps the whole set consistent. Abstract, not clip-art.</div>`},
+{sec:"AGENTS", title:`AN AGENT IS A HELPER WITH <span class="g">ITS OWN DESK</span>`,
+ body:`<div class="sub" style="color:var(--fg)">Your main Claude Code chat can hand a job to an <b class="g">agent</b>: a separate helper that works on its own and reports back.</div>
+   <div class="cap" style="max-width:860px;margin:8px 0 0">In Claude Code this is called a <b style="color:var(--fg)">subagent</b>: an agent your main Claude hands work to. It lives in <span style="font-family:var(--m)">.claude/agents/</span>. Everywhere else in this course we just say agent.</div>
+   <ul class="checklist" style="margin-top:16px"><li><b>Own context window</b>: its own working memory, so your main chat stays clean</li><li><b>Own instructions</b>: one job, written once</li><li><b>Own tools</b>: only what the job needs, for example read-only</li><li><b>Returns a summary</b>: you get the result, not the mess</li></ul>`},
 
-{sec:"DESIGN POLISHED VISUALS WITH AI", title:`DIAGRAMS + INFOGRAPHICS <span class="g">ON DEMAND</span>`,
- body:`<div class="sub">AI draws the boring stuff. Flows and architecture as Mermaid or SVG. A visual summary as an infographic. All describe-it-in-words, no design tool.</div>
-   <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px">
-   <div style="${FLOWBOX}">Describe in words</div>
-   <span style="${FLOWARR}">→</span>
-   <div style="${FLOWBOX}">Mermaid / SVG</div>
-   <span style="${FLOWARR}">→</span>
-   <div style="${FLOWBOX}">Drop into doc or HTML</div></div>`},
+{module:'subagents', scope:'lite', sec:"AGENTS"},
 
-{sec:"DESIGN POLISHED VISUALS WITH AI", title:`ONE SYSTEM, <span class="g">EVERYTHING ON-BRAND</span>`,
- body:`<div class="sub">This course's decks, the report PDFs, the dashboards. Different outputs, one design DNA, all AI-built. Consistency looks expensive. It's mostly just discipline.</div>
-   <img class="shot" src="../../assets/img/command-center.png" style="max-height:44vh"><div class="shotcap">The Agent Command Center. My decks, report PDFs, and this dashboard all share one design DNA (Picsart work kept high-level).</div>`},
+{sec:"AGENTS", title:`ONE FILE, <span class="g">FOUR LINES</span> ON TOP`,
+ body:`<div class="fileprev"><span class="d">.claude/agents/prd-reviewer.md</span>
+<span class="k">---</span>
+<span class="k">name:</span> prd-reviewer
+<span class="k">description:</span> Reviews a PRD for gaps. Use when asked to check a PRD.
+<span class="k">tools:</span> Read, Grep, Glob
+<span class="k">model:</span> sonnet
+<span class="k">---</span>
+You are a strict senior PM. Check the PRD for: problem, user,
+success metric, scope, risks, open questions. Return a table:
+section, status (ok / weak / missing), one fix each.</div>
+   <div class="cap" style="max-width:800px">Top part: <b>name</b> and <b>description</b> are required. <b>tools</b> and <b>model</b> are optional. Read, Grep and Glob mean read and search files only. Below the line: the instructions.</div>`},
 
-{sec:"ANATOMY SLICE · SKILLS", title:`MAKE THESE <span class="g">TWO SKILLS</span>`,
- body:`<div class="sub">Session 2 taught the skill: a reusable recipe in <span style="font-family:var(--m);color:var(--green)">.claude/skills/</span>. Today gives you two worth saving, so you never retype them.</div>
-   <div class="cards" style="margin-top:18px">
-     <div class="card good"><div class="tag">my-voice</div><p>Your writing sample, your never-use words, the exec template. Triggers on "draft an update".</p></div>
-     <div class="card good"><div class="tag">house-design</div><p>Your five design words and the @page print rule. Triggers on "make a one-pager".</p></div></div>
-   <div class="cap">Comms and design, each packaged once, reused forever. That is what a skill is for.</div>`},
+{sec:"AGENTS", title:`SKILL OR <span class="g">AGENT?</span>`,
+ body:`<div class="rows">
+   <div class="row"><span class="a">Skill</span><span class="arw">&rarr;</span><span class="b">a saved recipe. Runs <b>inside your chat</b>, with your chat's memory and tools.</span></div>
+   <div class="row"><span class="a">Agent</span><span class="arw">&rarr;</span><span class="b">a helper. Runs <b>on its own desk</b>, with its own memory and a tool limit.</span></div></div>
+   <div class="cap" style="max-width:820px;margin:16px auto 0">Rule of thumb: pick an agent when the job is <b>big</b> (many files), <b>noisy</b> (lots of reading), or needs <b>less access</b> than you have.</div>`},
 
-{sec:"SHAREABLE HTML + CLEAN PDF", title:`ONE FILE, SHAREABLE + <span class="g">PRINTABLE</span>`, center:true,
- body:`<div class="rule"></div><div class="sub">Send as a link. Print to PDF. The most useful format a PM can produce.</div>`},
-
-{sec:"SHAREABLE HTML + CLEAN PDF", title:`WHY A SINGLE <span class="g">HTML FILE WINS</span>`,
- body:`<ul class="checklist">
-   <li>No software needed to open</li>
-   <li>Looks identical everywhere</li>
-   <li>One file, no assets to lose</li>
-   <li>Becomes a PDF in two clicks</li>
-   <li>Trivially editable with AI later</li></ul>
-   <div style="display:flex;align-items:center;gap:16px;margin-top:20px;flex-wrap:wrap">
-   <div style="border:1px solid var(--green);border-radius:10px;padding:12px 20px;color:var(--green);font-family:var(--m);font-weight:600">one-pager.html</div>
-   <span style="${FLOWARR}">→</span>
-   <div class="lifecycle" style="margin-top:0;font-size:clamp(14px,1.8vw,22px)"><span>Browser</span><span class="n">·</span><span>Phone</span><span class="n">·</span><span>PDF</span></div></div>`},
-
-{sec:"SHAREABLE HTML + CLEAN PDF", title:`PRINT TO PDF, <span class="g">THE CLEAN WAY</span>`,
- body:`<ul class="checklist">
-   <li>Browser: Cmd/Ctrl+P, then Save as PDF. Uncheck "Headers and footers."</li>
-   <li>In the file: <span style="font-family:var(--m);color:var(--green)">@page</span> CSS sets size and margins.</li>
-   <li>Automatable later: headless Chrome <span style="font-family:var(--m);color:var(--green)">--headless=new --no-pdf-header-footer</span>.</li></ul>
-   <img class="shot" src="../../assets/img/s5/print-dialog.png"><div class="shotcap">The browser print dialog: destination "Save as PDF", "Headers and footers" unchecked so no URLs or page numbers get stamped on.</div>`},
-
-{sec:"LIVE · WATCH ME", title:`LIVE: BACKLOG TO EXEC UPDATE TO <span class="g">ONE-PAGER</span>`,
- body:`<div class="sub" style="color:#fff">Watch me build both artifacts in Claude Code, on the demo project. You do the same next, on your real work.</div>
-   <div class="mono" style="max-width:840px;margin:14px auto 0;text-align:left">In <span class="c">aca-demo</span> I reset the scores, then type:<ol class="steps2">
-     <li>"Run the <span class="c">pm-reviewer</span> agent to rank the backlog." It reads the agent and returns the top item.</li>
-     <li>"Write a <span class="c">150-word exec update</span> on that item for a bank leadership team. Use the exec template. Plain, direct, no filler."</li>
-     <li>"Now build <span class="c">one-pager.html</span> from that update: minimal, bold, one accent, white cards, @page for A4, no images." Then I print it to PDF.</li></ol></div>
-   <div class="cap" style="max-width:780px;margin:12px auto 0">Same operator loop from Session 1: read the context, act, check. One project, one exec message, one designed page.</div>`},
-
-{sec:"SHAREABLE HTML + CLEAN PDF", title:`YOUR <span class="g">TURN</span>`, center:true,
- body:`<span class="turn">Part 2</span>
-   <div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div class="sub">Build a designed one-pager, then export a PDF.</div>`},
-
-{sec:"SHAREABLE HTML + CLEAN PDF · your turn", title:`BRIEF YOUR <span class="g">ONE-PAGER</span>`,
- body:`<span class="turn">Task 2 · 3 min</span>
-   <div class="mono">Write down 5 fields:<ol class="steps2">
-   <li><span class="c">Title</span> (project / capstone name).</li>
-   <li><span class="c">One-line status</span> (on track / at risk).</li>
-   <li><span class="c">3 numbers</span> that matter.</li>
-   <li>The <span class="c">decision or ask.</span></li>
-   <li><span class="c">Next 3 steps.</span></li></ol></div>`},
-
-{sec:"SHAREABLE HTML + CLEAN PDF · your turn", title:`BUILD IT IN <span class="g">CLAUDE CODE</span>`,
- body:`<span class="turn">Task 3 · 12 min</span>
-   <div class="mono">In Claude Code, ONE prompt:<ol class="steps2">
-   <li>"Create one self-contained file <span class="c">one-pager.html</span>. Inline CSS, system fonts, no external assets."</li>
-   <li>Paste your <span class="c">5 fields</span> from Task 2.</li>
-   <li>Design brief: "<span class="c">Minimal, bold, high-contrast, ONE accent color, white cards, generous whitespace. Fits one screen. No images.</span>"</li>
-   <li>"Add <span class="c">@page</span> CSS so it prints clean to A4."</li>
-   <li>Open the file in your browser.</li></ol></div>`},
-
-{sec:"SHAREABLE HTML + CLEAN PDF · your turn", title:`POLISH <span class="g">WITH TASTE</span>`,
- body:`<span class="turn">Task 4 · 7 min</span>
-   <div class="mono">Iterate ONCE:<ol class="steps2">
-   <li>Look with taste: anything centered that shouldn't be? more than one color? cramped?</li>
-   <li>One follow-up: "<span class="c">Tighten spacing, make the status the boldest thing, keep one accent color.</span>"</li>
-   <li>Check the words are in <span class="c">your voice</span>, not generic.</li></ol></div>`},
-
-{sec:"SHAREABLE HTML + CLEAN PDF · your turn", title:`EXPORT A <span class="g">CLEAN PDF</span>`,
- body:`<span class="turn">Task 5 · 5 min</span>
-   <div class="mono"><ol class="steps2">
-   <li>Cmd/Ctrl+P in the browser.</li>
-   <li>Destination: <span class="c">Save as PDF.</span></li>
-   <li><span class="c">Uncheck "Headers and footers."</span> Margins: default or none.</li>
-   <li>Save. That's <span class="c">artifact B.</span></li></ol></div>`},
-
-{sec:"SHAREABLE HTML + CLEAN PDF", title:`THE ONE-PAGER <span class="g">GALLERY</span>`,
- body:`<div class="sub">Turn your screen around. One sentence: who is this for, what's the ask?</div>`},
-
-{sec:"RECAP, HOMEWORK & CAPSTONE", title:`THE THREE <span class="g">THAT MATTER</span>`,
- body:`<ul class="recaplist">
-   <li><span class="n">1</span><span>Tailor the message, keep the facts. BLUF for execs.</span></li>
-   <li><span class="n">2</span><span>Keep your voice: sample in, generic out, you edit the ends.</span></li>
-   <li><span class="n">3</span><span>One design DNA plus one file equals shareable and printable, on-brand.</span></li></ul>`},
-
-{sec:"RECAP, HOMEWORK & CAPSTONE", title:`THIS IS YOUR <span class="g">DEMO KIT</span>`,
- body:`<div class="sub">This one-pager IS your capstone pitch. In Session 8 you demo live. Today you built the page and the exec message you'll present with.</div>
-   <div style="position:relative;border:1px solid var(--line);border-radius:12px;background:#0e0e10;display:flex;align-items:center;justify-content:center;min-height:34vh;max-height:44vh;margin-top:8px;overflow:hidden">
-     <span style="position:absolute;top:14px;right:14px;font-family:var(--h);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:var(--ink);background:var(--green);padding:6px 11px;border-radius:6px">On-brand illustration</span>
-     <svg viewBox="0 0 220 200" style="width:min(260px,38vw);height:auto" fill="none">
-       <defs><radialGradient id="glow" cx="50%" cy="50%" r="50%">
-         <stop offset="0%" stop-color="#d0f539" stop-opacity=".18"/><stop offset="100%" stop-color="#d0f539" stop-opacity="0"/></radialGradient></defs>
-       <circle cx="120" cy="96" r="86" fill="url(#glow)"/>
-       <line x1="74" y1="176" x2="146" y2="176" stroke="#d0f539" stroke-width="4" stroke-linecap="round" opacity=".55"/>
-       <path d="M110 176 C 108 150 112 120 110 92" stroke="#d0f539" stroke-width="5" stroke-linecap="round"/>
-       <path d="M110 98 C 132 74 168 70 188 54 C 170 90 142 102 112 100 Z" fill="#d0f539"/>
-       <path d="M116 96 C 140 82 164 70 183 55" stroke="#0e0e10" stroke-width="2.5" stroke-linecap="round"/>
-     </svg></div>
-   <div class="shotcap">On-brand illustration, not stock. One clean leaf, dark canvas, single neon accent. Growth as the capstone metaphor.</div>`},
-
-{sec:"RECAP, HOMEWORK & CAPSTONE", title:`HOMEWORK BEFORE <span class="g">SESSION 6</span>`,
- body:`<span class="turn">Homework · one task · token-light</span>
-   <div class="mono"><ol class="steps2">
-   <li>Take <span class="c">one real update</span> you sent at work recently.</li>
-   <li>Redo it with AI: tailor it to its audience, strip the generic tone, keep <span class="c">your voice.</span></li>
-   <li>Put the two side by side. Send the better one if it fits.</li></ol></div>
-   <div class="cap" style="max-width:760px;margin:12px auto 0;text-align:center">One update, in the Claude chat, ten minutes. Bring your one-pager to Session 6.</div>`},
-
-{sec:"CLOSE", title:`NEXT: AI FEATURES <span class="g">& AGENTS</span>`, center:true,
+{module:'agent-ideas', scope:'lite'},
+{sec:"AGENTS THAT BUILD AGENTS", title:`YOU DO NOT WRITE THE FILE. <span class="g">YOU DESCRIBE THE JOB</span>`, center:true,
  body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
-   <div style="display:flex;justify-content:center;margin:8px 0;opacity:.5">${AST}</div>
-   <div class="sub" style="color:#fff">"Build the Judge." You'll ship a working eval and a simple custom agent.</div>`}
+   <div class="sub" style="color:var(--fg)">Claude Code writes agents and skills for you. Your job: say what good looks like, then <b class="g">read the file</b> before you trust it.</div>`},
 
+{sec:"AGENTS THAT BUILD AGENTS · live", title:`LIVE · BUILD A <span class="g">PRD REVIEWER</span>`,
+ body:`<span class="turn">Watch me first</span>
+   <div class="mono"><ol class="steps2">
+   <li><span class="c">"Create an agent at .claude/agents/prd-reviewer.md. Job: review a PRD for gaps. Check problem, target user, success metric, scope, risks and open questions. Output: a table with section, status (ok, weak, missing) and one fix. Tools: read only. Ask me anything unclear first."</span></li>
+   <li>I read the file. I check the description and the tools line.</li>
+   <li><span class="c">"Use the prd-reviewer agent on prd.md."</span></li></ol></div>`},
+
+{sec:"AGENTS THAT BUILD AGENTS · task", title:`TASK 1 · BUILD YOUR <span class="g">FIRST AGENT</span>`,
+ body:`<span class="turn">Your turn · 10 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Pick one: discovery, Jira triage, competitor research, PRD reviewer, or your own.</li>
+   <li>Type: <span class="c">"Create an agent at .claude/agents/[name].md. Job: [one sentence]. Input: [what I give it]. Output: [file or table]. Tools: [read only, or name the connector]. Ask me questions first."</span></li>
+   <li>Answer its questions. Approve the file.</li>
+   <li>Open the file. Read the description and tools lines.</li></ol></div>`},
+
+{sec:"AGENTS THAT BUILD AGENTS · task", title:`TASK 2 · RUN IT, THEN <span class="g">TIGHTEN IT</span>`,
+ body:`<span class="turn">Your turn · 8 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Run it on real input: <span class="c">"Use the [name] agent on [file or source]."</span></li>
+   <li>Watch what it reads and which tools it uses.</li>
+   <li>Then: <span class="c">"Did the [name] agent do anything outside its job? Tighten its description and tools so it cannot."</span></li>
+   <li>Run it once more. Is the output better?</li></ol></div>`},
+
+{module:'agent-failure-modes', scope:'lite', sec:"AGENTS THAT BUILD AGENTS"},
+
+{sec:"THE JUDGE", title:`SCORE IT, <span class="g">DO NOT DICTATE IT</span>`, center:true,
+ body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
+   <div class="sub" style="color:var(--fg)">AI output changes every run. You cannot check one exact answer.</div>
+   <div class="sub">So you write down what good looks like, once, and let a <b class="g">judge</b> score every output against it.</div>`},
+
+{module:'llm-judge', scope:'lite', sec:"THE JUDGE"},
+
+{sec:"THE JUDGE", title:`ANATOMY OF A <span class="g">JUDGE</span>`,
+ body:`<div class="blocks">
+   <div class="block"><div class="bl">1 · Criteria</div><p>3 or 4 only. For example: grounded, complete, clear, right format.</p></div>
+   <div class="block"><div class="bl">2 · A scale</div><p>1 to 5 each. Say what a 1 and a 5 look like.</p></div>
+   <div class="block"><div class="bl">3 · A hard fail</div><p>One rule that fails everything. For example: any number not in the source.</p></div>
+   <div class="block"><div class="bl">4 · A verdict</div><p>PASS or FAIL, the reason, and the one fix that matters most.</p></div></div>`},
+
+{sec:"THE JUDGE", title:`WHY THE JUDGE IS A <span class="g">SEPARATE AGENT</span>`,
+ body:`<div class="rows">
+   <div class="row"><span class="a">Fresh eyes</span><span class="arw">&rarr;</span><span class="b">it did not write the output, so it does not <b>defend</b> it</span></div>
+   <div class="row"><span class="a">Clean memory</span><span class="arw">&rarr;</span><span class="b">its own context window, only the rubric and the output</span></div>
+   <div class="row"><span class="a">Read only</span><span class="arw">&rarr;</span><span class="b">a judge <b>scores</b>. It never edits the thing it grades.</span></div></div>`},
+
+{sec:"THE JUDGE · task", title:`TASK 3 · BUILD YOUR <span class="g">JUDGE AGENT</span>`,
+ body:`<span class="turn">Your turn · 10 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Pick one skill you built. Best picks: <span class="c">discovery-synth</span> (S3) or <span class="c">data-analyst</span> (S4).</li>
+   <li>Type: <span class="c">"Create an agent at .claude/agents/[skill]-judge.md. It scores the output of my [skill] skill. Criteria: [3 or 4]. Scale 1 to 5 with what a 1 and a 5 look like. Hard fail: [one rule]. Output: a score table, PASS or FAIL, and the top fix. Tools: Read only. It never edits files."</span></li>
+   <li>Read the file. Is the hard fail clear?</li></ol></div>`},
+
+{sec:"THE JUDGE · task", title:`TASK 4 · THE <span class="g">PLANT TEST</span>`,
+ body:`<span class="turn">Your turn · 10 min</span>
+   <div class="mono"><ol class="steps2">
+   <li>Run your skill. Save the output: <span class="c">"Save that output to evals/good.md."</span></li>
+   <li>Plant 2 bad ones: <span class="c">"Make evals/bad-fact.md with one invented number, and evals/bad-format.md with the right facts in the wrong format."</span></li>
+   <li>Judge all three: <span class="c">"Use the [skill]-judge agent on every file in evals/. Show one table."</span></li>
+   <li>Did it fail both bad files? If not, fix the rubric and rerun.</li></ol></div>`},
+
+{sec:"THE JUDGE", title:`WHAT A GOOD RUN <span class="g">LOOKS LIKE</span>`,
+ body:`<table class="sc"><tr><th>File</th><th>Grounded</th><th>Complete</th><th>Format</th><th>Hard fail</th><th>Verdict</th></tr>
+   <tr><td>good.md</td><td>5</td><td>4</td><td>5</td><td>no</td><td class="g">PASS</td></tr>
+   <tr><td>bad-fact.md</td><td>2</td><td>4</td><td>5</td><td>invented 38%</td><td class="w">FAIL</td></tr>
+   <tr><td>bad-format.md</td><td>5</td><td>4</td><td>2</td><td>no</td><td class="w">FAIL</td></tr></table>
+   <div class="cap" style="max-width:820px">Top fix for bad-fact.md: <b>"Remove 38%. It is not in the source data."</b></div>`},
+
+{module:'eval-flywheel', scope:'lite', sec:"THE JUDGE"},
+
+{sec:"THE JUDGE", title:`DOES THE JUDGE <span class="g">AGREE WITH YOU?</span>`,
+ body:`<ul class="checklist"><li>Score 5 outputs yourself first. PASS or FAIL.</li><li>Run the judge on the same 5.</li><li>Agree on 4 of 5 or more? Trust it for this job.</li><li>Less? Make the rubric more specific and try again.</li></ul>
+   <div class="cap" style="max-width:820px">This is called <b>calibration</b>: checking the judge against a human before you let it run alone.</div>`},
+
+{module:'human-in-loop', scope:'lite', sec:"THE JUDGE"},
+
+{sec:"USE CASES", title:`JUDGES FOR <span class="g">EVERY PM DESK</span>`,
+ body:`<div class="ucg">
+   <div class="uc"><div class="t">Research synthesis judge</div><div class="l">Hard fail: <b>any theme without a real quote.</b></div></div>
+   <div class="uc"><div class="t">PRD judge</div><div class="l">Hard fail: <b>no success metric, or a metric with no number.</b></div></div>
+   <div class="uc"><div class="t">Data readout judge</div><div class="l">Hard fail: <b>a number that does not match the source file.</b></div></div>
+   <div class="uc"><div class="t">Release notes judge</div><div class="l">Hard fail: <b>a feature that is not in the shipped ticket list.</b></div></div></div>`},
+
+{module:'s5-recap', scope:'lite', sec:"RECAP"},
+{module:'homework', scope:'s5'},
+{sec:"RECAP &amp; HOMEWORK · close", title:`NEXT · MULTI-AGENT AND <span class="g">AUTOMATION</span>`, center:true,
+ body:`<div class="rule" style="margin-left:auto;margin-right:auto"></div>
+   <div class="sub" style="color:var(--fg)">Session 6: Multi-agent and automation. A lead agent with a team of helpers, running every week on a schedule, packed as a plugin (one bundle of your skills and agents) you can share.</div>
+   <div class="cubebox"><div class="cube"><div class="f top"></div><div class="f left"></div><div class="f front"></div></div></div>`},
 ];
 </script>
-<script src="../../assets/deck.js"></script></body></html>
+<script src="../../assets/deck.js?v=c3"></script></body></html>
